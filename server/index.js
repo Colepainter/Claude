@@ -33,7 +33,8 @@ const vehicleRoutes   = require('./routes/vehicles');
 const contentRoutes   = require('./routes/content');
 const mediaRoutes     = require('./routes/media');
 const leadRoutes      = require('./routes/leads');
-const driveSyncRoutes = require('./routes/driveSync');
+const driveSyncRoutes  = require('./routes/driveSync');
+const sheetsSyncRoutes = require('./routes/sheetsSync');
 
 app.use('/api/auth',     authRoutes);
 app.use('/api/vehicles', vehicleRoutes);
@@ -41,6 +42,7 @@ app.use('/api/content',  contentRoutes);
 app.use('/api/media',    mediaRoutes);
 app.use('/api/leads',    leadRoutes);
 app.use('/api/drive',    driveSyncRoutes);
+app.use('/api/sheets',   sheetsSyncRoutes);
 
 // /api/chargers convenience alias
 app.get('/api/chargers', (req, res) => {
