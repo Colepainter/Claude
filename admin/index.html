@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EV Primitive — CMS</title>
+  <link rel="stylesheet" href="css/admin.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ═══════════════════════ LOGIN SCREEN ═══════════════════════ -->
+  <div class="login-screen" id="loginScreen">
+    <div class="login-card">
+      <div class="login-logo">EV CMS</div>
+      <h1 class="login-title">Sign in to manage your site</h1>
+      <form id="loginForm" class="login-form">
+        <div class="field">
+          <label for="loginEmail">Email</label>
+          <input id="loginEmail" type="email" autocomplete="email" placeholder="admin@evprimitive.com" required>
+        </div>
+        <div class="field">
+          <label for="loginPassword">Password</label>
+          <input id="loginPassword" type="password" autocomplete="current-password" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn-primary" id="loginBtn">Sign In</button>
+        <p class="login-error" id="loginError"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ CMS SHELL ═══════════════════════════ -->
+  <div class="cms" id="cmsShell" hidden>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar__logo">EV CMS</div>
+      <nav class="sidebar__nav" aria-label="CMS Navigation">
+        <button class="sidebar__item is-active" data-panel="dashboard">
+          <span class="sidebar__icon">⬛</span> Dashboard
+        </button>
+        <button class="sidebar__item" data-panel="heroes">
+          <span class="sidebar__icon">🖼</span> Hero Sections
+        </button>
+        <button class="sidebar__item" data-panel="vehicles">
+          <span class="sidebar__icon">🚗</span> Vehicles
+        </button>
+        <button class="sidebar__item" data-panel="media">
+          <span class="sidebar__icon">📁</span> Media Library
+        </button>
+        <button class="sidebar__item" data-panel="leads">
+          <span class="sidebar__icon">📩</span> Leads
+        </button>
+        <button class="sidebar__item" data-panel="content">
+          <span class="sidebar__icon">✏️</span> Content Blocks
+        </button>
+        <button class="sidebar__item" data-panel="settings">
+          <span class="sidebar__icon">⚙️</span> Settings
+        </button>
+      </nav>
+      <div class="sidebar__footer">
+        <span id="sidebarUser"></span>
+        <button class="sidebar__logout" id="logoutBtn">Sign out</button>
+      </div>
+    </aside>
+
+    <!-- Main content area -->
+    <main class="cms-main" id="cmsMain">
+
+      <!-- ── Dashboard ── -->
+      <section class="panel is-active" id="panel-dashboard">
+        <h1 class="panel-title">Dashboard</h1>
+        <div class="stat-row" id="dashStats">
+          <div class="stat-card"><span class="stat-card__val" id="statVehicles">—</span><span class="stat-card__lbl">Vehicles</span></div>
+          <div class="stat-card"><span class="stat-card__val" id="statHeroes">—</span><span class="stat-card__lbl">Hero Sections</span></div>
+          <div class="stat-card"><span class="stat-card__val" id="statMedia">—</span><span class="stat-card__lbl">Media Files</span></div>
+          <div class="stat-card"><span class="stat-card__val" id="statLeads">—</span><span class="stat-card__lbl">New Leads</span></div>
+        </div>
+        <div class="quick-links">
+          <h2 class="section-heading">Quick Actions</h2>
+          <div class="quick-grid">
+            <button class="quick-card" onclick="switchPanel('heroes')">Edit Hero Images</button>
+            <button class="quick-card" onclick="switchPanel('vehicles')">Update Vehicles</button>
+            <button class="quick-card" onclick="switchPanel('media')">Upload Media</button>
+            <button class="quick-card" onclick="switchPanel('leads')">View Leads</button>
+            <a class="quick-card" href="/" target="_blank">View Live Site ↗</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Hero Sections ── -->
+      <section class="panel" id="panel-heroes">
+        <h1 class="panel-title">Hero Sections</h1>
+        <p class="panel-desc">Edit the full-screen hero slides on the homepage.</p>
+        <div id="heroList" class="card-list"></div>
+      </section>
+
+      <!-- ── Vehicles ── -->
+      <section class="panel" id="panel-vehicles">
+        <div class="panel-header">
+          <h1 class="panel-title">Vehicles</h1>
+          <button class="btn-primary btn-sm" id="addVehicleBtn">+ Add Vehicle</button>
+        </div>
+        <div id="vehicleList" class="data-table-wrap"></div>
+      </section>
+
+      <!-- ── Media Library ── -->
+      <section class="panel" id="panel-media">
+        <div class="panel-header">
+          <h1 class="panel-title">Media Library</h1>
+          <div style="display:flex;gap:0.75rem;align-items:center;flex-wrap:wrap;">
+            <button class="btn-primary btn-sm" id="uploadBtn">Upload Files</button>
+            <button class="btn-secondary btn-sm" id="driveBtn">Import from Drive</button>
+          </div>
+        </div>
+        <input type="file" id="fileInput" multiple accept="image/*,video/mp4" hidden>
+        <div id="uploadProgress" class="upload-progress" hidden></div>
+        <div id="mediaGrid" class="media-grid"></div>
+      </section>
+
+      <!-- ── Leads ── -->
+      <section class="panel" id="panel-leads">
+        <h1 class="panel-title">Leads</h1>
+        <div class="filter-row">
+          <button class="filter-btn is-active" data-status="">All</button>
+          <button class="filter-btn" data-status="new">New</button>
+          <button class="filter-btn" data-status="contacted">Contacted</button>
+          <button class="filter-btn" data-status="closed">Closed</button>
+        </div>
+        <div id="leadsList" class="data-table-wrap"></div>
+      </section>
+
+      <!-- ── Content Blocks ── -->
+      <section class="panel" id="panel-content">
+        <h1 class="panel-title">Content Blocks</h1>
+        <p class="panel-desc">Edit CMS-managed text and copy blocks across the site.</p>
+        <div id="contentList" class="card-list"></div>
+      </section>
+
+      <!-- ── Settings ── -->
+      <section class="panel" id="panel-settings">
+        <h1 class="panel-title">Settings</h1>
+        <form id="settingsForm" class="settings-form">
+          <div class="field"><label>Site Name</label><input name="site_name" type="text"></div>
+          <div class="field"><label>Accent Color</label><input name="accent_color" type="color"></div>
+          <div class="field">
+            <label>Show Federal Tax Credit</label>
+            <select name="show_federal_credit">
+              <option value="1">Yes</option>
+              <option value="0">No</option>
+            </select>
+          </div>
+          <div class="field"><label>Google Drive Folder ID</label><input name="drive_folder_id" type="text" placeholder="1AbCd..."></div>
+          <button type="submit" class="btn-primary">Save Settings</button>
+          <p id="settingsSaved" class="save-msg" hidden>✓ Saved</p>
+        </form>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ── Modal ── -->
+  <div class="modal-backdrop" id="modalBackdrop" hidden>
+    <div class="modal" id="modal" role="dialog" aria-modal="true">
+      <button class="modal__close" id="modalClose" aria-label="Close">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

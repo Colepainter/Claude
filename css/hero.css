@@ -1,0 +1,143 @@
+/* ═══════════════════════════════════════════════════════════════
+   Hero Sections — full-viewport, stacked scroll
+   ═══════════════════════════════════════════════════════════════ */
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  /* Each section snaps to full viewport on scroll */
+  scroll-snap-align: start;
+}
+
+/* Background image layer */
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 60%;
+  background-repeat: no-repeat;
+  transform: scale(1.04);
+  transition: transform 8s ease-out;
+  will-change: transform;
+}
+.hero.is-active .hero__bg { transform: scale(1); }
+
+/* Gradient overlay for legibility */
+.hero__gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.08) 0%,
+    rgba(0,0,0,0.01) 40%,
+    rgba(0,0,0,0.35) 100%
+  );
+}
+.hero__gradient--light {
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.1) 0%,
+    rgba(255,255,255,0.0) 40%,
+    rgba(255,255,255,0.6) 100%
+  );
+}
+
+/* ─── Content block (top) ─── */
+.hero__content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding-top: calc(var(--nav-height) + 3rem);
+}
+.hero__content--top { margin-top: 0; }
+
+.hero__title {
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+}
+.hero__title--dark { color: var(--color-text); text-shadow: none; }
+
+.hero__subtitle {
+  margin-top: 0.5rem;
+  font-size: clamp(1rem, 2vw, 1.375rem);
+  font-weight: 400;
+  color: rgba(255,255,255,0.88);
+  text-shadow: 0 1px 8px rgba(0,0,0,0.2);
+}
+.hero__subtitle--dark { color: var(--color-text-muted); text-shadow: none; }
+
+/* Stat pills */
+.hero__stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+.hero__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.2);
+}
+.hero__stat-value {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1;
+}
+.hero__stat-label {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  opacity: 0.85;
+  margin-top: 0.2rem;
+  letter-spacing: 0.03em;
+}
+
+/* ─── CTA block (bottom) ─── */
+.hero__cta {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-bottom: 3rem;
+}
+
+/* ─── Fallback gradient backgrounds (while images load / placeholder) ─── */
+.hero--model-y  .hero__bg { background-color: #1c2b3a; }
+.hero--model-3  .hero__bg { background-color: #1a2535; }
+.hero--model-s  .hero__bg { background-color: #0d1520; }
+.hero--model-x  .hero__bg { background-color: #111b29; }
+.hero--cybertruck .hero__bg { background-color: #1a1a1a; }
+.hero--solar    .hero__bg { background-color: #e8eff5; }
+.hero--powerwall .hero__bg { background-color: #0b1a2c; }
+
+/* ─── Scroll-snap container ─── */
+main {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+}
+/* Non-hero sections don't snap */
+.features, .compare, .why-ev, .cta-banner, footer {
+  scroll-snap-align: none;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 600px) {
+  .hero__stats { gap: 1.25rem; }
+  .hero__cta { flex-direction: column; align-items: center; padding-bottom: 2rem; }
+  .btn { width: 80vw; max-width: 300px; }
+}

@@ -1,0 +1,130 @@
+/* ═══════════════════════════════════════════════════════════════
+   Why EV Section + CTA Banner
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── Why Go Electric ─── */
+.why-ev {
+  padding: 6rem 2rem;
+  background: var(--color-bg);
+}
+
+.why-ev__inner {
+  max-width: var(--section-max-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.why-ev__title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 1.5rem;
+}
+
+.why-ev__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  list-style: none;
+}
+
+.why-ev__list li {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  padding-left: 1.25rem;
+  position: relative;
+  line-height: 1.6;
+}
+.why-ev__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+.why-ev__list strong { color: var(--color-text); }
+
+/* Visual stat ring */
+.why-ev__visual {
+  display: flex;
+  justify-content: center;
+}
+
+.why-ev__stat-ring {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  border: 8px solid var(--color-accent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 60px rgba(62,106,225,0.15), inset 0 0 40px rgba(62,106,225,0.06);
+  animation: ring-pulse 3s ease-in-out infinite;
+}
+
+@keyframes ring-pulse {
+  0%, 100% { box-shadow: 0 0 60px rgba(62,106,225,0.15), inset 0 0 40px rgba(62,106,225,0.06); }
+  50%       { box-shadow: 0 0 90px rgba(62,106,225,0.30), inset 0 0 60px rgba(62,106,225,0.12); }
+}
+
+.why-ev__ring-value {
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  line-height: 1;
+}
+.why-ev__ring-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  margin-top: 0.35rem;
+  letter-spacing: 0.04em;
+}
+
+/* ─── CTA Banner ─── */
+.cta-banner {
+  background: linear-gradient(135deg, #0d1520 0%, #1b3a9e 100%);
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.cta-banner__inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.cta-banner__title {
+  color: #fff;
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  margin-bottom: 1rem;
+}
+
+.cta-banner__body {
+  color: rgba(255,255,255,0.75);
+  font-size: 1.0625rem;
+  margin-bottom: 2rem;
+  line-height: 1.65;
+}
+
+.cta-banner__actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 800px) {
+  .why-ev__inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .why-ev__visual { order: -1; }
+  .why-ev__stat-ring { width: 180px; height: 180px; }
+  .why-ev__ring-value { font-size: 3rem; }
+}

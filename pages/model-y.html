@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Model Y — Best-selling all-electric SUV with up to 330 mi range, 7-seat capacity, and industry-leading safety.">
+  <title>Model Y | EV Primitive</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/footer.css">
+  <link rel="stylesheet" href="../css/model-page.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="model-page">
+
+  <nav id="main-nav" class="nav nav--scrolled">
+    <div class="nav__logo">
+      <a href="/" aria-label="Home">
+        <svg class="nav__logo-svg" viewBox="0 0 200 28" xmlns="http://www.w3.org/2000/svg">
+          <text x="0" y="22" font-family="Inter,sans-serif" font-weight="700" font-size="22" fill="currentColor" letter-spacing="-1">EV PRIMITIVE</text>
+        </svg>
+      </a>
+    </div>
+    <ul class="nav__links">
+      <li><a href="model-s.html" class="nav__link">Model S</a></li>
+      <li><a href="model-3.html" class="nav__link">Model 3</a></li>
+      <li><a href="model-x.html" class="nav__link">Model X</a></li>
+      <li><a href="model-y.html" class="nav__link nav__link--active">Model Y</a></li>
+      <li><a href="cybertruck.html" class="nav__link">Cybertruck</a></li>
+      <li><a href="energy.html" class="nav__link">Energy</a></li>
+    </ul>
+    <div class="nav__actions">
+      <a href="#order" class="btn btn--accent" style="font-size:0.875rem;padding:0.5rem 1.25rem;">Order Now</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="mp-hero" id="mp-hero" style="background-image: url('../images/model-y-hero.jpg')">
+      <div class="mp-hero__overlay"></div>
+      <div class="mp-hero__content">
+        <h1 class="mp-hero__model">Model Y</h1>
+        <p class="mp-hero__tagline">Best-Selling EV in the World</p>
+        <div class="mp-hero__stats">
+          <div class="mp-hero__stat"><span class="val">330</span><span class="lbl">mi Range</span></div>
+          <div class="mp-hero__stat"><span class="val">3.5s</span><span class="lbl">0–60 mph</span></div>
+          <div class="mp-hero__stat"><span class="val">7</span><span class="lbl">Seats</span></div>
+          <div class="mp-hero__stat"><span class="val">AWD</span><span class="lbl">Dual Motor</span></div>
+        </div>
+      </div>
+      <div class="mp-hero__cta">
+        <a href="#order" class="btn btn--primary">Order Now</a>
+        <a href="#learn" class="btn btn--secondary">Learn More</a>
+      </div>
+    </section>
+
+    <!-- Configurator strip -->
+    <section class="mp-config" id="order">
+      <div class="mp-config__inner">
+        <h2 class="mp-config__title">Configure Your Model Y</h2>
+
+        <div class="mp-config__group">
+          <label class="mp-config__group-label">Paint</label>
+          <div class="mp-config__swatches" id="paintSwatches">
+            <button class="swatch swatch--active" data-label="Pearl White" data-price="+$0" style="--c:#e8e8e8"></button>
+            <button class="swatch" data-label="Midnight Silver" data-price="+$1,500" style="--c:#6b7280"></button>
+            <button class="swatch" data-label="Deep Blue" data-price="+$1,500" style="--c:#1e3a5f"></button>
+            <button class="swatch" data-label="Red Multi-Coat" data-price="+$2,000" style="--c:#c0392b"></button>
+            <button class="swatch" data-label="Stealth Grey" data-price="+$1,500" style="--c:#4b5563"></button>
+          </div>
+          <p class="mp-config__swatch-label" id="swatchLabel">Pearl White Multi-Coat — Included</p>
+        </div>
+
+        <div class="mp-config__group">
+          <label class="mp-config__group-label">Interior</label>
+          <div class="mp-config__options" id="interiorOptions">
+            <button class="mp-option mp-option--active" data-price="+$0">All Black</button>
+            <button class="mp-option" data-price="+$1,000">Black & White</button>
+          </div>
+        </div>
+
+        <div class="mp-config__group">
+          <label class="mp-config__group-label">Wheels</label>
+          <div class="mp-config__options" id="wheelOptions">
+            <button class="mp-option mp-option--active" data-price="+$0">19" Gemini (Standard)</button>
+            <button class="mp-option" data-price="+$2,000">20" Induction</button>
+          </div>
+        </div>
+
+        <div class="mp-config__group">
+          <label class="mp-config__group-label">Full Self-Driving</label>
+          <div class="mp-config__options" id="fsdOptions">
+            <button class="mp-option mp-option--active" data-price="+$0">Autopilot (Included)</button>
+            <button class="mp-option" data-price="+$8,000">Full Self-Driving Capability</button>
+          </div>
+        </div>
+
+        <div class="mp-config__summary">
+          <div class="mp-config__price-row">
+            <span>Base Price</span>
+            <span>$43,990</span>
+          </div>
+          <div class="mp-config__price-row" id="optionsTotal">
+            <span>Options</span>
+            <span>$0</span>
+          </div>
+          <div class="mp-config__price-row mp-config__price-row--total">
+            <span>Estimated Total</span>
+            <span id="totalPrice">$43,990</span>
+          </div>
+          <p class="mp-config__incentive">After potential $7,500 federal tax credit: <strong id="afterCredit">$36,490</strong></p>
+          <a href="#" class="btn btn--accent" style="width:100%;margin-top:1.5rem;justify-content:center;">Place Order</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Learn section -->
+    <section class="mp-learn" id="learn">
+
+      <!-- Feature: Performance -->
+      <div class="mp-feature mp-feature--dark">
+        <div class="mp-feature__media" style="background-image: url('../images/model-y-performance.jpg')"></div>
+        <div class="mp-feature__text">
+          <span class="mp-feature__eyebrow">Performance</span>
+          <h2 class="mp-feature__title">Quickest SUV<br>in Its Class</h2>
+          <p class="mp-feature__body">
+            Model Y Performance reaches 0–60 mph in just 3.5 seconds with dual electric motors providing all-wheel drive traction in all conditions.
+          </p>
+        </div>
+      </div>
+
+      <!-- Feature: Range -->
+      <div class="mp-feature mp-feature--light mp-feature--reversed">
+        <div class="mp-feature__media" style="background-image: url('../images/model-y-range.jpg')"></div>
+        <div class="mp-feature__text">
+          <span class="mp-feature__eyebrow">Range & Charging</span>
+          <h2 class="mp-feature__title">Go Farther<br>on Every Charge</h2>
+          <p class="mp-feature__body">
+            Up to 330 miles on a single charge. Access 50,000+ Superchargers globally — add up to 170 miles in just 15 minutes at a V3 station.
+          </p>
+          <a href="charging.html" class="btn btn--dark" style="margin-top:1.5rem;display:inline-flex;">See Charging Options</a>
+        </div>
+      </div>
+
+      <!-- Feature: Autopilot -->
+      <div class="mp-feature mp-feature--dark">
+        <div class="mp-feature__media" style="background-image: url('../images/model-y-autopilot.jpg')"></div>
+        <div class="mp-feature__text">
+          <span class="mp-feature__eyebrow">Autopilot</span>
+          <h2 class="mp-feature__title">Future of<br>Driving Today</h2>
+          <p class="mp-feature__body">
+            Autopilot enables automatic steering, acceleration, and braking. Upgrade to Full Self-Driving for Navigate on Autopilot and Auto Lane Change.
+          </p>
+        </div>
+      </div>
+
+      <!-- Feature: Space -->
+      <div class="mp-feature mp-feature--light mp-feature--reversed">
+        <div class="mp-feature__media" style="background-image: url('../images/model-y-interior.jpg')"></div>
+        <div class="mp-feature__text">
+          <span class="mp-feature__eyebrow">Interior & Space</span>
+          <h2 class="mp-feature__title">Room for<br>Everything</h2>
+          <p class="mp-feature__body">
+            With up to 76 cubic feet of cargo space and an optional third row for 7 passengers, Model Y adapts to life's biggest moments.
+          </p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Specs Table -->
+    <section class="mp-specs" id="specs">
+      <div class="mp-specs__inner">
+        <h2 class="mp-specs__title">Specifications</h2>
+        <table class="mp-specs__table">
+          <tbody>
+            <tr><th>Powertrain</th><td>Dual Motor All-Wheel Drive</td></tr>
+            <tr><th>Range (est.)</th><td>330 mi (EPA est.)</td></tr>
+            <tr><th>Acceleration 0–60</th><td>3.5 s</td></tr>
+            <tr><th>Top Speed</th><td>155 mph</td></tr>
+            <tr><th>Peak Power</th><td>384 hp</td></tr>
+            <tr><th>Drive</th><td>Dual Motor AWD</td></tr>
+            <tr><th>Seating</th><td>5 (7 with third row)</td></tr>
+            <tr><th>Cargo</th><td>76 cu ft (with seats down)</td></tr>
+            <tr><th>Wheels</th><td>19" or 20"</td></tr>
+            <tr><th>Weight</th><td>4,416 lb</td></tr>
+            <tr><th>Warranty</th><td>4 yr / 50,000 mi basic · 8 yr / 120,000 mi battery</td></tr>
+            <tr><th>Supercharging</th><td>Up to 250 kW (V3)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <nav class="footer__nav" aria-label="Footer">
+        <div class="footer__col">
+          <h3 class="footer__col-title">Vehicles</h3>
+          <ul><li><a href="model-s.html">Model S</a></li><li><a href="model-3.html">Model 3</a></li><li><a href="model-x.html">Model X</a></li><li><a href="model-y.html">Model Y</a></li><li><a href="cybertruck.html">Cybertruck</a></li></ul>
+        </div>
+        <div class="footer__col">
+          <h3 class="footer__col-title">Energy</h3>
+          <ul><li><a href="energy.html">Solar Panels</a></li><li><a href="energy.html#powerwall">Powerwall</a></li></ul>
+        </div>
+        <div class="footer__col">
+          <h3 class="footer__col-title">Charging</h3>
+          <ul><li><a href="charging.html">Overview</a></li><li><a href="charging.html#supercharger">Supercharger</a></li></ul>
+        </div>
+        <div class="footer__col">
+          <h3 class="footer__col-title">Legal</h3>
+          <ul><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li></ul>
+        </div>
+      </nav>
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2026 EV Primitive.</p>
+        <p class="footer__disclaimer">Estimated range based on EPA ratings. Actual range varies with conditions.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/model-page.js"></script>
+</body>
+</html>

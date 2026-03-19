@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Energy | EV Primitive</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/footer.css">
+  <link rel="stylesheet" href="../css/model-page.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="model-page">
+
+  <nav id="main-nav" class="nav">
+    <div class="nav__logo"><a href="/"><svg class="nav__logo-svg" viewBox="0 0 200 28"><text x="0" y="22" font-family="Inter,sans-serif" font-weight="700" font-size="22" fill="currentColor" letter-spacing="-1">EV PRIMITIVE</text></svg></a></div>
+    <ul class="nav__links">
+      <li><a href="model-y.html" class="nav__link">Vehicles</a></li>
+      <li><a href="energy.html" class="nav__link nav__link--active">Energy</a></li>
+      <li><a href="charging.html" class="nav__link">Charging</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- Solar Hero -->
+    <section class="mp-hero" style="background-image: url('../images/solar-hero.jpg');" id="solar-panels">
+      <div class="mp-hero__overlay" style="background:linear-gradient(to bottom,rgba(255,255,255,0.1),rgba(255,255,255,0.6))"></div>
+      <div class="mp-hero__content">
+        <h1 class="mp-hero__model" style="color:var(--color-text);">Solar Panels</h1>
+        <p class="mp-hero__tagline" style="color:var(--color-text-muted);">Power Your Home with Clean Energy</p>
+        <div class="mp-hero__stats" style="color:var(--color-text);">
+          <div class="mp-hero__stat"><span class="val">400W</span><span class="lbl">Per Panel</span></div>
+          <div class="mp-hero__stat"><span class="val">25 yr</span><span class="lbl">Warranty</span></div>
+          <div class="mp-hero__stat"><span class="val">$0</span><span class="lbl">Down Available</span></div>
+        </div>
+      </div>
+      <div class="mp-hero__cta">
+        <a href="#order-solar" class="btn btn--dark">Get a Quote</a>
+        <a href="#learn" class="btn btn--dark-outline">Learn More</a>
+      </div>
+    </section>
+
+    <!-- Feature: Powerwall -->
+    <section class="mp-feature mp-feature--dark" id="powerwall">
+      <div class="mp-feature__media" style="background-image:url('../images/powerwall-hero.jpg')"></div>
+      <div class="mp-feature__text">
+        <span class="mp-feature__eyebrow">Powerwall 3</span>
+        <h2 class="mp-feature__title">24/7 Energy<br>Resilience</h2>
+        <p class="mp-feature__body">
+          Powerwall stores your solar energy and automatically keeps your home powered during a grid outage. Whole-home backup with 11.5 kW continuous power.
+        </p>
+        <div style="display:flex;gap:2rem;margin-top:2rem;color:#fff;">
+          <div><span style="display:block;font-size:1.75rem;font-weight:700;color:var(--color-accent);">13.5 kWh</span><span style="font-size:0.8rem;opacity:0.7">Energy Storage</span></div>
+          <div><span style="display:block;font-size:1.75rem;font-weight:700;color:var(--color-accent);">11.5 kW</span><span style="font-size:0.8rem;opacity:0.7">Continuous Power</span></div>
+        </div>
+        <a href="#order-pw" class="btn btn--accent" style="margin-top:1.75rem;display:inline-flex;">Order Powerwall</a>
+      </div>
+    </section>
+
+    <!-- Feature: Solar Roof -->
+    <section class="mp-feature mp-feature--light mp-feature--reversed" id="solar-roof">
+      <div class="mp-feature__media" style="background-image:url('../images/solar-roof.jpg')"></div>
+      <div class="mp-feature__text">
+        <span class="mp-feature__eyebrow">Solar Roof</span>
+        <h2 class="mp-feature__title">Beautiful.<br>Durable. Clean.</h2>
+        <p class="mp-feature__body">
+          Solar Roof tiles are 3× stronger than standard roofing tiles and convert sunlight into energy for your home and vehicles. Integrated with Powerwall for maximum resilience.
+        </p>
+        <a href="#" class="btn btn--dark" style="margin-top:1.5rem;display:inline-flex;">Get a Quote</a>
+      </div>
+    </section>
+
+    <!-- Megapack -->
+    <section class="mp-feature mp-feature--dark" id="megapack">
+      <div class="mp-feature__media" style="background:linear-gradient(135deg,#0d1520,#0a2744)"></div>
+      <div class="mp-feature__text">
+        <span class="mp-feature__eyebrow">Megapack</span>
+        <h2 class="mp-feature__title">Utility-Scale<br>Energy Storage</h2>
+        <p class="mp-feature__body">
+          Megapack is a massive utility-scale battery product that provides energy storage and support. Each unit stores 3.9 MWh of energy — enough to power 3,600 homes for an hour.
+        </p>
+      </div>
+    </section>
+
+    <!-- Quote form placeholder -->
+    <section style="background:var(--color-surface);padding:5rem 2rem;" id="order-solar">
+      <div style="max-width:600px;margin:0 auto;text-align:center;">
+        <h2 style="font-size:2.25rem;margin-bottom:1rem;">Get Your Solar Quote</h2>
+        <p style="color:var(--color-text-muted);margin-bottom:2.5rem;">Enter your address and we'll design a custom solar system for your home.</p>
+        <form id="solarQuoteForm" style="display:flex;flex-direction:column;gap:1rem;text-align:left;">
+          <div>
+            <label for="quoteAddress" style="font-size:0.875rem;font-weight:500;display:block;margin-bottom:0.4rem;">Home Address</label>
+            <input id="quoteAddress" type="text" placeholder="123 Main St, City, State 00000"
+              style="width:100%;padding:0.875rem 1rem;border:1.5px solid var(--color-border);border-radius:var(--radius-md);font-family:var(--font-sans);font-size:1rem;outline:none;transition:border-color 0.2s;"
+              onfocus="this.style.borderColor='var(--color-accent)'" onblur="this.style.borderColor='var(--color-border)'">
+          </div>
+          <div>
+            <label for="quoteEmail" style="font-size:0.875rem;font-weight:500;display:block;margin-bottom:0.4rem;">Email</label>
+            <input id="quoteEmail" type="email" placeholder="you@email.com"
+              style="width:100%;padding:0.875rem 1rem;border:1.5px solid var(--color-border);border-radius:var(--radius-md);font-family:var(--font-sans);font-size:1rem;outline:none;transition:border-color 0.2s;"
+              onfocus="this.style.borderColor='var(--color-accent)'" onblur="this.style.borderColor='var(--color-border)'">
+          </div>
+          <button type="submit" class="btn btn--accent" style="justify-content:center;margin-top:0.5rem;">Get Free Quote</button>
+          <p id="quoteStatus" style="font-size:0.875rem;color:var(--color-text-muted);text-align:center;"></p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__bottom"><p class="footer__copy">&copy; 2026 EV Primitive.</p></div>
+    </div>
+  </footer>
+
+  <script src="../js/model-page.js"></script>
+  <script>
+    document.getElementById('solarQuoteForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const status = document.getElementById('quoteStatus');
+      status.textContent = 'Submitting…';
+      try {
+        const res = await fetch('/api/leads', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            address: document.getElementById('quoteAddress').value,
+            email:   document.getElementById('quoteEmail').value,
+            type:    'solar-quote'
+          })
+        });
+        status.textContent = res.ok ? '✓ Quote request received! We\'ll be in touch within 24 hours.' : 'Error — please try again.';
+        status.style.color = res.ok ? '#16a34a' : '#dc2626';
+      } catch {
+        status.textContent = 'Could not connect. Please email us directly.';
+        status.style.color = '#dc2626';
+      }
+    });
+  </script>
+</body>
+</html>

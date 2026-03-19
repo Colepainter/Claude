@@ -1,0 +1,115 @@
+/* ═══════════════════════════════════════════════════════════════
+   Model Cards & Compare Table
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── Features Strip ─── */
+.features {
+  background: var(--color-bg);
+  padding: 6rem 2rem;
+  scroll-snap-align: none;
+}
+
+.features__grid {
+  max-width: var(--section-max-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2.5rem;
+}
+
+.feature-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.feature-card__icon {
+  width: 48px;
+  height: 48px;
+  color: var(--color-accent);
+}
+.feature-card__icon svg { width: 100%; height: 100%; }
+
+.feature-card__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.feature-card__body {
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+  line-height: 1.65;
+  flex: 1;
+}
+
+.feature-card__link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-accent);
+  transition: color var(--transition-base);
+}
+.feature-card__link:hover { color: var(--color-accent-dark); }
+
+/* ─── Compare Table ─── */
+.compare {
+  background: var(--color-surface);
+  padding: 5rem 2rem;
+}
+
+.compare__header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.compare__title { font-size: clamp(1.75rem, 3vw, 2.75rem); }
+.compare__subtitle {
+  margin-top: 0.5rem;
+  font-size: 1.0625rem;
+  color: var(--color-text-muted);
+}
+
+.compare__table-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 24px rgba(0,0,0,0.07);
+}
+
+.compare__table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  font-size: 0.9375rem;
+}
+
+.compare__table th,
+.compare__table td {
+  padding: 1rem 1.25rem;
+  text-align: center;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.compare__table th {
+  background: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-text);
+  position: sticky;
+  top: 0;
+}
+.compare__table th a {
+  color: var(--color-accent);
+  transition: color var(--transition-base);
+}
+.compare__table th a:hover { color: var(--color-accent-dark); }
+
+.compare__table td:first-child {
+  text-align: left;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+
+.compare__table tbody tr:hover { background: var(--color-surface); }
+.compare__table tbody tr:last-child td { border-bottom: none; }

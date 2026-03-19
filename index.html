@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Electric vehicles, solar panels & clean energy storage. Drive into the future with zero emissions.">
+  <title>EV Primitive — Electric Vehicles & Clean Energy</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/models.css">
+  <link rel="stylesheet" href="css/features.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ═══════════════════════════ NAVIGATION ═══════════════════════════ -->
+  <nav id="main-nav" class="nav">
+    <div class="nav__logo">
+      <a href="/" aria-label="Home">
+        <svg class="nav__logo-svg" viewBox="0 0 342 35" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- Stylised "EV" wordmark -->
+          <text x="0" y="28" font-family="Inter,sans-serif" font-weight="700" font-size="28" fill="currentColor" letter-spacing="-1">EV PRIMITIVE</text>
+        </svg>
+      </a>
+    </div>
+
+    <ul class="nav__links" role="list">
+      <li><a href="pages/model-s.html" class="nav__link">Model S</a></li>
+      <li><a href="pages/model-3.html" class="nav__link">Model 3</a></li>
+      <li><a href="pages/model-x.html" class="nav__link">Model X</a></li>
+      <li><a href="pages/model-y.html" class="nav__link">Model Y</a></li>
+      <li><a href="pages/cybertruck.html" class="nav__link">Cybertruck</a></li>
+      <li><a href="pages/energy.html" class="nav__link">Energy</a></li>
+      <li><a href="pages/charging.html" class="nav__link">Charging</a></li>
+    </ul>
+
+    <div class="nav__actions">
+      <a href="#" class="nav__link nav__link--action">Shop</a>
+      <a href="#" class="nav__link nav__link--action">Account</a>
+      <button class="nav__menu-btn" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu overlay -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <button class="mobile-menu__close" id="menuClose" aria-label="Close menu">&#10005;</button>
+    <ul class="mobile-menu__links" role="list">
+      <li><a href="pages/model-s.html">Model S</a></li>
+      <li><a href="pages/model-3.html">Model 3</a></li>
+      <li><a href="pages/model-x.html">Model X</a></li>
+      <li><a href="pages/model-y.html">Model Y</a></li>
+      <li><a href="pages/cybertruck.html">Cybertruck</a></li>
+      <li><a href="pages/energy.html">Energy</a></li>
+      <li><a href="pages/charging.html">Charging</a></li>
+      <li class="mobile-menu__divider"></li>
+      <li><a href="#">Shop</a></li>
+      <li><a href="#">Account</a></li>
+    </ul>
+  </div>
+
+  <main>
+
+    <!-- ═══════════════════════════ HERO — MODEL Y ═══════════════════════════ -->
+    <section class="hero hero--model-y" data-model="Model Y">
+      <div class="hero__bg" style="background-image: url('images/model-y-hero.jpg')"></div>
+      <div class="hero__gradient"></div>
+      <div class="hero__content hero__content--top">
+        <h1 class="hero__title">Model Y</h1>
+        <p class="hero__subtitle">Best-Selling EV in the World</p>
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <span class="hero__stat-value">330</span>
+            <span class="hero__stat-label">mi Range</span>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat-value">3.5s</span>
+            <span class="hero__stat-label">0–60 mph</span>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat-value">7</span>
+            <span class="hero__stat-label">Seat Capacity</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero__cta">
+        <a href="pages/model-y.html" class="btn btn--primary">Order Now</a>
+        <a href="pages/model-y.html#learn" class="btn btn--secondary">Learn More</a>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ HERO — MODEL 3 ═══════════════════════════ -->
+    <section class="hero hero--model-3" data-model="Model 3">
+      <div class="hero__bg" style="background-image: url('images/model-3-hero.jpg')"></div>
+      <div class="hero__gradient"></div>
+      <div class="hero__content hero__content--top">
+        <h2 class="hero__title">Model 3</h2>
+        <p class="hero__subtitle">The Standard for Electric Sedans</p>
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <span class="hero__stat-value">358</span>
+            <span class="hero__stat-label">mi Range</span>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat-value">3.1s</span>
+            <span class="hero__stat-label">0–60 mph</span>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat-value">AWD</span>
+            <span class="hero__stat-label">Dual Motor</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero__cta">
+        <a href="pages/model-3.html" class="btn btn--primary">Order Now</a>
+        <a href="pages/model-3.html#learn" class="btn btn--secondary">Learn More</a>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ HERO — MODEL S ═══════════════════════════ -->
+    <section class="hero hero--model-s" data-model="Model S">
+      <div class="hero__bg" style="background-image: url('images/model-s-hero.jpg')"></div>
+      <div class="hero__gradient"></div>
+      <div class="hero__content hero__content--top">
+        <h2 class="hero__title">Model S</h2>
+        <p class="hero__subtitle">The Pinnacle of Performance</p>
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <span class="hero__stat-value">405</span>
+            <span class="hero__stat-label">mi Range</span>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat-value">1.99s</span>
+            <span class="hero__stat-label">0–60 mph</span>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat-value">1,020</span>
+            <span class="hero__stat-label">Horsepower</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero__cta">
+        <a href="pages/model-s.html" class="btn btn--primary">Order Now</a>
+        <a href="pages/model-s.html#learn" class="btn btn--secondary">Learn More</a>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ HERO — MODEL X ═══════════════════════════ -->
+    <section class="hero hero--model-x" data-model="Model X">
+      <div class="hero__bg" style="background-image: url('images/model-x-hero.jpg')"></div>
+      <div class="hero__gradient"></div>
+      <div class="hero__content hero__content--top">
+        <h2 class="hero__title">Model X</h2>
+        <p class="hero__subtitle">The Safest SUV Ever Built</p>
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <span class="hero__stat-value">348</span>
+            <span class="hero__stat-label">mi Range</span>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat-value">2.5s</span>
+            <span class="hero__stat-label">0–60 mph</span>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat-value">7</span>
+            <span class="hero__stat-label">Seats</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero__cta">
+        <a href="pages/model-x.html" class="btn btn--primary">Order Now</a>
+        <a href="pages/model-x.html#learn" class="btn btn--secondary">Learn More</a>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ HERO — CYBERTRUCK ═══════════════════════════ -->
+    <section class="hero hero--cybertruck" data-model="Cybertruck">
+      <div class="hero__bg" style="background-image: url('images/cybertruck-hero.jpg')"></div>
+      <div class="hero__gradient"></div>
+      <div class="hero__content hero__content--top">
+        <h2 class="hero__title">Cybertruck</h2>
+        <p class="hero__subtitle">Built for Utility. Engineered for Power.</p>
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <span class="hero__stat-value">320+</span>
+            <span class="hero__stat-label">mi Range</span>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat-value">2.6s</span>
+            <span class="hero__stat-label">0–60 mph</span>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat-value">11,000</span>
+            <span class="hero__stat-label">lb Towing</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero__cta">
+        <a href="pages/cybertruck.html" class="btn btn--primary">Order Now</a>
+        <a href="pages/cybertruck.html#learn" class="btn btn--secondary">Learn More</a>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ HERO — SOLAR / ENERGY ═══════════════════════════ -->
+    <section class="hero hero--solar" data-model="Solar Panels">
+      <div class="hero__bg" style="background-image: url('images/solar-hero.jpg')"></div>
+      <div class="hero__gradient hero__gradient--light"></div>
+      <div class="hero__content hero__content--top">
+        <h2 class="hero__title hero__title--dark">Solar Panels</h2>
+        <p class="hero__subtitle hero__subtitle--dark">Power Your Home with Clean Energy</p>
+      </div>
+      <div class="hero__cta">
+        <a href="pages/energy.html" class="btn btn--dark">Order Now</a>
+        <a href="pages/energy.html#learn" class="btn btn--dark-outline">Learn More</a>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ HERO — POWERWALL ═══════════════════════════ -->
+    <section class="hero hero--powerwall" data-model="Powerwall">
+      <div class="hero__bg" style="background-image: url('images/powerwall-hero.jpg')"></div>
+      <div class="hero__gradient hero__gradient--light"></div>
+      <div class="hero__content hero__content--top">
+        <h2 class="hero__title hero__title--dark">Powerwall</h2>
+        <p class="hero__subtitle hero__subtitle--dark">24/7 Energy Resilience</p>
+      </div>
+      <div class="hero__cta">
+        <a href="pages/energy.html#powerwall" class="btn btn--dark">Order Now</a>
+        <a href="pages/energy.html#powerwall" class="btn btn--dark-outline">Learn More</a>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ FEATURES STRIP ═══════════════════════════ -->
+    <section class="features" aria-labelledby="features-heading">
+      <h2 class="sr-only" id="features-heading">Key Features</h2>
+      <div class="features__grid">
+
+        <article class="feature-card">
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M24 4L6 16v8h36v-8L24 4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <rect x="6" y="24" width="36" height="20" rx="2" stroke="currentColor" stroke-width="2"/>
+              <path d="M20 34h8M24 30v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="feature-card__title">Supercharger Network</h3>
+          <p class="feature-card__body">
+            Access 50,000+ global Superchargers. Charge up to 200 mi in 15 minutes and continue your journey with confidence.
+          </p>
+          <a href="pages/charging.html" class="feature-card__link">Explore Charging →</a>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="2"/>
+              <path d="M24 14v10l6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="feature-card__title">Autopilot</h3>
+          <p class="feature-card__body">
+            Advanced driver-assistance with automatic steering, acceleration, and braking. Full Self-Driving capability available.
+          </p>
+          <a href="#" class="feature-card__link">Learn Autopilot →</a>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="8" y="12" width="32" height="24" rx="3" stroke="currentColor" stroke-width="2"/>
+              <path d="M16 20h16M16 28h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="feature-card__title">Over-the-Air Updates</h3>
+          <p class="feature-card__body">
+            Your vehicle gets smarter over time. Software updates deliver new features, performance improvements, and security patches wirelessly.
+          </p>
+          <a href="#" class="feature-card__link">Learn More →</a>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M24 6l4.5 9.5 10.5 1.5-7.5 7.5 1.8 10.5L24 30l-9.3 5 1.8-10.5L9 17l10.5-1.5L24 6z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="feature-card__title">Safety First</h3>
+          <p class="feature-card__body">
+            Every model earns a 5-star safety rating across all categories. Industry-leading active safety features protect you and your family.
+          </p>
+          <a href="#" class="feature-card__link">View Safety Data →</a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ COMPARE MODELS ═══════════════════════════ -->
+    <section class="compare" aria-labelledby="compare-heading">
+      <div class="compare__header">
+        <h2 class="compare__title" id="compare-heading">Compare Models</h2>
+        <p class="compare__subtitle">Find the vehicle that fits your life</p>
+      </div>
+      <div class="compare__table-wrap">
+        <table class="compare__table" role="table">
+          <thead>
+            <tr>
+              <th scope="col">Spec</th>
+              <th scope="col"><a href="pages/model-3.html">Model 3</a></th>
+              <th scope="col"><a href="pages/model-y.html">Model Y</a></th>
+              <th scope="col"><a href="pages/model-s.html">Model S</a></th>
+              <th scope="col"><a href="pages/model-x.html">Model X</a></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Starting Price</td>
+              <td>$40,240</td>
+              <td>$43,990</td>
+              <td>$74,990</td>
+              <td>$79,990</td>
+            </tr>
+            <tr>
+              <td>Range (est.)</td>
+              <td>358 mi</td>
+              <td>330 mi</td>
+              <td>405 mi</td>
+              <td>348 mi</td>
+            </tr>
+            <tr>
+              <td>0–60 mph</td>
+              <td>3.1 s</td>
+              <td>3.5 s</td>
+              <td>1.99 s</td>
+              <td>2.5 s</td>
+            </tr>
+            <tr>
+              <td>Top Speed</td>
+              <td>162 mph</td>
+              <td>155 mph</td>
+              <td>200 mph</td>
+              <td>163 mph</td>
+            </tr>
+            <tr>
+              <td>Seating</td>
+              <td>5</td>
+              <td>5 / 7</td>
+              <td>5</td>
+              <td>5 / 6 / 7</td>
+            </tr>
+            <tr>
+              <td>Cargo (cu ft)</td>
+              <td>15</td>
+              <td>76</td>
+              <td>28</td>
+              <td>88</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ WHY GO ELECTRIC ═══════════════════════════ -->
+    <section class="why-ev" aria-labelledby="why-ev-heading">
+      <div class="why-ev__inner">
+        <div class="why-ev__text">
+          <h2 class="why-ev__title" id="why-ev-heading">Why Go Electric?</h2>
+          <ul class="why-ev__list" role="list">
+            <li>
+              <strong>Lower fuel costs</strong> — Electricity costs a fraction of gasoline per mile. Save $1,000+ annually.
+            </li>
+            <li>
+              <strong>Zero tailpipe emissions</strong> — Reduce your carbon footprint and breathe cleaner air in your city.
+            </li>
+            <li>
+              <strong>Less maintenance</strong> — No oil changes, fewer brake jobs, and fewer moving parts means lower upkeep.
+            </li>
+            <li>
+              <strong>Tax incentives</strong> — Qualify for up to $7,500 federal tax credit plus state and local rebates.
+            </li>
+            <li>
+              <strong>Performance</strong> — Instant torque delivers exhilarating acceleration from a standstill.
+            </li>
+          </ul>
+          <a href="pages/model-y.html" class="btn btn--primary" style="margin-top:2rem;display:inline-block;">Start Shopping</a>
+        </div>
+        <div class="why-ev__visual" aria-hidden="true">
+          <div class="why-ev__stat-ring">
+            <span class="why-ev__ring-value">0g</span>
+            <span class="why-ev__ring-label">CO₂/mile</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ CTA BANNER ═══════════════════════════ -->
+    <section class="cta-banner">
+      <div class="cta-banner__inner">
+        <h2 class="cta-banner__title">Experience the Future of Driving</h2>
+        <p class="cta-banner__body">Schedule a test drive at your nearest showroom or configure your vehicle online today.</p>
+        <div class="cta-banner__actions">
+          <a href="#" class="btn btn--white">Schedule Test Drive</a>
+          <a href="pages/model-y.html" class="btn btn--white-outline">Build Your EV</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+  <footer class="footer">
+    <div class="footer__inner">
+
+      <nav class="footer__nav" aria-label="Footer navigation">
+        <div class="footer__col">
+          <h3 class="footer__col-title">Vehicles</h3>
+          <ul role="list">
+            <li><a href="pages/model-s.html">Model S</a></li>
+            <li><a href="pages/model-3.html">Model 3</a></li>
+            <li><a href="pages/model-x.html">Model X</a></li>
+            <li><a href="pages/model-y.html">Model Y</a></li>
+            <li><a href="pages/cybertruck.html">Cybertruck</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h3 class="footer__col-title">Energy</h3>
+          <ul role="list">
+            <li><a href="pages/energy.html">Solar Panels</a></li>
+            <li><a href="pages/energy.html#solar-roof">Solar Roof</a></li>
+            <li><a href="pages/energy.html#powerwall">Powerwall</a></li>
+            <li><a href="pages/energy.html#megapack">Megapack</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h3 class="footer__col-title">Charging</h3>
+          <ul role="list">
+            <li><a href="pages/charging.html">Charging Overview</a></li>
+            <li><a href="pages/charging.html#supercharger">Supercharger</a></li>
+            <li><a href="pages/charging.html#home">Home Charging</a></li>
+            <li><a href="pages/charging.html#destination">Destination</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h3 class="footer__col-title">Company</h3>
+          <ul role="list">
+            <li><a href="#">About</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Investor Relations</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h3 class="footer__col-title">Legal</h3>
+          <ul role="list">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">Cookie Preferences</a></li>
+            <li><a href="#">Accessibility</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2026 EV Primitive. All rights reserved.</p>
+        <p class="footer__disclaimer">
+          Vehicle images and specifications are illustrative. Actual range varies with conditions.
+          Federal tax credit eligibility subject to IRS qualification.
+        </p>
+        <div class="footer__social" aria-label="Social media links">
+          <a href="#" aria-label="Twitter/X">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
