@@ -557,5 +557,113 @@ document.getElementById('settingsForm').addEventListener('submit', async e => {
   setTimeout(() => saved.hidden = true, 2500);
 });
 
+/* ─── Drive Sync Panel ─── */
+async function loadDrivePanel() {
+  // Wired up via event listeners below (no auto-load needed)
+}
+
+document.getElementById('driveSyncBtn')?.addEventListener('click', async () => {
+  const btn    = document.getElementById('driveSyncBtn');
+  const status = document.getElementById('driveSyncStatus');
+  btn.textContent = '⟳ Syncing…';
+  btn.disabled    = true;
+  status.textContent = 'Connecting to Google Drive folder…';
+  status.style.color = 'var(--text-muted)';
+
+  try {
+    const r    = await apiFetch('/api/drive/sync', { method: 'POST' });
+    const data = await r.json();
+
+    if (!r.ok) throw new Error(data.error || 'Sync failed');
+
+    const lines = [
+      `✓ Synced ${data.downloaded?.length || 0} image(s) from Drive`,
+      data.downloaded?.map(d => `  • ${d.file} → ${d.slug} (${d.url})`).join('\n'),
+      data.skipped?.length  ? `\nSkipped (no slug match): ${data.skipped.join(', ')}` : '',
+      data.errors?.length   ? `\nErrors: ${data.errors.map(e => e.file + ': ' + e.error).join(', ')}` : '',
+    ].filter(Boolean).join('\n');
+
+    status.style.color = '#22c55e';
+    status.innerHTML   = `<pre style="font-size:0.8125rem;white-space:pre-wrap;line-height:1.6">${lines}</pre>`;
+    toast(`Synced ${data.downloaded?.length || 0} image(s) from Drive`, 'success');
+
+    // Refresh heroes panel if open
+    if (document.getElementById('panel-heroes').classList.contains('is-active')) loadHeroes();
+  } catch (err) {
+    status.style.color = 'var(--danger)';
+    status.innerHTML = `
+      <p style="color:var(--danger);font-weight:500">Drive sync failed: ${err.message}</p>
+      <p style="margin-top:0.75rem;font-size:0.8125rem;color:var(--text-muted)">
+        To enable Drive sync, complete these one-time setup steps:<br>
+        1. Create a Google Cloud service account with Drive API enabled<br>
+        2. Download the JSON key → <code>server/google-service-account.json</code><br>
+        3. Share the folder <code>1QMFOVwZAGQp-aaZKHyXh34l2gTSgzPNw</code> with the service account email<br>
+        4. Set <code>GOOGLE_APPLICATION_CREDENTIALS=./server/google-service-account.json</code> in your .env<br>
+        5. Restart the server and click Sync again
+      </p>
+    `;
+  } finally {
+    btn.textContent = '⟳ Sync All Images from Drive';
+    btn.disabled    = false;
+  }
+});
+
+document.getElementById('driveListBtn')?.addEventListener('click', async () => {
+  const fileList = document.getElementById('driveFileList');
+  const status   = document.getElementById('driveSyncStatus');
+  fileList.innerHTML = '<div class="spinner"></div>';
+
+  try {
+    const r    = await apiFetch('/api/drive/list');
+    const data = await r.json();
+
+    if (!r.ok) throw new Error(data.error || 'List failed');
+
+    const products = ['thermal-suite', '212', 'communal', 'nook', 'cold-plunge', 'commercial', 'about'];
+    status.style.color = 'var(--text-muted)';
+    status.textContent = `Found ${data.files.length} file(s) in your Drive folder.`;
+
+    fileList.innerHTML = data.files.map(f => `
+      <div class="cms-card" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <div style="font-weight:500;font-size:0.9375rem">${f.name}</div>
+          <div style="font-size:0.8rem;color:var(--text-muted);margin-top:0.2rem">${f.mimeType} · ${f.id}</div>
+        </div>
+        <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;">
+          <select id="slug-${f.id}" style="padding:0.35rem 0.5rem;font-size:0.8125rem;border-radius:6px;border:1px solid var(--border);background:var(--surface2);color:var(--text);">
+            <option value="">— assign to —</option>
+            ${products.map(s => `<option value="${s}">${s}</option>`).join('')}
+          </select>
+          <button class="btn-primary btn-sm" onclick="assignDriveFile('${f.id}')">Assign</button>
+        </div>
+      </div>
+    `).join('') || '<p style="color:var(--text-muted)">No image files found in folder.</p>';
+  } catch (err) {
+    fileList.innerHTML = `<p style="color:var(--danger)">${err.message}</p>`;
+  }
+});
+
+window.assignDriveFile = async function(fileId) {
+  const sel     = document.getElementById(`slug-${fileId}`);
+  const heroSlug = sel?.value;
+  if (!heroSlug) { toast('Please select a product slug first', 'error'); return; }
+
+  const r    = await apiFetch('/api/drive/assign', { method: 'POST', body: JSON.stringify({ fileId, heroSlug }) });
+  const data = await r.json();
+  if (r.ok) {
+    toast(`✓ Assigned to ${heroSlug}: ${data.url}`, 'success');
+    if (document.getElementById('panel-heroes').classList.contains('is-active')) loadHeroes();
+  } else {
+    toast(`Error: ${data.error}`, 'error');
+  }
+};
+
+// Register drive panel in the loader map
+const origSwitchPanel = window.switchPanel;
+window.switchPanel = function(id) {
+  origSwitchPanel(id);
+  if (id === 'drive') loadDrivePanel();
+};
+
 /* ─── Boot ─── */
 boot();

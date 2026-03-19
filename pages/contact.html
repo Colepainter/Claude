@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Get a quote from New Primitive. Tell us your vision and we'll develop a fully rendered concept before anything is built.">
+  <title>Get a Quote | New Primitive</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/footer.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .contact-wrap { max-width: 760px; margin: 0 auto; padding: 6rem 2rem 5rem; }
+    .contact-heading { font-size: clamp(2rem,5vw,3.5rem); font-weight:700; letter-spacing:-0.02em; margin-bottom:0.75rem; }
+    .contact-sub { font-size:1.0625rem; color:var(--color-text-muted); margin-bottom:3rem; line-height:1.65; }
+    .contact-form { display:flex; flex-direction:column; gap:1.25rem; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .field { display:flex; flex-direction:column; gap:0.4rem; }
+    .field label { font-size:0.875rem; font-weight:500; color:var(--color-text-muted); }
+    .field input, .field select, .field textarea {
+      padding:0.875rem 1rem;
+      border:1.5px solid var(--color-border);
+      border-radius:var(--radius-md);
+      font-family:var(--font-sans);
+      font-size:1rem;
+      color:var(--color-text);
+      background:var(--color-bg);
+      outline:none;
+      transition:border-color 0.2s;
+      width:100%;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color:var(--color-accent); }
+    .form-submit { display:flex; gap:1rem; align-items:center; flex-wrap:wrap; margin-top:0.5rem; }
+    .form-note { font-size:0.8125rem; color:var(--color-text-muted); }
+    #formStatus { font-size:0.9375rem; min-height:1.4em; }
+    @media (max-width:600px) { .form-row { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body class="model-page">
+
+  <nav id="main-nav" class="nav nav--scrolled">
+    <div class="nav__logo"><a href="/"><svg class="nav__logo-svg" viewBox="0 0 260 28"><text x="0" y="22" font-family="Inter,sans-serif" font-weight="700" font-size="20" fill="currentColor" letter-spacing="1">NEW PRIMITIVE</text></svg></a></div>
+    <ul class="nav__links">
+      <li><a href="thermal-suite.html" class="nav__link">Products</a></li>
+      <li><a href="commercial.html"    class="nav__link">Commercial</a></li>
+      <li><a href="about.html"         class="nav__link">About</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="contact-wrap">
+      <p style="font-size:0.875rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-accent);margin-bottom:0.75rem;">Get Started</p>
+      <h1 class="contact-heading">Tell Us About Your Project</h1>
+      <p class="contact-sub">
+        Every project begins with a design consultation. We'll assess your space, goals, and vision — then develop a fully rendered concept before anything is built. Ships to contiguous US & Canada.
+      </p>
+
+      <form class="contact-form" id="quoteForm" novalidate>
+        <div class="form-row">
+          <div class="field">
+            <label for="firstName">First Name</label>
+            <input id="firstName" name="firstName" type="text" placeholder="Cole" required>
+          </div>
+          <div class="field">
+            <label for="lastName">Last Name</label>
+            <input id="lastName" name="lastName" type="text" placeholder="Painter" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required>
+          </div>
+          <div class="field">
+            <label for="phone">Phone (optional)</label>
+            <input id="phone" name="phone" type="tel" placeholder="+1 (555) 000-0000">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="product">Product Interest</label>
+          <select id="product" name="product">
+            <option value="">— Select a product —</option>
+            <option value="thermal-suite">Thermal Suite (Sauna + Cold Plunge)</option>
+            <option value="212">212° Sauna</option>
+            <option value="communal">Communal Sauna</option>
+            <option value="nook">The Nook</option>
+            <option value="cold-plunge">NP 32° Cold Plunge (standalone)</option>
+            <option value="commercial">Commercial Project</option>
+            <option value="unsure">Not sure yet</option>
+          </select>
+        </div>
+
+        <div class="field" id="consult">
+          <label for="useCase">How will you use the space?</label>
+          <select id="useCase" name="useCase">
+            <option value="">— Select —</option>
+            <option value="residential-private">Private Residential</option>
+            <option value="residential-airbnb">Short-Term Rental / Airbnb</option>
+            <option value="hotel-spa">Hotel or Spa Amenity</option>
+            <option value="fitness">Boutique Fitness / Recovery Studio</option>
+            <option value="multi-family">Multi-Family Development</option>
+            <option value="retreat">Retreat Center</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="address">Project Location / Address</label>
+          <input id="address" name="address" type="text" placeholder="City, State or full address">
+        </div>
+
+        <div class="field">
+          <label for="notes">Tell us more</label>
+          <textarea id="notes" name="notes" rows="5" placeholder="Describe your space, vision, timeline, budget range, or any questions…"></textarea>
+        </div>
+
+        <div class="form-submit">
+          <button type="submit" class="btn btn--accent" style="padding:0.875rem 2.25rem;" id="submitBtn">Send Request</button>
+          <span class="form-note">We typically respond within 24 hours.</span>
+        </div>
+        <p id="formStatus"></p>
+      </form>
+
+      <!-- Info blocks -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-top:4rem;padding-top:3rem;border-top:1px solid var(--color-border);" id="shipping">
+        <div>
+          <p style="font-weight:600;margin-bottom:0.35rem;">Ships To</p>
+          <p style="font-size:0.9rem;color:var(--color-text-muted);">Contiguous US & Canada<br>(excl. AK & HI)</p>
+        </div>
+        <div>
+          <p style="font-weight:600;margin-bottom:0.35rem;">Lead Time</p>
+          <p style="font-size:0.9rem;color:var(--color-text-muted);">~8 weeks from deposit<br>(based on availability)</p>
+        </div>
+        <div>
+          <p style="font-weight:600;margin-bottom:0.35rem;">Delivery</p>
+          <p style="font-size:0.9rem;color:var(--color-text-muted);">Fully assembled, delivered to site, ready to power on</p>
+        </div>
+        <div>
+          <p style="font-weight:600;margin-bottom:0.35rem;">Questions?</p>
+          <p style="font-size:0.9rem;color:var(--color-text-muted);">Reach us at<br><a href="mailto:hello@newprimitive.co" style="color:var(--color-accent)">hello@newprimitive.co</a></p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <nav class="footer__nav">
+        <div class="footer__col"><h3 class="footer__col-title">Products</h3><ul><li><a href="thermal-suite.html">Thermal Suite</a></li><li><a href="212.html">212°</a></li><li><a href="nook.html">The Nook</a></li><li><a href="cold-plunge.html">Cold Plunge</a></li></ul></div>
+        <div class="footer__col"><h3 class="footer__col-title">Company</h3><ul><li><a href="about.html">About</a></li><li><a href="commercial.html">Commercial</a></li></ul></div>
+      </nav>
+      <div class="footer__bottom"><p class="footer__copy">&copy; 2026 New Primitive. Born in Utah.</p></div>
+    </div>
+  </footer>
+
+  <script src="../js/model-page.js"></script>
+  <script>
+    document.getElementById('quoteForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn    = document.getElementById('submitBtn');
+      const status = document.getElementById('formStatus');
+      btn.textContent = 'Sending…';
+      btn.disabled    = true;
+
+      const data = {
+        email:   document.getElementById('email').value,
+        address: document.getElementById('address').value,
+        type:    'quote-request',
+        notes: [
+          `Name: ${document.getElementById('firstName').value} ${document.getElementById('lastName').value}`,
+          `Phone: ${document.getElementById('phone').value}`,
+          `Product: ${document.getElementById('product').value}`,
+          `Use Case: ${document.getElementById('useCase').value}`,
+          `Notes: ${document.getElementById('notes').value}`
+        ].join(' | ')
+      };
+
+      try {
+        const res = await fetch('/api/leads', {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify(data)
+        });
+        if (res.ok) {
+          status.style.color   = '#16a34a';
+          status.textContent   = '✓ Request received! We\'ll be in touch within 24 hours.';
+          e.target.reset();
+        } else {
+          throw new Error();
+        }
+      } catch {
+        status.style.color = '#dc2626';
+        status.textContent = 'Something went wrong — please email us at hello@newprimitive.co';
+      } finally {
+        btn.textContent = 'Send Request';
+        btn.disabled    = false;
+      }
+    });
+  </script>
+</body>
+</html>

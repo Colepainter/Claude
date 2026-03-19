@@ -20,7 +20,7 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 /* ─── Static files ─── */
-// Serve the EV website from project root
+// Serve the New Primitive website from project root
 app.use(express.static(path.join(__dirname, '../')));
 // Serve uploads
 app.use('/uploads', express.static(
@@ -28,17 +28,19 @@ app.use('/uploads', express.static(
 ));
 
 /* ─── API routes ─── */
-const authRoutes     = require('./routes/auth');
-const vehicleRoutes  = require('./routes/vehicles');
-const contentRoutes  = require('./routes/content');
-const mediaRoutes    = require('./routes/media');
-const leadRoutes     = require('./routes/leads');
+const authRoutes      = require('./routes/auth');
+const vehicleRoutes   = require('./routes/vehicles');
+const contentRoutes   = require('./routes/content');
+const mediaRoutes     = require('./routes/media');
+const leadRoutes      = require('./routes/leads');
+const driveSyncRoutes = require('./routes/driveSync');
 
 app.use('/api/auth',     authRoutes);
 app.use('/api/vehicles', vehicleRoutes);
 app.use('/api/content',  contentRoutes);
 app.use('/api/media',    mediaRoutes);
 app.use('/api/leads',    leadRoutes);
+app.use('/api/drive',    driveSyncRoutes);
 
 // /api/chargers convenience alias
 app.get('/api/chargers', (req, res) => {

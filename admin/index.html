@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EV Primitive — CMS</title>
+  <title>New Primitive — CMS</title>
   <link rel="stylesheet" href="css/admin.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -12,12 +12,12 @@
   <!-- ═══════════════════════ LOGIN SCREEN ═══════════════════════ -->
   <div class="login-screen" id="loginScreen">
     <div class="login-card">
-      <div class="login-logo">EV CMS</div>
-      <h1 class="login-title">Sign in to manage your site</h1>
+      <div class="login-logo">NP CMS</div>
+      <h1 class="login-title">Sign in to New Primitive CMS</h1>
       <form id="loginForm" class="login-form">
         <div class="field">
           <label for="loginEmail">Email</label>
-          <input id="loginEmail" type="email" autocomplete="email" placeholder="admin@evprimitive.com" required>
+          <input id="loginEmail" type="email" autocomplete="email" placeholder="admin@newprimitive.co" required>
         </div>
         <div class="field">
           <label for="loginPassword">Password</label>
@@ -34,7 +34,7 @@
 
     <!-- Sidebar -->
     <aside class="sidebar">
-      <div class="sidebar__logo">EV CMS</div>
+      <div class="sidebar__logo">NP CMS</div>
       <nav class="sidebar__nav" aria-label="CMS Navigation">
         <button class="sidebar__item is-active" data-panel="dashboard">
           <span class="sidebar__icon">⬛</span> Dashboard
@@ -53,6 +53,9 @@
         </button>
         <button class="sidebar__item" data-panel="content">
           <span class="sidebar__icon">✏️</span> Content Blocks
+        </button>
+        <button class="sidebar__item" data-panel="drive">
+          <span class="sidebar__icon">☁️</span> Drive Sync
         </button>
         <button class="sidebar__item" data-panel="settings">
           <span class="sidebar__icon">⚙️</span> Settings
@@ -79,8 +82,9 @@
         <div class="quick-links">
           <h2 class="section-heading">Quick Actions</h2>
           <div class="quick-grid">
-            <button class="quick-card" onclick="switchPanel('heroes')">Edit Hero Images</button>
-            <button class="quick-card" onclick="switchPanel('vehicles')">Update Vehicles</button>
+            <button class="quick-card" onclick="switchPanel('drive')">☁️ Sync Drive Images</button>
+            <button class="quick-card" onclick="switchPanel('heroes')">Edit Hero Sections</button>
+            <button class="quick-card" onclick="switchPanel('vehicles')">Update Products</button>
             <button class="quick-card" onclick="switchPanel('media')">Upload Media</button>
             <button class="quick-card" onclick="switchPanel('leads')">View Leads</button>
             <a class="quick-card" href="/" target="_blank">View Live Site ↗</a>
@@ -135,6 +139,21 @@
         <h1 class="panel-title">Content Blocks</h1>
         <p class="panel-desc">Edit CMS-managed text and copy blocks across the site.</p>
         <div id="contentList" class="card-list"></div>
+      </section>
+
+      <!-- ── Drive Sync ── -->
+      <section class="panel" id="panel-drive">
+        <h1 class="panel-title">Google Drive Sync</h1>
+        <p class="panel-desc">
+          Folder: <a href="https://drive.google.com/drive/folders/1QMFOVwZAGQp-aaZKHyXh34l2gTSgzPNw" target="_blank" style="color:var(--accent)">AI Renders ↗</a>
+          — Click <strong>Sync All</strong> to auto-match files to hero images by filename, or use <strong>Manual Assign</strong> to pick specific files.
+        </p>
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:2rem;">
+          <button class="btn-primary" id="driveSyncBtn">⟳ Sync All Images from Drive</button>
+          <button class="btn-secondary" id="driveListBtn">List Drive Files</button>
+        </div>
+        <div id="driveSyncStatus" style="font-size:0.9rem;margin-bottom:1.5rem;"></div>
+        <div id="driveFileList" class="card-list"></div>
       </section>
 
       <!-- ── Settings ── -->
