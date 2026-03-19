@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "EV Primitive — Tesla-inspired electric vehicle website with CMS backend and Framer Motion animations",
   "main": "server/index.js",
-  "type": "module",
   "scripts": {
     "start":              "node server/index.js",
     "dev":                "nodemon server/index.js",
