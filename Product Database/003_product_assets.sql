@@ -7,6 +7,9 @@
 -- Run AFTER 002_seed_products.sql
 -- =============================================================================
 
+-- All NP CRM objects live in the `np_crm` schema. See 001 for context.
+SET search_path TO np_crm, public, extensions;
+
 CREATE TABLE product_assets (
   id            UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   product_id    UUID NOT NULL REFERENCES products(id) ON DELETE CASCADE,

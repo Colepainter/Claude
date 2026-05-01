@@ -12,6 +12,9 @@
 -- Run AFTER 004_quickbooks_linkage.sql
 -- =============================================================================
 
+-- All NP CRM objects live in the `np_crm` schema. See 001 for context.
+SET search_path TO np_crm, public, extensions;
+
 ALTER TABLE estimates
   ADD COLUMN proposal_number          TEXT UNIQUE,
   ADD COLUMN valid_until              DATE,

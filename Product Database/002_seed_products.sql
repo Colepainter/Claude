@@ -5,6 +5,10 @@
 -- Run AFTER 001_initial_schema.sql
 -- =============================================================================
 
+-- All NP CRM objects live in the `np_crm` schema, parallel to Mission Control's
+-- `public` schema in the same Supabase project (`zhdjmadydehkflabchpf`).
+SET search_path TO np_crm, public, extensions;
+
 -- =============================================================================
 -- PRODUCTS
 -- =============================================================================

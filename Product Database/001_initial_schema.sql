@@ -2,10 +2,19 @@
 -- New Primitive CRM — Supabase Schema
 -- Migration: 001_initial_schema
 -- Based on R&D Council recommendation (14-table architecture)
+--
+-- IMPORTANT: This DB (`zhdjmadydehkflabchpf`) ALSO hosts Mission Control in the
+-- `public` schema, which has its own live `products`, `addons`, `orders` tables.
+-- The NP CRM lives in a parallel `np_crm` schema to prevent collision.
+-- Set search_path before any subsequent migration / query in this DB.
 -- =============================================================================
 
--- Enable UUID extension
+-- Enable UUID extension (lives in `public` / `extensions` schema in Supabase)
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+-- Namespace isolation: all NP CRM objects live in `np_crm`, never in `public`.
+CREATE SCHEMA IF NOT EXISTS np_crm;
+SET search_path TO np_crm, public, extensions;
 
 -- =============================================================================
 -- HELPER: auto-update updated_at timestamps

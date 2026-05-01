@@ -7,6 +7,9 @@
 -- Run AFTER 003_product_assets.sql
 -- =============================================================================
 
+-- All NP CRM objects live in the `np_crm` schema. See 001 for context.
+SET search_path TO np_crm, public, extensions;
+
 -- Products map to QuickBooks Items (Service / Product / Bundle).
 ALTER TABLE products
   ADD COLUMN quickbooks_item_id   TEXT,
