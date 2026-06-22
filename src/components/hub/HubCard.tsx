@@ -119,12 +119,21 @@ function CardActions({ id, onEdit, onDelete }: { id: string; onEdit: (id: string
 }
 
 function SupplierCard({ item, onEdit, onDelete }: { item: Record<string, unknown>; onEdit: (id: string) => void; onDelete: (id: string) => void }) {
-  const id = item.id as string;
-  const roleColor = ROLE_COLORS[item.role as string] ?? "mute";
-  const statusColor = STATUS_COLORS[item.status as string] ?? "mute";
-  const email = item.email as string;
-  const phone = item.phone as string;
-  const website = item.website as string;
+  const id = s(item.id);
+  const name = s(item.name);
+  const category = s(item.category);
+  const role = s(item.role);
+  const status = s(item.status);
+  const supplyType = s(item.supplyType);
+  const leadTime = s(item.leadTime);
+  const contactName = s(item.contactName);
+  const supplies = s(item.supplies);
+  const notes = s(item.notes);
+  const email = s(item.email);
+  const phone = s(item.phone);
+  const website = s(item.website);
+  const roleColor = ROLE_COLORS[role] ?? "mute";
+  const statusColor = STATUS_COLORS[status] ?? "mute";
 
   return (
     <div
@@ -143,10 +152,10 @@ function SupplierCard({ item, onEdit, onDelete }: { item: Record<string, unknown
             className="mb-1"
             style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--cream-faint)" }}
           >
-            {(item.category as string) || (item.role as string) || "Supplier"}
+            {category || role || "Supplier"}
           </div>
           <div style={{ fontWeight: 600, fontSize: 15, lineHeight: 1.25, color: "var(--cream)" }}>
-            {item.name as string}
+            {name}
           </div>
         </div>
         <CardActions id={id} onEdit={onEdit} onDelete={onDelete} />
@@ -154,21 +163,21 @@ function SupplierCard({ item, onEdit, onDelete }: { item: Record<string, unknown
       {/* Body */}
       <div className="flex flex-col gap-2.5 px-4 py-3 flex-1">
         <div className="flex flex-wrap gap-1.5">
-          {!!item.role && <Chip label={item.role as string} colorKey={roleColor} />}
-          {!!item.status && <Chip label={item.status as string} colorKey={statusColor} />}
-          {!!item.supplyType && (
+          {role && <Chip label={role} colorKey={roleColor} />}
+          {status && <Chip label={status} colorKey={statusColor} />}
+          {supplyType && (
             <span
               className="chip"
               style={{ background: "transparent", color: "var(--cream-dim)", border: "1px solid var(--line-2)" }}
             >
-              {item.supplyType as string}
+              {supplyType}
             </span>
           )}
         </div>
-        <SpecRow label="Lead time" value={item.leadTime as string} mono />
-        {!!item.contactName && <SpecRow label="Contact" value={item.contactName as string} />}
-        {!!item.supplies && <NoteBlock label="Details" value={item.supplies as string} />}
-        {!!item.notes && <NoteBlock label="Notes" value={item.notes as string} />}
+        <SpecRow label="Lead time" value={leadTime} mono />
+        {contactName && <SpecRow label="Contact" value={contactName} />}
+        {supplies && <NoteBlock label="Details" value={supplies} />}
+        {notes && <NoteBlock label="Notes" value={notes} />}
         {(email || (phone && /[0-9]/.test(phone)) || website) && (
           <div
             className="flex flex-wrap gap-1.5 mt-auto"
@@ -220,9 +229,17 @@ function SupplierCard({ item, onEdit, onDelete }: { item: Record<string, unknown
 }
 
 function ProductCard({ item, onEdit, onDelete }: { item: Record<string, unknown>; onEdit: (id: string) => void; onDelete: (id: string) => void }) {
-  const id = item.id as string;
-  const statusColor = STATUS_COLORS[item.status as string] ?? "mute";
+  const id = s(item.id);
+  const name = s(item.name);
+  const rev = s(item.rev);
+  const status = s(item.status);
+  const dimensions = s(item.dimensions);
+  const priceBand = s(item.priceBand);
+  const leadTime = s(item.leadTime);
+  const finishes = s(item.finishes);
+  const specs = s(item.specs);
   const brochures = (item.brochures as ResourceLink[]) || [];
+  const statusColor = STATUS_COLORS[status] ?? "mute";
 
   return (
     <div
@@ -234,23 +251,23 @@ function ProductCard({ item, onEdit, onDelete }: { item: Record<string, unknown>
       <div className="flex items-start gap-2 px-4 py-3" style={{ borderBottom: "1px solid var(--line)" }}>
         <div className="min-w-0 flex-1">
           <div style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--cream-faint)", marginBottom: 4 }}>
-            {(item.rev as string) || "Product"}
+            {rev || "Product"}
           </div>
           <div style={{ fontWeight: 600, fontSize: 15, lineHeight: 1.25, color: "var(--cream)" }}>
-            {item.name as string}
+            {name}
           </div>
         </div>
         <CardActions id={id} onEdit={onEdit} onDelete={onDelete} />
       </div>
       <div className="flex flex-col gap-2.5 px-4 py-3 flex-1">
         <div className="flex flex-wrap gap-1.5">
-          {!!item.status && <Chip label={item.status as string} colorKey={statusColor} />}
+          {status && <Chip label={status} colorKey={statusColor} />}
         </div>
-        <SpecRow label="Dimensions" value={item.dimensions as string} mono />
-        <SpecRow label="Price band" value={item.priceBand as string} mono />
-        <SpecRow label="Lead time" value={item.leadTime as string} mono />
-        <SpecRow label="Finishes" value={item.finishes as string} />
-        {!!item.specs && <NoteBlock label="Key specs" value={item.specs as string} />}
+        <SpecRow label="Dimensions" value={dimensions} mono />
+        <SpecRow label="Price band" value={priceBand} mono />
+        <SpecRow label="Lead time" value={leadTime} mono />
+        <SpecRow label="Finishes" value={finishes} />
+        {specs && <NoteBlock label="Key specs" value={specs} />}
         {brochures.length > 0 && (
           <div className="flex flex-wrap gap-1.5" style={{ borderTop: "1px dashed var(--line-2)", paddingTop: 10 }}>
             {brochures.map((r, i) => (
@@ -276,9 +293,14 @@ function ProductCard({ item, onEdit, onDelete }: { item: Record<string, unknown>
 }
 
 function ResearchCard({ item, onEdit, onDelete }: { item: Record<string, unknown>; onEdit: (id: string) => void; onDelete: (id: string) => void }) {
-  const id = item.id as string;
-  const jurisdiction = item.jurisdiction as string;
-  const link = item.link as string;
+  const id = s(item.id);
+  const title = s(item.title);
+  const type = s(item.type);
+  const jurisdiction = s(item.jurisdiction);
+  const summary = s(item.summary);
+  const owner = s(item.owner);
+  const date = s(item.date);
+  const link = s(item.link);
 
   return (
     <div
@@ -290,18 +312,18 @@ function ResearchCard({ item, onEdit, onDelete }: { item: Record<string, unknown
       <div className="flex items-start gap-2 px-4 py-3" style={{ borderBottom: "1px solid var(--line)" }}>
         <div className="min-w-0 flex-1">
           <div style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--cream-faint)", marginBottom: 4 }}>
-            {(item.type as string) || "Research"}{jurisdiction ? ` · ${jurisdiction}` : ""}
+            {type || "Research"}{jurisdiction ? ` · ${jurisdiction}` : ""}
           </div>
           <div style={{ fontWeight: 600, fontSize: 15, lineHeight: 1.25, color: "var(--cream)" }}>
-            {item.title as string}
+            {title}
           </div>
         </div>
         <CardActions id={id} onEdit={onEdit} onDelete={onDelete} />
       </div>
       <div className="flex flex-col gap-2.5 px-4 py-3 flex-1">
-        {!!item.summary && <NoteBlock label="Finding" value={item.summary as string} />}
-        <SpecRow label="Owner" value={(item.owner as string) || "—"} />
-        <SpecRow label="Date" value={item.date as string} mono />
+        {summary && <NoteBlock label="Finding" value={summary} />}
+        <SpecRow label="Owner" value={owner || "—"} />
+        <SpecRow label="Date" value={date} mono />
         {link && (
           <div className="flex gap-2 text-xs">
             <span className="flex-none min-w-[80px]" style={{ color: "var(--cream-faint)", fontSize: 11 }}>Source</span>
@@ -322,8 +344,14 @@ function ResearchCard({ item, onEdit, onDelete }: { item: Record<string, unknown
 }
 
 function ImprovementCard({ item, onEdit, onDelete }: { item: Record<string, unknown>; onEdit: (id: string) => void; onDelete: (id: string) => void }) {
-  const id = item.id as string;
-  const statusColor = STATUS_COLORS[item.status as string] ?? "mute";
+  const id = s(item.id);
+  const title = s(item.title);
+  const product = s(item.product);
+  const status = s(item.status);
+  const impact = s(item.impact);
+  const owner = s(item.owner);
+  const date = s(item.date);
+  const statusColor = STATUS_COLORS[status] ?? "mute";
 
   return (
     <div
@@ -335,30 +363,38 @@ function ImprovementCard({ item, onEdit, onDelete }: { item: Record<string, unkn
       <div className="flex items-start gap-2 px-4 py-3" style={{ borderBottom: "1px solid var(--line)" }}>
         <div className="min-w-0 flex-1">
           <div style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--cream-faint)", marginBottom: 4 }}>
-            {(item.product as string) || "Improvement"}
+            {product || "Improvement"}
           </div>
           <div style={{ fontWeight: 600, fontSize: 15, lineHeight: 1.25, color: "var(--cream)" }}>
-            {item.title as string}
+            {title}
           </div>
         </div>
         <CardActions id={id} onEdit={onEdit} onDelete={onDelete} />
       </div>
       <div className="flex flex-col gap-2.5 px-4 py-3 flex-1">
         <div className="flex flex-wrap gap-1.5">
-          {!!item.status && <Chip label={item.status as string} colorKey={statusColor} />}
+          {status && <Chip label={status} colorKey={statusColor} />}
         </div>
-        {!!item.impact && <NoteBlock label="Impact" value={item.impact as string} />}
-        <SpecRow label="Owner" value={(item.owner as string) || "—"} />
-        <SpecRow label="Logged" value={item.date as string} mono />
+        {impact && <NoteBlock label="Impact" value={impact} />}
+        <SpecRow label="Owner" value={owner || "—"} />
+        <SpecRow label="Logged" value={date} mono />
       </div>
     </div>
   );
 }
 
 function PlanCard({ item, onEdit, onDelete }: { item: Record<string, unknown>; onEdit: (id: string) => void; onDelete: (id: string) => void }) {
-  const id = item.id as string;
-  const statusColor = STATUS_COLORS[item.status as string] ?? "mute";
+  const id = s(item.id);
+  const name = s(item.name);
+  const product = s(item.product);
+  const version = s(item.version);
+  const date = s(item.date);
+  const status = s(item.status);
+  const specs = s(item.specs);
+  const cuts = s(item.cuts);
+  const notes = s(item.notes);
   const includes = (item.includes as Record<string, boolean>) || {};
+  const statusColor = STATUS_COLORS[status] ?? "mute";
 
   return (
     <div
@@ -370,20 +406,20 @@ function PlanCard({ item, onEdit, onDelete }: { item: Record<string, unknown>; o
       <div className="flex items-start gap-2 px-4 py-3" style={{ borderBottom: "1px solid var(--line)" }}>
         <div className="min-w-0 flex-1">
           <div style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--cream-faint)", marginBottom: 4 }}>
-            {(item.product as string) || "Plan set"}
+            {product || "Plan set"}
           </div>
           <div style={{ fontWeight: 600, fontSize: 15, lineHeight: 1.25, color: "var(--cream)" }}>
-            {item.name as string}
+            {name}
           </div>
         </div>
         <CardActions id={id} onEdit={onEdit} onDelete={onDelete} />
       </div>
       <div className="flex flex-col gap-2.5 px-4 py-3 flex-1">
         <div className="flex flex-wrap gap-1.5">
-          {!!item.status && <Chip label={item.status as string} colorKey={statusColor} />}
-          {!!item.version && (
+          {status && <Chip label={status} colorKey={statusColor} />}
+          {version && (
             <span className="chip" style={{ background: COLOR_MAP.ember.bg, color: COLOR_MAP.ember.text }}>
-              {item.version as string}
+              {version}
             </span>
           )}
         </div>
@@ -407,8 +443,8 @@ function PlanCard({ item, onEdit, onDelete }: { item: Record<string, unknown>; o
             );
           })}
         </div>
-        {!!item.specs && <NoteBlock label="Build specs" value={item.specs as string} />}
-        {!!item.cuts && (
+        {specs && <NoteBlock label="Build specs" value={specs} />}
+        {cuts && (
           <div>
             <span
               className="block mb-1"
@@ -429,18 +465,18 @@ function PlanCard({ item, onEdit, onDelete }: { item: Record<string, unknown>; o
                 fontSize: 11.5,
               }}
             >
-              {item.cuts as string}
+              {cuts}
             </div>
           </div>
         )}
-        {!!item.notes && <NoteBlock label="Field note" value={item.notes as string} />}
+        {notes && <NoteBlock label="Field note" value={notes} />}
       </div>
       {/* Footer */}
       <div
         className="flex items-center gap-2 px-4 py-2.5"
         style={{ borderTop: "1px solid var(--line)", background: "var(--char-900)", fontFamily: "var(--mono)", fontSize: 10.5, color: "var(--cream-faint)" }}
       >
-        <span>{item.date as string}</span>
+        <span>{date}</span>
         <span className="flex-1" />
         <button
           className="inline-flex items-center gap-1.5 text-xs font-semibold rounded-lg px-2.5 py-1.5 transition-colors"
@@ -459,8 +495,11 @@ function PlanCard({ item, onEdit, onDelete }: { item: Record<string, unknown>; o
 }
 
 function ResourceCard({ item, onEdit, onDelete }: { item: Record<string, unknown>; onEdit: (id: string) => void; onDelete: (id: string) => void }) {
-  const id = item.id as string;
-  const url = item.url as string;
+  const id = s(item.id);
+  const label = s(item.label);
+  const type = s(item.type);
+  const url = s(item.url);
+  const note = s(item.note);
 
   return (
     <div
@@ -472,16 +511,16 @@ function ResourceCard({ item, onEdit, onDelete }: { item: Record<string, unknown
       <div className="flex items-start gap-2 px-4 py-3" style={{ borderBottom: "1px solid var(--line)" }}>
         <div className="min-w-0 flex-1">
           <div style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--cream-faint)", marginBottom: 4 }}>
-            {(item.type as string) || "Resource"}
+            {type || "Resource"}
           </div>
           <div style={{ fontWeight: 600, fontSize: 15, lineHeight: 1.25, color: "var(--cream)" }}>
-            {item.label as string}
+            {label}
           </div>
         </div>
         <CardActions id={id} onEdit={onEdit} onDelete={onDelete} />
       </div>
       <div className="flex flex-col gap-2.5 px-4 py-3 flex-1">
-        {!!item.note && <NoteBlock label="" value={item.note as string} />}
+        {note && <NoteBlock label="" value={note} />}
         {url && (
           <a
             href={url}
