@@ -4,9 +4,12 @@ import { useState, useEffect, useCallback } from "react";
 import { SectionId, HubData, SalesData, Deal } from "@/lib/types";
 import { loadHubData, saveHubData, loadSalesData, saveSalesData, exportBackup } from "@/lib/storage";
 import { SEED_HUB, SEED_DEALS } from "@/lib/seed";
+import { genId, todayISO } from "@/lib/helpers";
 import Sidebar from "@/components/layout/Sidebar";
 import TopBar from "@/components/layout/TopBar";
 import Toast from "@/components/ui/Toast";
+import Pipeline from "@/components/pipeline/Pipeline";
+import HubSection from "@/components/hub/HubSection";
 
 const EMPTY_HUB: HubData = {
   suppliers: [],
@@ -84,10 +87,30 @@ export default function FounderHub() {
     setSalesData(prev => ({ ...prev, deals }));
   }, []);
 
-  // Handle add (placeholder — section views wire their own modals)
+  const handleUpdateDeal = useCallback((id: string, patch: Partial<Deal>) => {
+    setSalesData(prev => ({
+      ...prev,
+      deals: prev.deals.map(d => d.id === id ? { ...d, ...patch } : d),
+    }));
+  }, []);
+
+  const handleAddDeal = useCallback((deal: Omit<Deal, 'id'>) => {
+    setSalesData(prev => ({
+      ...prev,
+      deals: [{ ...deal, id: genId() } as Deal, ...prev.deals],
+    }));
+  }, []);
+
+  const handleDeleteDeal = useCallback((id: string) => {
+    setSalesData(prev => ({
+      ...prev,
+      deals: prev.deals.filter(d => d.id !== id),
+    }));
+  }, []);
+
   const handleAdd = useCallback(() => {
-    ping("Use the section view to add records.");
-  }, [ping]);
+    // Pipeline has its own add button; hub sections handle add internally
+  }, []);
 
   // Handle export
   const handleExport = useCallback(() => {
@@ -147,33 +170,26 @@ export default function FounderHub() {
           onSearch={setSearchQuery}
         />
 
-        <div
-          className="flex-1 overflow-y-auto p-6"
-          style={{ paddingBottom: "env(safe-area-inset-bottom, 24px)" }}
-        >
-          {/* Section placeholder — individual section views go here */}
-          <div
-            className="flex items-center justify-center h-full"
-            style={{ color: "var(--cream-faint)" }}
-          >
-            <div className="text-center">
-              <p
-                style={{
-                  fontFamily: "var(--mono)",
-                  fontSize: "12px",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.1em",
-                  marginBottom: "8px",
-                  color: "var(--cream-faint)",
-                }}
-              >
-                {currentSection}
-              </p>
-              <p style={{ fontFamily: "var(--sans)", fontSize: "14px", color: "var(--cream-dim)" }}>
-                Section view coming soon.
-              </p>
+        <div className="flex-1 overflow-y-auto">
+          {currentSection === "pipeline" ? (
+            <Pipeline
+              deals={salesData.deals}
+              onUpdateDeal={handleUpdateDeal}
+              onAddDeal={handleAddDeal}
+              onDeleteDeal={handleDeleteDeal}
+              onToast={ping}
+            />
+          ) : (
+            <div className="p-6">
+              <HubSection
+                sectionId={currentSection as Exclude<SectionId, 'pipeline'>}
+                items={hubData[currentSection as keyof HubData] as unknown as Record<string, unknown>[]}
+                searchQuery={searchQuery}
+                onUpdate={(items) => updateHubSection(currentSection as keyof HubData, items as unknown as HubData[keyof HubData])}
+                onToast={ping}
+              />
             </div>
-          </div>
+          )}
         </div>
       </main>
 
