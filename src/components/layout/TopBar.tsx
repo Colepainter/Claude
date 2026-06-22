@@ -18,6 +18,14 @@ const ADD_LABELS: Record<SectionId, string> = {
   improvements: "Add improvement",
   plans: "Add plan set",
   resources: "Add resource",
+  campaigns: "Add campaign",
+  events: "Add event",
+  content: "Add content",
+  testimonials: "Add testimonial",
+  webPresence: "Add platform",
+  projects: "Add project",
+  customers: "Add customer",
+  finance: "Add entry",
 };
 
 export default function TopBar({ section, onAdd, searchQuery, onSearch }: TopBarProps) {

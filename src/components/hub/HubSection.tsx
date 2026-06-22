@@ -6,7 +6,7 @@ import HubCard from "./HubCard";
 import HubForm from "./HubForm";
 
 interface HubSectionProps {
-  sectionId: "suppliers" | "products" | "research" | "improvements" | "plans" | "resources";
+  sectionId: Exclude<import("@/lib/types").SectionId, "pipeline">;
   items: Record<string, unknown>[];
   searchQuery: string;
   onUpdate: (items: Record<string, unknown>[]) => void;
@@ -21,6 +21,14 @@ const SECTION_ICONS: Record<string, string> = {
   improvements: '<path d="M3 17l5-5 4 4 8-9"/><path d="M15 7h5v5"/>',
   plans: '<path d="M5 3h9l5 5v13H5z"/><path d="M14 3v5h5"/><path d="M8 13h7M8 17h7M8 9h2"/>',
   resources: '<path d="M3 6a2 2 0 012-2h4l2 2h8a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>',
+  campaigns: '<path d="M3 11l19-9-9 19-2-8z"/>',
+  events: '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
+  content: '<path d="M12 19l7-7 3 3-7 7H12v-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18"/>',
+  testimonials: '<path d="M3 21c3 0 7-1 7-8V5c0-1.25-.7-2-2-2H6c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2h2c1.25 0 2-.5 2-2"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.7-2-2-2h-2c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2h2c1.25 0 2-.5 2-2"/>',
+  webPresence: '<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>',
+  projects: '<path d="M2 20a2 2 0 002 2h16a2 2 0 002-2V8l-7 5V8l-7 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2z"/>',
+  customers: '<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>',
+  finance: '<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>',
 };
 
 function SectionIcon({ sectionId }: { sectionId: string }) {

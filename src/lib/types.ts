@@ -124,6 +124,133 @@ export interface Deal {
   created: string;
 }
 
+export interface Campaign {
+  id: string;
+  name: string;
+  type: string;
+  status: string;
+  channel: string;
+  startDate: string;
+  endDate: string;
+  budget: string;
+  audience: string;
+  goal: string;
+  results: string;
+  link: string;
+  notes: string;
+  _u: number;
+}
+
+export interface MarketingEvent {
+  id: string;
+  name: string;
+  type: string;
+  date: string;
+  location: string;
+  status: string;
+  audience: string;
+  cost: string;
+  leads: string;
+  notes: string;
+  link: string;
+  _u: number;
+}
+
+export interface ContentItem {
+  id: string;
+  title: string;
+  type: string;
+  status: string;
+  channel: string;
+  publishDate: string;
+  author: string;
+  topic: string;
+  url: string;
+  notes: string;
+  _u: number;
+}
+
+export interface Testimonial {
+  id: string;
+  name: string;
+  project: string;
+  type: string;
+  quote: string;
+  rating: string;
+  date: string;
+  source: string;
+  approved: string;
+  link: string;
+  _u: number;
+}
+
+export interface WebPresence {
+  id: string;
+  label: string;
+  platform: string;
+  url: string;
+  handle: string;
+  status: string;
+  notes: string;
+  _u: number;
+}
+
+export interface Project {
+  id: string;
+  name: string;
+  client: string;
+  type: string;
+  location: string;
+  product: string;
+  status: string;
+  startDate: string;
+  targetComplete: string;
+  siteStatus: string;
+  buildPartner: string;
+  value: string;
+  depositPaid: string;
+  balanceDue: string;
+  permitStatus: string;
+  electricalStatus: string;
+  craneDate: string;
+  notes: string;
+  _u: number;
+}
+
+export interface Customer {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  type: string;
+  location: string;
+  product: string;
+  installDate: string;
+  warrantyExpires: string;
+  satisfaction: string;
+  referralSource: string;
+  referralsGiven: string;
+  testimonial: string;
+  notes: string;
+  _u: number;
+}
+
+export interface FinanceEntry {
+  id: string;
+  label: string;
+  type: string;
+  category: string;
+  amount: string;
+  date: string;
+  status: string;
+  job: string;
+  vendor: string;
+  invoice: string;
+  qbRef: string;
+  notes: string;
+  _u: number;
+}
+
 export interface HubData {
   suppliers: Supplier[];
   products: Product[];
@@ -131,6 +258,14 @@ export interface HubData {
   improvements: Improvement[];
   plans: BuildPlan[];
   resources: SalesResource[];
+  campaigns: Campaign[];
+  events: MarketingEvent[];
+  content: ContentItem[];
+  testimonials: Testimonial[];
+  webPresence: WebPresence[];
+  projects: Project[];
+  customers: Customer[];
+  finance: FinanceEntry[];
 }
 
 export interface SalesData {
@@ -138,7 +273,11 @@ export interface SalesData {
   lastSync: number | null;
 }
 
-export type SectionId = 'pipeline' | 'suppliers' | 'products' | 'research' | 'improvements' | 'plans' | 'resources';
+export type SectionId =
+  | 'pipeline'
+  | 'suppliers' | 'products' | 'research' | 'improvements' | 'plans' | 'resources'
+  | 'campaigns' | 'events' | 'content' | 'testimonials' | 'webPresence'
+  | 'projects' | 'customers' | 'finance';
 
 export interface Stage {
   key: string;

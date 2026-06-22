@@ -540,6 +540,438 @@ function ResourceCard({ item, onEdit, onDelete }: { item: Record<string, unknown
   );
 }
 
+function CampaignCard({ item, onEdit, onDelete }: { item: Record<string, unknown>; onEdit: (id: string) => void; onDelete: (id: string) => void }) {
+  const id = s(item.id);
+  const name = s(item.name);
+  const type = s(item.type);
+  const status = s(item.status);
+  const channel = s(item.channel);
+  const startDate = s(item.startDate);
+  const endDate = s(item.endDate);
+  const budget = s(item.budget);
+  const audience = s(item.audience);
+  const goal = s(item.goal);
+  const results = s(item.results);
+  const notes = s(item.notes);
+  const link = s(item.link);
+  const statusColor = STATUS_COLORS[status] ?? "mute";
+
+  return (
+    <div
+      className="group rounded-xl overflow-hidden flex flex-col transition-colors"
+      style={{ background: "var(--char-850)", border: "1px solid var(--line)" }}
+      onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--line-2)")}
+      onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--line)")}
+    >
+      <div className="flex items-start gap-2 px-4 py-3" style={{ borderBottom: "1px solid var(--line)" }}>
+        <div className="min-w-0 flex-1">
+          <div style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--cream-faint)", marginBottom: 4 }}>
+            {channel || type || "Campaign"}
+          </div>
+          <div style={{ fontWeight: 600, fontSize: 15, lineHeight: 1.25, color: "var(--cream)" }}>
+            {name}
+          </div>
+        </div>
+        <CardActions id={id} onEdit={onEdit} onDelete={onDelete} />
+      </div>
+      <div className="flex flex-col gap-2.5 px-4 py-3 flex-1">
+        <div className="flex flex-wrap gap-1.5">
+          {status && <Chip label={status} colorKey={statusColor} />}
+          {!!type && <Chip label={type} colorKey="mute" />}
+        </div>
+        <SpecRow label="Budget" value={budget} mono />
+        <SpecRow label="Dates" value={startDate && endDate ? `${startDate} → ${endDate}` : startDate || endDate} mono />
+        {audience && <SpecRow label="Audience" value={audience} />}
+        {goal && <SpecRow label="Goal" value={goal} />}
+        {results && <NoteBlock label="Results" value={results} />}
+        {notes && <NoteBlock label="Notes" value={notes} />}
+        {link && (
+          <a href={link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 self-start text-xs font-semibold rounded-lg px-3 py-1.5 transition-colors" style={{ background: "var(--orange)", color: "#fff" }}>
+            Open ↗
+          </a>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function EventCard({ item, onEdit, onDelete }: { item: Record<string, unknown>; onEdit: (id: string) => void; onDelete: (id: string) => void }) {
+  const id = s(item.id);
+  const name = s(item.name);
+  const type = s(item.type);
+  const date = s(item.date);
+  const location = s(item.location);
+  const status = s(item.status);
+  const audience = s(item.audience);
+  const cost = s(item.cost);
+  const leads = s(item.leads);
+  const notes = s(item.notes);
+  const link = s(item.link);
+  const statusColor = STATUS_COLORS[status] ?? "mute";
+
+  return (
+    <div
+      className="group rounded-xl overflow-hidden flex flex-col transition-colors"
+      style={{ background: "var(--char-850)", border: "1px solid var(--line)" }}
+      onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--line-2)")}
+      onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--line)")}
+    >
+      <div className="flex items-start gap-2 px-4 py-3" style={{ borderBottom: "1px solid var(--line)" }}>
+        <div className="min-w-0 flex-1">
+          <div style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--cream-faint)", marginBottom: 4 }}>
+            {type || "Event"}{date ? ` · ${date}` : ""}
+          </div>
+          <div style={{ fontWeight: 600, fontSize: 15, lineHeight: 1.25, color: "var(--cream)" }}>
+            {name}
+          </div>
+        </div>
+        <CardActions id={id} onEdit={onEdit} onDelete={onDelete} />
+      </div>
+      <div className="flex flex-col gap-2.5 px-4 py-3 flex-1">
+        <div className="flex flex-wrap gap-1.5">
+          {status && <Chip label={status} colorKey={statusColor} />}
+        </div>
+        <SpecRow label="Location" value={location} />
+        <SpecRow label="Audience" value={audience} />
+        <SpecRow label="Cost" value={cost} mono />
+        {leads && <SpecRow label="Leads" value={leads} mono />}
+        {notes && <NoteBlock label="Notes" value={notes} />}
+        {link && (
+          <a href={link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 self-start text-xs font-semibold rounded-lg px-3 py-1.5 transition-colors" style={{ background: "var(--orange)", color: "#fff" }}>
+            Event page ↗
+          </a>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function ContentCard({ item, onEdit, onDelete }: { item: Record<string, unknown>; onEdit: (id: string) => void; onDelete: (id: string) => void }) {
+  const id = s(item.id);
+  const title = s(item.title);
+  const type = s(item.type);
+  const status = s(item.status);
+  const channel = s(item.channel);
+  const publishDate = s(item.publishDate);
+  const author = s(item.author);
+  const topic = s(item.topic);
+  const url = s(item.url);
+  const notes = s(item.notes);
+  const statusColor = STATUS_COLORS[status] ?? "mute";
+
+  return (
+    <div
+      className="group rounded-xl overflow-hidden flex flex-col transition-colors"
+      style={{ background: "var(--char-850)", border: "1px solid var(--line)" }}
+      onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--line-2)")}
+      onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--line)")}
+    >
+      <div className="flex items-start gap-2 px-4 py-3" style={{ borderBottom: "1px solid var(--line)" }}>
+        <div className="min-w-0 flex-1">
+          <div style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--cream-faint)", marginBottom: 4 }}>
+            {type || "Content"}{channel ? ` · ${channel}` : ""}
+          </div>
+          <div style={{ fontWeight: 600, fontSize: 15, lineHeight: 1.25, color: "var(--cream)" }}>
+            {title}
+          </div>
+        </div>
+        <CardActions id={id} onEdit={onEdit} onDelete={onDelete} />
+      </div>
+      <div className="flex flex-col gap-2.5 px-4 py-3 flex-1">
+        <div className="flex flex-wrap gap-1.5">
+          {status && <Chip label={status} colorKey={statusColor} />}
+        </div>
+        <SpecRow label="Publish" value={publishDate || "—"} mono />
+        <SpecRow label="Author" value={author} />
+        {topic && <SpecRow label="Topic" value={topic} />}
+        {notes && <NoteBlock label="Notes" value={notes} />}
+        {url && (
+          <a href={url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 self-start text-xs font-semibold rounded-lg px-3 py-1.5 transition-colors" style={{ background: "var(--orange)", color: "#fff" }}>
+            View ↗
+          </a>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function TestimonialCard({ item, onEdit, onDelete }: { item: Record<string, unknown>; onEdit: (id: string) => void; onDelete: (id: string) => void }) {
+  const id = s(item.id);
+  const name = s(item.name);
+  const project = s(item.project);
+  const type = s(item.type);
+  const quote = s(item.quote);
+  const rating = s(item.rating);
+  const date = s(item.date);
+  const source = s(item.source);
+  const approved = s(item.approved);
+  const link = s(item.link);
+  const approvedColor = STATUS_COLORS[approved] ?? "mute";
+
+  return (
+    <div
+      className="group rounded-xl overflow-hidden flex flex-col transition-colors"
+      style={{ background: "var(--char-850)", border: "1px solid var(--line)" }}
+      onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--line-2)")}
+      onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--line)")}
+    >
+      <div className="flex items-start gap-2 px-4 py-3" style={{ borderBottom: "1px solid var(--line)" }}>
+        <div className="min-w-0 flex-1">
+          <div style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--cream-faint)", marginBottom: 4 }}>
+            {type || "Testimonial"}{project ? ` · ${project}` : ""}
+          </div>
+          <div style={{ fontWeight: 600, fontSize: 15, lineHeight: 1.25, color: "var(--cream)" }}>
+            {name}
+          </div>
+        </div>
+        <CardActions id={id} onEdit={onEdit} onDelete={onDelete} />
+      </div>
+      <div className="flex flex-col gap-2.5 px-4 py-3 flex-1">
+        <div className="flex flex-wrap gap-1.5">
+          {approved && <Chip label={`Approved: ${approved}`} colorKey={approvedColor} />}
+          {!!rating && <Chip label={rating} colorKey="ok" />}
+        </div>
+        {quote && (
+          <div className="text-xs leading-relaxed italic" style={{ color: "var(--cream-dim)", borderLeft: "2px solid var(--orange)", paddingLeft: 10 }}>
+            {quote}
+          </div>
+        )}
+        {source && <SpecRow label="Source" value={source} />}
+        {date && <SpecRow label="Date" value={date} mono />}
+        {link && (
+          <a href={link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 self-start text-xs font-semibold rounded-lg px-3 py-1.5 transition-colors" style={{ background: "var(--orange)", color: "#fff" }}>
+            View ↗
+          </a>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function WebPresenceCard({ item, onEdit, onDelete }: { item: Record<string, unknown>; onEdit: (id: string) => void; onDelete: (id: string) => void }) {
+  const id = s(item.id);
+  const label = s(item.label);
+  const platform = s(item.platform);
+  const url = s(item.url);
+  const handle = s(item.handle);
+  const status = s(item.status);
+  const notes = s(item.notes);
+  const statusColor = STATUS_COLORS[status] ?? "mute";
+
+  return (
+    <div
+      className="group rounded-xl overflow-hidden flex flex-col transition-colors"
+      style={{ background: "var(--char-850)", border: "1px solid var(--line)" }}
+      onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--line-2)")}
+      onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--line)")}
+    >
+      <div className="flex items-start gap-2 px-4 py-3" style={{ borderBottom: "1px solid var(--line)" }}>
+        <div className="min-w-0 flex-1">
+          <div style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--cream-faint)", marginBottom: 4 }}>
+            {platform || "Platform"}
+          </div>
+          <div style={{ fontWeight: 600, fontSize: 15, lineHeight: 1.25, color: "var(--cream)" }}>
+            {label}
+          </div>
+        </div>
+        <CardActions id={id} onEdit={onEdit} onDelete={onDelete} />
+      </div>
+      <div className="flex flex-col gap-2.5 px-4 py-3 flex-1">
+        <div className="flex flex-wrap gap-1.5">
+          {status && <Chip label={status} colorKey={statusColor} />}
+        </div>
+        {handle && <SpecRow label="Handle" value={handle} mono />}
+        {notes && <NoteBlock label="" value={notes} />}
+        {url && (
+          <a href={url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 self-start text-xs font-semibold rounded-lg px-3 py-1.5 transition-colors" style={{ background: "var(--orange)", color: "#fff" }}>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3a14 14 0 000 18M12 3a14 14 0 010 18" /></svg>
+            Visit ↗
+          </a>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function ProjectCard({ item, onEdit, onDelete }: { item: Record<string, unknown>; onEdit: (id: string) => void; onDelete: (id: string) => void }) {
+  const id = s(item.id);
+  const name = s(item.name);
+  const client = s(item.client);
+  const type = s(item.type);
+  const location = s(item.location);
+  const product = s(item.product);
+  const status = s(item.status);
+  const startDate = s(item.startDate);
+  const targetComplete = s(item.targetComplete);
+  const siteStatus = s(item.siteStatus);
+  const buildPartner = s(item.buildPartner);
+  const value = s(item.value);
+  const depositPaid = s(item.depositPaid);
+  const balanceDue = s(item.balanceDue);
+  const permitStatus = s(item.permitStatus);
+  const electricalStatus = s(item.electricalStatus);
+  const craneDate = s(item.craneDate);
+  const notes = s(item.notes);
+  const statusColor = STATUS_COLORS[status] ?? "mute";
+  const siteColor = STATUS_COLORS[siteStatus] ?? "mute";
+
+  return (
+    <div
+      className="group rounded-xl overflow-hidden flex flex-col transition-colors"
+      style={{ background: "var(--char-850)", border: "1px solid var(--line)" }}
+      onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--line-2)")}
+      onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--line)")}
+    >
+      <div className="flex items-start gap-2 px-4 py-3" style={{ borderBottom: "1px solid var(--line)" }}>
+        <div className="min-w-0 flex-1">
+          <div style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--cream-faint)", marginBottom: 4 }}>
+            {type || "Project"}{client ? ` · ${client}` : ""}
+          </div>
+          <div style={{ fontWeight: 600, fontSize: 15, lineHeight: 1.25, color: "var(--cream)" }}>
+            {name}
+          </div>
+        </div>
+        <CardActions id={id} onEdit={onEdit} onDelete={onDelete} />
+      </div>
+      <div className="flex flex-col gap-2.5 px-4 py-3 flex-1">
+        <div className="flex flex-wrap gap-1.5">
+          {status && <Chip label={status} colorKey={statusColor} />}
+          {siteStatus && <Chip label={siteStatus} colorKey={siteColor} />}
+        </div>
+        <SpecRow label="Location" value={location} />
+        <SpecRow label="Product" value={product} />
+        <SpecRow label="Value" value={value} mono />
+        <SpecRow label="Partner" value={buildPartner} />
+        {(startDate || targetComplete) && <SpecRow label="Timeline" value={startDate && targetComplete ? `${startDate} → ${targetComplete}` : startDate || targetComplete} mono />}
+        {depositPaid && <SpecRow label="Deposit" value={depositPaid} />}
+        {balanceDue && <SpecRow label="Balance" value={balanceDue} mono />}
+        {permitStatus && <SpecRow label="Permit" value={permitStatus} />}
+        {electricalStatus && <SpecRow label="Electrical" value={electricalStatus} />}
+        {craneDate && <SpecRow label="Crane" value={craneDate} mono />}
+        {notes && <NoteBlock label="Notes" value={notes} />}
+      </div>
+    </div>
+  );
+}
+
+function CustomerCard({ item, onEdit, onDelete }: { item: Record<string, unknown>; onEdit: (id: string) => void; onDelete: (id: string) => void }) {
+  const id = s(item.id);
+  const name = s(item.name);
+  const email = s(item.email);
+  const phone = s(item.phone);
+  const type = s(item.type);
+  const location = s(item.location);
+  const product = s(item.product);
+  const installDate = s(item.installDate);
+  const warrantyExpires = s(item.warrantyExpires);
+  const satisfaction = s(item.satisfaction);
+  const referralSource = s(item.referralSource);
+  const referralsGiven = s(item.referralsGiven);
+  const testimonial = s(item.testimonial);
+  const notes = s(item.notes);
+  const satColor = STATUS_COLORS[satisfaction] ?? "mute";
+
+  return (
+    <div
+      className="group rounded-xl overflow-hidden flex flex-col transition-colors"
+      style={{ background: "var(--char-850)", border: "1px solid var(--line)" }}
+      onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--line-2)")}
+      onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--line)")}
+    >
+      <div className="flex items-start gap-2 px-4 py-3" style={{ borderBottom: "1px solid var(--line)" }}>
+        <div className="min-w-0 flex-1">
+          <div style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--cream-faint)", marginBottom: 4 }}>
+            {type || "Customer"}{location ? ` · ${location}` : ""}
+          </div>
+          <div style={{ fontWeight: 600, fontSize: 15, lineHeight: 1.25, color: "var(--cream)" }}>
+            {name}
+          </div>
+        </div>
+        <CardActions id={id} onEdit={onEdit} onDelete={onDelete} />
+      </div>
+      <div className="flex flex-col gap-2.5 px-4 py-3 flex-1">
+        <div className="flex flex-wrap gap-1.5">
+          {satisfaction && <Chip label={satisfaction} colorKey={satColor} />}
+          {!!testimonial && <Chip label={`Testimonial: ${testimonial}`} colorKey={STATUS_COLORS[testimonial] ?? "mute"} />}
+        </div>
+        <SpecRow label="Product" value={product} />
+        <SpecRow label="Installed" value={installDate} mono />
+        <SpecRow label="Warranty" value={warrantyExpires} mono />
+        {referralSource && <SpecRow label="Found us" value={referralSource} />}
+        {referralsGiven && <SpecRow label="Referrals" value={referralsGiven} mono />}
+        {notes && <NoteBlock label="Notes" value={notes} />}
+        {(email || (phone && /[0-9]/.test(phone))) && (
+          <div className="flex flex-wrap gap-1.5 mt-auto" style={{ borderTop: "1px dashed var(--line-2)", paddingTop: 11 }}>
+            {email && (
+              <a href={`mailto:${email}`} className="inline-flex items-center gap-1.5 text-xs font-semibold rounded-lg px-2.5 py-1.5 transition-colors" style={{ color: "var(--cream)", background: "var(--char-800)", border: "1px solid var(--line-2)" }}>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M3 6h18v12H3z" /><path d="M3 7l9 6 9-6" /></svg>
+                Email
+              </a>
+            )}
+            {phone && /[0-9]/.test(phone) && (
+              <a href={`tel:${phone.replace(/[^+0-9]/g, "")}`} className="inline-flex items-center gap-1.5 text-xs font-semibold rounded-lg px-2.5 py-1.5 transition-colors" style={{ color: "var(--cream)", background: "var(--char-800)", border: "1px solid var(--line-2)" }}>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M5 4h4l2 5-3 2a12 12 0 005 5l2-3 5 2v4a2 2 0 01-2 2A17 17 0 013 6a2 2 0 012-2z" /></svg>
+                Call
+              </a>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function FinanceCard({ item, onEdit, onDelete }: { item: Record<string, unknown>; onEdit: (id: string) => void; onDelete: (id: string) => void }) {
+  const id = s(item.id);
+  const label = s(item.label);
+  const type = s(item.type);
+  const category = s(item.category);
+  const amount = s(item.amount);
+  const date = s(item.date);
+  const status = s(item.status);
+  const job = s(item.job);
+  const vendor = s(item.vendor);
+  const invoice = s(item.invoice);
+  const qbRef = s(item.qbRef);
+  const notes = s(item.notes);
+  const statusColor = STATUS_COLORS[status] ?? "mute";
+  const typeColor = type === "Revenue" || type === "Client payment" ? "ok" : type === "Expense" ? "ember" : "mute";
+
+  return (
+    <div
+      className="group rounded-xl overflow-hidden flex flex-col transition-colors"
+      style={{ background: "var(--char-850)", border: "1px solid var(--line)" }}
+      onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--line-2)")}
+      onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--line)")}
+    >
+      <div className="flex items-start gap-2 px-4 py-3" style={{ borderBottom: "1px solid var(--line)" }}>
+        <div className="min-w-0 flex-1">
+          <div style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--cream-faint)", marginBottom: 4 }}>
+            {type || "Finance"}{category ? ` · ${category}` : ""}
+          </div>
+          <div style={{ fontWeight: 600, fontSize: 15, lineHeight: 1.25, color: "var(--cream)" }}>
+            {label}
+          </div>
+        </div>
+        <CardActions id={id} onEdit={onEdit} onDelete={onDelete} />
+      </div>
+      <div className="flex flex-col gap-2.5 px-4 py-3 flex-1">
+        <div className="flex flex-wrap gap-1.5">
+          {status && <Chip label={status} colorKey={statusColor} />}
+          {!!type && <Chip label={type} colorKey={typeColor} />}
+        </div>
+        <SpecRow label="Amount" value={amount} mono />
+        <SpecRow label="Date" value={date} mono />
+        {job && <SpecRow label="Job" value={job} />}
+        {vendor && <SpecRow label="Vendor" value={vendor} />}
+        {invoice && <SpecRow label="Invoice" value={invoice} mono />}
+        {qbRef && <SpecRow label="QB Ref" value={qbRef} mono />}
+        {notes && <NoteBlock label="Notes" value={notes} />}
+      </div>
+    </div>
+  );
+}
+
 export default function HubCard({ item, sectionId, onEdit, onDelete }: HubCardProps) {
   switch (sectionId) {
     case "suppliers":
@@ -554,6 +986,22 @@ export default function HubCard({ item, sectionId, onEdit, onDelete }: HubCardPr
       return <PlanCard item={item} onEdit={onEdit} onDelete={onDelete} />;
     case "resources":
       return <ResourceCard item={item} onEdit={onEdit} onDelete={onDelete} />;
+    case "campaigns":
+      return <CampaignCard item={item} onEdit={onEdit} onDelete={onDelete} />;
+    case "events":
+      return <EventCard item={item} onEdit={onEdit} onDelete={onDelete} />;
+    case "content":
+      return <ContentCard item={item} onEdit={onEdit} onDelete={onDelete} />;
+    case "testimonials":
+      return <TestimonialCard item={item} onEdit={onEdit} onDelete={onDelete} />;
+    case "webPresence":
+      return <WebPresenceCard item={item} onEdit={onEdit} onDelete={onDelete} />;
+    case "projects":
+      return <ProjectCard item={item} onEdit={onEdit} onDelete={onDelete} />;
+    case "customers":
+      return <CustomerCard item={item} onEdit={onEdit} onDelete={onDelete} />;
+    case "finance":
+      return <FinanceCard item={item} onEdit={onEdit} onDelete={onDelete} />;
     default:
       return null;
   }

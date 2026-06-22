@@ -1,4 +1,4 @@
-import { HubData, Deal } from './types';
+import { HubData, Deal, Campaign, MarketingEvent, ContentItem, Testimonial, WebPresence, Project, Customer, FinanceEntry } from './types';
 
 const t = Date.now();
 
@@ -32,6 +32,32 @@ export const SEED_HUB: HubData = {
     { id: 'rs4', label: 'Sauna Build Standards Rev 2.0', type: 'Doc', url: 'https://docs.google.com/document/d/1QFXFY1fM96xdYn_ay7RwIxsrhqarIDSdzyg6Hq_6C-0/edit', note: 'Canonical build reference for every build.', _u: t },
     { id: 'rs5', label: 'Suppliers (Drive)', type: 'Folder', url: 'https://drive.google.com/drive/folders/1GkS7UmP3fIj9z5Jw1KgXZmDrhFc5tcbN', note: 'Drive folder — supplier files.', _u: t },
   ],
+  campaigns: [
+    { id: 'c1', name: 'Summer Sauna Launch — Instagram', type: 'Lead gen', status: 'Active', channel: 'Instagram', startDate: '2026-06-01', endDate: '2026-08-31', budget: '$3,000', audience: 'Homeowners, Park City / Aspen corridor, $500k+ home value', goal: '50 qualified leads, 3% click-to-inquiry', results: '', link: '', notes: 'Carousel creative + story series showcasing Refuge 2 install process. Targeting warm-climate sauna buyers in mountain resort towns.', _u: t },
+    { id: 'c2', name: 'Builder Partner Outreach', type: 'Partnership', status: 'Planning', channel: 'Email', startDate: '2026-07-01', endDate: '', budget: '$500', audience: 'Custom home builders, architects — Wasatch Front + CO mountain towns', goal: '10 builder meetings booked', results: '', link: '', notes: 'Cold email sequence to GCs and architects. Include product brochure + install specs + margin opportunity.', _u: t },
+  ] as Campaign[],
+  events: [
+    { id: 'ev1', name: 'Park City Home + Garden Show', type: 'Trade show', date: '2026-08-22', location: 'Park City, UT', status: 'Upcoming', audience: '800+ homeowners and builders', cost: '$2,400 booth + materials', leads: '', notes: 'Book 10x10 booth. Bring Refuge 2 cutaway display, brochure stack, QR sign-up. Cole + 1 staff.', link: '', _u: t },
+  ] as MarketingEvent[],
+  content: [
+    { id: 'ct1', title: 'Why Thermo-Cedar Outlasts Everything', type: 'Blog post', status: 'Idea', channel: 'Website', publishDate: '', author: 'Cole', topic: 'Material science — thermo-mod cedar heat cycling durability', url: '', notes: 'Use the research entry on thermo-mod cedar vs WRC as source material.', _u: t },
+    { id: 'ct2', title: 'Refuge 2 Install Timelapse', type: 'Reel / video', status: 'Drafting', channel: 'Instagram', publishDate: '2026-07-15', author: 'Cole', topic: 'Behind the build — crane set to first fire', url: '', notes: 'Need to shoot next install. Coordinate with Qontrast for access.', _u: t },
+  ] as ContentItem[],
+  testimonials: [
+    { id: 'tm1', name: 'Andy Gunion', project: 'Refuge 2 — Aspen', type: 'Written quote', quote: 'Placeholder — request after install completes. Andy has been highly engaged through the design process.', rating: '', date: '', source: '', approved: 'Pending', link: '', _u: t },
+  ] as Testimonial[],
+  webPresence: [
+    { id: 'wp1', label: 'New Primitive — Website', platform: 'Website', url: 'https://newprimitive.life', handle: '', status: 'Active', notes: '', _u: t },
+    { id: 'wp2', label: 'Instagram', platform: 'Instagram', url: '', handle: '@newprimitive', status: 'Active', notes: 'Primary social channel. Post 3–4x/week.', _u: t },
+    { id: 'wp3', label: 'Google Business', platform: 'Google Business', url: '', handle: '', status: 'Setup needed', notes: 'Claim and verify listing. Add photos, hours, service area.', _u: t },
+  ] as WebPresence[],
+  projects: [
+    { id: 'pj1', name: 'Gunion — Aspen Thermal Suite', client: 'Andy Gunion', type: 'Residential', location: '1780 Juniper, Aspen, CO', product: 'Thermal Suite Essential MP1 + cold plunge', status: 'Pre-build', startDate: '', targetComplete: '', siteStatus: 'Not started', buildPartner: 'Qontrast', value: '$66,000', depositPaid: 'No', balanceDue: '$66,000', permitStatus: '', electricalStatus: 'Not started', craneDate: '', notes: 'Waiting on proposal acceptance. Andy owes site photos, paint color, and electrical panel confirmation before build can start.', _u: t },
+  ] as Project[],
+  customers: [] as Customer[],
+  finance: [
+    { id: 'fn1', label: 'Superior Saunas — HUUM heater order #43800', type: 'Expense', category: 'Materials', amount: '$1,840', date: '2026-06-10', status: 'Paid', job: 'Inventory / stock', vendor: 'Superior Saunas', invoice: '#43800', qbRef: '', notes: 'HUUM Drop 6kW + temp sensor + controller', _u: t },
+  ] as FinanceEntry[],
 };
 
 export const SEED_DEALS: Deal[] = [

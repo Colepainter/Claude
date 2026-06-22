@@ -18,6 +18,14 @@ const EMPTY_HUB: HubData = {
   improvements: [],
   plans: [],
   resources: [],
+  campaigns: [],
+  events: [],
+  content: [],
+  testimonials: [],
+  webPresence: [],
+  projects: [],
+  customers: [],
+  finance: [],
 };
 
 const EMPTY_SALES: SalesData = {
@@ -145,7 +153,7 @@ export default function FounderHub() {
           borderTop: "1px solid var(--line)",
         }}
       >
-        {(["pipeline", "suppliers", "products", "improvements", "resources"] as SectionId[]).map(id => (
+        {(["pipeline", "suppliers", "projects", "campaigns", "finance"] as SectionId[]).map(id => (
           <button
             key={id}
             onClick={() => handleNavigate(id)}
@@ -156,7 +164,7 @@ export default function FounderHub() {
               className="text-xs capitalize"
               style={{ fontFamily: "var(--mono)", fontSize: "10px", fontWeight: 500 }}
             >
-              {id === "improvements" ? "Imprv" : id.charAt(0).toUpperCase() + id.slice(1)}
+              {id === "campaigns" ? "Mktg" : id.charAt(0).toUpperCase() + id.slice(1)}
             </span>
           </button>
         ))}
