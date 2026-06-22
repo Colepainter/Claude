@@ -1,26 +1,82 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Bricolage+Grotesque:wght@500;600;700&display=swap");
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Charcoal backgrounds */
+  --char-900: #16140f;
+  --char-850: #1b1814;
+  --char-800: #211d18;
+  --char-750: #27221c;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Lines / dividers */
+  --line: rgba(244, 237, 226, 0.10);
+  --line-2: rgba(244, 237, 226, 0.16);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Cream text */
+  --cream: #f4ede2;
+  --cream-2: #e8dfd2;
+  --cream-dim: rgba(244, 237, 226, 0.60);
+  --cream-faint: rgba(244, 237, 226, 0.30);
+
+  /* Accent orange/ember */
+  --orange: #e85a23;
+  --orange-2: #d94e18;
+
+  /* Status colors */
+  --ok: #3F6B4E;
+  --ok-tint: rgba(63, 107, 78, 0.18);
+  --warn: #9A6E1F;
+  --warn-tint: rgba(154, 110, 31, 0.18);
+  --ember: #BD6A36;
+  --ember-deep: #a0521e;
+  --ember-tint: rgba(189, 106, 54, 0.18);
+  --mute: #7C746B;
+  --mute-tint: rgba(124, 116, 107, 0.18);
+
+  /* Typography */
+  --mono: 'IBM Plex Mono', 'Courier New', monospace;
+  --sans: 'IBM Plex Sans', system-ui, sans-serif;
+  --display: 'Bricolage Grotesque', 'IBM Plex Sans', sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--char-900);
+  color: var(--cream);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Status chip base */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  font-family: var(--mono);
+}
+
+.chip-ok {
+  background: var(--ok-tint);
+  color: var(--ok);
+}
+
+.chip-warn {
+  background: var(--warn-tint);
+  color: var(--warn);
+}
+
+.chip-ember {
+  background: var(--ember-tint);
+  color: var(--ember);
+}
+
+.chip-mute {
+  background: var(--mute-tint);
+  color: var(--mute);
 }
