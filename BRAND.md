@@ -91,6 +91,16 @@ Montserrat (web body)
 | NP-Experience-Visuals | environment | `597d12ad-3b11-4f68-98bb-2f43d1e9c116` |
 | NP-Signage-Infographics | prop | `24b4ecfa-b4b4-4fe7-bc9d-04dd595cc705` |
 
+**Soul (brand face — trained identity)**
+
+| Soul | ID |
+|------|----|
+| Cole — New Primitive Founder | `421aad92-6b9d-49bf-b1f8-612bc9ffc59a` |
+
+Trained from 15 founder-shoot photos. Usable only with `soul_2` (Soul V2) and
+`soul_cinema_studio` — pass the `soul_id`, e.g. generate_image with
+`model: 'soul_2'` + `soul_id` for on-brand portraits of Cole.
+
 All product/signage media imported server-side from the link-shared Drive folders
 (`uc?export=download` URLs) — the direct `upload.higgsfield.ai` path is blocked by
 the egress policy, but server-side import via `media_import_url` works.
@@ -103,9 +113,8 @@ Plan: Higgsfield **Plus** · ~1,036 credits at setup time.
 
 ## 6. Outstanding (needs your action / input)
 
-- [ ] **Soul (brand face)** — needs a decision on *who* the recurring face is (Cole?)
-      and 5–20 clear portrait photos of that one person. Point me to a Drive folder of
-      their portraits (link-shared) and I can import + train, or train in the app.
+- [x] **Soul (brand face)** — trained as "Cole — New Primitive Founder" from the
+      founder shoot (folders shared 2026-06-27).
 - [ ] **Social links** — site is behind bot protection (403), so handles couldn't be
       auto-read. Add Instagram/TikTok/YouTube to the Brand Kit manually.
 - [ ] **Primitive Retreat (outdoor plunge)** — source photos are 54–88 MB each, over
