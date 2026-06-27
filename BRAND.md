@@ -80,6 +80,7 @@ Montserrat (web body)
 | The Nook — Compact Sauna (2–4) | `26f54832-c011-421e-9d4e-72aabed5d985` |
 | The 212 — Flagship Sauna (4–8) | `c7df5afd-6b32-4576-b09a-c269c2230454` |
 | Thermal Suite | `d65b23f3-50bb-4456-a06e-745a906d82ea` |
+| Custom Wellness Space — Sauna & Cold Plunge Install | `065af6c6-790e-4b1c-9928-11c6631bbcb7` |
 | Luxury Sauna & Cold Plunge Spaces | `da5ee2d7-1a9d-40e6-b3f0-5ce5eb9c5cd9` |
 
 **Elements (reusable references)**
