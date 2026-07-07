@@ -245,6 +245,12 @@ install_all() {
 
 # 主函数 | Main function
 main() {
+    # 从桌面（或任意路径）添加文件夹 | Add a folder from the Desktop (or any path)
+    if [ "${1:-}" = "--add" ]; then
+        shift
+        exec "$(dirname "$0")/add-folder.sh" "$@" --install
+    fi
+
     # 检测操作系统 | Detect OS
     detect_skills_directory
     check_skills_directory
@@ -261,9 +267,10 @@ main() {
             echo "Usage: $0 [OPTIONS]"
             echo ""
             echo "Options:"
-            echo "  --all       Install all skills"
-            echo "  --list      List available skills"
-            echo "  --help      Show this help message"
+            echo "  --all         Install all skills"
+            echo "  --list        List available skills"
+            echo "  --add [PATH]  Add a folder from your Desktop (or PATH) and install it"
+            echo "  --help        Show this help message"
             echo ""
             echo "If no options provided, interactive selection will be shown."
             ;;

@@ -93,6 +93,21 @@
 3. Claude 生成制作级提示词 | Claude generates a production-ready prompt
 4. 粘贴到 [Seedance 2.0（Higgsfield）](https://higgsfield.ai/create/video?model=seedance_2_0) | Paste into Seedance 2.0 on Higgsfield with your materials
 
+### 添加你自己的文件夹 Add Your Own Folder
+
+从桌面（或任意路径）添加一个文件夹作为技能 | Add a folder from your Desktop (or any path) as a skill:
+
+```bash
+chmod +x add-folder.sh
+./add-folder.sh                        # 交互式：从桌面选择 | Interactive: pick a folder from your Desktop
+./add-folder.sh ~/Desktop/my-skill     # 添加指定文件夹 | Add a specific folder
+./add-folder.sh ~/Desktop/my-skill --install   # 添加并安装到 Claude | Add and install into Claude
+./install.sh --add ~/Desktop/my-skill  # 快捷方式：添加并安装 | Shortcut: add and install
+```
+
+脚本会将文件夹复制到 `skills/`，如缺少 `SKILL.md` 会提示创建模板，并可直接安装到 Claude 技能目录。
+The script copies the folder into `skills/`, offers to create a template `SKILL.md` if missing, and can install it straight into Claude's skills directory.
+
 ### 示例 Example
 
 ```
