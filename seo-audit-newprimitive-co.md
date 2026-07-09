@@ -100,6 +100,12 @@ No blog, guides, or educational pages appear in the index. Buyers in this catego
 
 ---
 
+## Update — attempted to apply the fixes (July 8, 2026)
+
+The quick wins above (site rename, noindexing test pages, redirects) were attempted via the Wix connector, but **the Wix account connected to Claude does not contain the live site**. The connected account ("Cole Painter", account `b8efe2b7-b513-4a87-9344-f278fb653d4f`) holds exactly one site — "New Primitive", a free-plan draft created Feb 2024, `published: false`, `domainConnected: false`. The live `www.newprimitive.co` site (the one titled "New Primitive Website - V2") is owned by a different Wix account.
+
+**To unblock:** reconnect the Wix connector in claude.ai connector settings using the Wix login that owns the live newprimitive.co site (check which email you use at manage.wix.com for that site — possibly a different address than the one used for the draft account). Once connected, the site rename, page noindexing, and redirects can be applied directly.
+
 ## What could not be verified (and how to enable a full audit)
 
 Direct requests to newprimitive.co were blocked by this Claude environment's **network egress allowlist** ("Host not in allowlist: newprimitive.co"), and the Wix connector's permission channel failed repeatedly in this non-interactive session. So the following were not checked: robots.txt, sitemap contents, canonical tags, redirect behavior (http→https, non-www→www), page speed / Core Web Vitals, structured data, image alt text, mobile rendering, and internal linking.
