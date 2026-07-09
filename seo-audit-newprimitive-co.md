@@ -100,11 +100,19 @@ No blog, guides, or educational pages appear in the index. Buyers in this catego
 
 ---
 
-## Update — attempted to apply the fixes (July 8, 2026)
+## Update — fixes applied via Wix API (July 8, 2026)
 
-The quick wins above (site rename, noindexing test pages, redirects) were attempted via the Wix connector, but **the Wix account connected to Claude does not contain the live site**. The connected account ("Cole Painter", account `b8efe2b7-b513-4a87-9344-f278fb653d4f`) holds exactly one site — "New Primitive", a free-plan draft created Feb 2024, `published: false`, `domainConnected: false`. The live `www.newprimitive.co` site (the one titled "New Primitive Website - V2") is owned by a different Wix account.
+After the Wix connector was reconnected to the account that owns the live site (`e5ec2dee-e717-404e-a43f-9d1a909c19bc`), the following fixes were applied directly:
 
-**To unblock:** reconnect the Wix connector in claude.ai connector settings using the Wix login that owns the live newprimitive.co site (check which email you use at manage.wix.com for that site — possibly a different address than the one used for the draft account). Once connected, the site rename, page noindexing, and redirects can be applied directly.
+1. **Site renamed** from "New Primitive Website - V2" to "New Primitive" (`siteDisplayName` in site properties). New crawls will no longer show the internal working name in Google titles.
+2. **SEO-friendly 404s enabled** (`shouldUsePartialRouteMatch: false` in SEO user config). Investigation of the product CMS collection showed the "duplicate" URLs (`/np-1`, `/communal`) are actually *stale old slugs* — the items now live at `/thermal-suite` and `/212`. The site had partial route matching enabled, so those dead URLs returned soft-200s and stayed indexed. They now return 404 and will drop out of the index on recrawl.
+3. **Product SEO titles fixed** in the `NewPrimitiveProduct` collection: "Elegant 4-Person sauna" → "Elegant 4-Person Sauna" (Nook page), brand suffix added to "Custom Home Saunas in Utah", and a trailing space trimmed from the "Thermal Suite" title.
+
+**Still requires the Wix dashboard UI (no public API):**
+
+- Noindex or delete `/blank-2`, `/blank-3`, `/home-1` — Editor → Pages & Menu → page Settings → SEO Basics.
+- Optional but recommended: 301s in Marketing & SEO → SEO → URL Redirect Manager for `/new-primitive-product/np-1` → `/new-primitive-product/thermal-suite` and `/new-primitive-product/communal` → `/new-primitive-product/212`, to pass any link equity the stale URLs hold (they now 404 otherwise).
+- The `newprimitive.io` domain redirect (that site lives in yet another Wix account/site).
 
 ## What could not be verified (and how to enable a full audit)
 
