@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#F4ECDE" />
+    <meta name="description" content="Find your match. A four-step quiz to point you to the right New Primitive build for your space." />
+    <title>Find Your Match, New Primitive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300..900;1,300..900&display=swap" />
+
+    <script type="module" crossorigin src="/assets/quiz-DdfbYFnm.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/main-Be8xpRXd.js">
+    <link rel="stylesheet" crossorigin href="/assets/main-desNLDzs.css">
+    <link rel="canonical" href="https://www.newprimitive.co/quiz" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+  <link rel="apple-touch-icon" href="/favicon-48.png" />
+  <meta property="og:site_name" content="New Primitive" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Find Your Match, New Primitive" />
+  <meta property="og:description" content="Find your match. A four-step quiz to point you to the right New Primitive build for your space." />
+  <meta property="og:url" content="https://www.newprimitive.co/quiz" />
+  <meta property="og:image" content="https://www.newprimitive.co/img/og/og-default.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Find Your Match, New Primitive" />
+  <meta name="twitter:description" content="Find your match. A four-step quiz to point you to the right New Primitive build for your space." />
+  <meta name="twitter:image" content="https://www.newprimitive.co/img/og/og-default.jpg" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://www.newprimitive.co/#org","name":"New Primitive","url":"https://www.newprimitive.co/","email":"cole@newprimitive.co","foundingDate":"2022","sameAs":["https://www.instagram.com/newprimitive1/"],"areaServed":"US","address":{"@type":"PostalAddress","addressLocality":"Salt Lake City","addressRegion":"UT","addressCountry":"US"}},{"@type":"WebSite","@id":"https://www.newprimitive.co/#website","url":"https://www.newprimitive.co/","name":"New Primitive","publisher":{"@id":"https://www.newprimitive.co/#org"}}]}</script>
+  <meta name="google-site-verification" content="O2pwc1ZaqCaF6RIwXSiXzKH_on8PljJ0ftlWVAJYgEQ" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11048622554"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','AW-11048622554');</script>
+  <script async src="//cdn.calltrk.com/companies/611436729/4cdf211eeec3e3ae2a0d/12/swap.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+        <header class="nav nav--solid" data-nav>
+      <div class="nav__inner container">
+        <a class="nav__brand" href="/" aria-label="New Primitive, home">
+          <svg class="nav__logo" viewBox="0 0 1422 220" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="New Primitive">
+            <path d="M239.888 78.1611L209.705 84.6221L209.616 84.6406V94.8662L209.62 94.8643V183.143H179.572V152.934H179.567V91.0732L179.432 91.1025L138.3 99.8926L108.028 106.372L60.5215 116.52L60.4326 116.538V183.146H30.3838V122.946L30.248 122.976L0.112305 129.402V101.379L30.2949 94.9424L60.5684 88.4873L179.479 63.0693L209.752 56.5898L239.888 50.1387V78.1611Z" fill="currentColor"/>
+            <path d="M138.214 183.141H108.167V131.24L138.214 124.809V183.141Z" fill="currentColor"/>
+            <path d="M275.279 93.7349H298.066V105.888H298.572C301.61 100.824 305.549 97.1669 310.387 94.9164C315.226 92.5533 320.177 91.3718 325.241 91.3718C331.655 91.3718 336.888 92.272 340.939 94.0724C345.102 95.7603 348.365 98.1797 350.729 101.33C353.092 104.369 354.723 108.138 355.624 112.639C356.636 117.028 357.143 121.923 357.143 127.324V181H333.174V131.713C333.174 124.511 332.049 119.166 329.798 115.678C327.548 112.077 323.553 110.276 317.814 110.276C311.288 110.276 306.561 112.246 303.636 116.184C300.71 120.01 299.247 126.368 299.247 135.258V181H275.279V93.7349ZM434.073 128C432.948 121.923 430.922 117.309 427.997 114.159C425.184 111.008 420.851 109.432 415 109.432C411.174 109.432 407.967 110.108 405.379 111.458C402.903 112.696 400.878 114.271 399.302 116.184C397.839 118.097 396.77 120.123 396.095 122.261C395.533 124.399 395.195 126.312 395.082 128H434.073ZM395.082 143.191C395.42 150.955 397.389 156.582 400.99 160.07C404.591 163.558 409.767 165.302 416.519 165.302C421.358 165.302 425.521 164.121 429.01 161.758C432.498 159.282 434.636 156.694 435.424 153.993H456.523C453.147 164.458 447.97 171.942 440.994 176.443C434.017 180.944 425.577 183.194 415.675 183.194C408.811 183.194 402.622 182.125 397.108 179.987C391.594 177.737 386.924 174.586 383.098 170.535C379.272 166.484 376.29 161.645 374.152 156.019C372.127 150.392 371.114 144.203 371.114 137.452C371.114 130.925 372.183 124.849 374.321 119.222C376.459 113.596 379.497 108.757 383.436 104.706C387.374 100.543 392.044 97.2795 397.446 94.9164C402.959 92.5533 409.036 91.3718 415.675 91.3718C423.102 91.3718 429.572 92.8346 435.086 95.7604C440.6 98.5735 445.101 102.399 448.589 107.238C452.19 112.077 454.778 117.591 456.354 123.78C457.929 129.969 458.492 136.439 458.042 143.191H395.082ZM572.013 181H547.369L531.84 122.429H531.503L516.649 181H491.837L464.155 93.7349H489.474L505.509 152.981H505.847L520.363 93.7349H543.656L558.509 152.812H558.847L574.882 93.7349H599.526L572.013 181ZM700.762 165.302C704.701 165.302 707.964 164.515 710.552 162.939C713.253 161.364 715.391 159.338 716.966 156.863C718.654 154.275 719.836 151.293 720.511 147.917C721.186 144.541 721.524 141.109 721.524 137.621C721.524 134.132 721.13 130.7 720.342 127.324C719.667 123.949 718.485 120.967 716.797 118.378C715.11 115.678 712.915 113.54 710.215 111.964C707.626 110.276 704.419 109.432 700.594 109.432C696.655 109.432 693.335 110.276 690.635 111.964C688.047 113.54 685.909 115.621 684.221 118.21C682.645 120.798 681.52 123.78 680.845 127.156C680.17 130.531 679.832 134.02 679.832 137.621C679.832 141.109 680.17 144.541 680.845 147.917C681.633 151.293 682.814 154.275 684.39 156.863C686.077 159.338 688.272 161.364 690.972 162.939C693.673 164.515 696.936 165.302 700.762 165.302ZM656.708 93.7349H679.495V104.875H679.832C682.758 100.149 686.471 96.7168 690.972 94.5788C695.474 92.4408 700.425 91.3718 705.826 91.3718C712.69 91.3718 718.598 92.6658 723.549 95.254C728.5 97.8421 732.608 101.274 735.871 105.55C739.134 109.826 741.554 114.834 743.129 120.573C744.704 126.199 745.492 132.107 745.492 138.296C745.492 144.147 744.704 149.774 743.129 155.175C741.554 160.576 739.134 165.359 735.871 169.522C732.72 173.686 728.725 177.005 723.887 179.481C719.161 181.956 713.59 183.194 707.176 183.194C701.775 183.194 696.768 182.125 692.154 179.987C687.653 177.737 683.939 174.473 681.014 170.197H680.676V211.551H656.708V93.7349ZM759.895 93.7349H782.682V109.939H783.019C784.144 107.238 785.663 104.763 787.576 102.512C789.489 100.149 791.684 98.1797 794.159 96.6043C796.635 94.9164 799.279 93.6223 802.093 92.7221C804.906 91.8219 807.831 91.3718 810.87 91.3718C812.445 91.3718 814.189 91.6531 816.102 92.2157V114.496C814.977 114.271 813.627 114.102 812.051 113.99C810.476 113.765 808.957 113.652 807.494 113.652C803.105 113.652 799.392 114.384 796.354 115.847C793.315 117.309 790.84 119.335 788.927 121.923C787.126 124.399 785.832 127.324 785.045 130.7C784.257 134.076 783.863 137.733 783.863 141.672V181H759.895V93.7349ZM850.143 80.2315H826.174V60.4829H850.143V80.2315ZM826.174 93.7349H850.143V181H826.174V93.7349ZM869.691 93.7349H892.309V105.55H892.646C895.797 101.049 899.567 97.5608 903.955 95.0852C908.457 92.6096 913.577 91.3718 919.316 91.3718C924.829 91.3718 929.837 92.4408 934.338 94.5788C938.952 96.7168 942.44 100.487 944.803 105.888C947.391 102.062 950.879 98.6861 955.268 95.7604C959.769 92.8346 965.058 91.3718 971.134 91.3718C975.748 91.3718 980.024 91.9344 983.963 93.0597C987.901 94.185 991.277 95.9854 994.09 98.461C996.903 100.937 999.098 104.2 1000.67 108.251C1002.25 112.189 1003.04 116.972 1003.04 122.598V181H979.068V131.544C979.068 128.618 978.955 125.861 978.73 123.273C978.505 120.685 977.886 118.435 976.873 116.522C975.861 114.609 974.341 113.09 972.316 111.964C970.403 110.839 967.759 110.276 964.383 110.276C961.007 110.276 958.25 110.952 956.112 112.302C954.087 113.54 952.455 115.228 951.217 117.366C950.092 119.391 949.304 121.754 948.854 124.455C948.516 127.043 948.348 129.687 948.348 132.388V181H924.379V132.05C924.379 129.462 924.323 126.93 924.21 124.455C924.098 121.867 923.592 119.504 922.691 117.366C921.904 115.228 920.497 113.54 918.472 112.302C916.559 110.952 913.689 110.276 909.863 110.276C908.738 110.276 907.219 110.558 905.306 111.12C903.505 111.57 901.705 112.527 899.905 113.99C898.217 115.34 896.754 117.366 895.516 120.066C894.278 122.654 893.659 126.087 893.659 130.363V181H869.691V93.7349ZM1046.63 80.2315H1022.66V60.4829H1046.63V80.2315ZM1022.66 93.7349H1046.63V181H1022.66V93.7349ZM1095.88 93.7349H1113.44V109.77H1095.88V152.981C1095.88 157.032 1096.56 159.732 1097.91 161.083C1099.26 162.433 1101.96 163.108 1106.01 163.108C1107.36 163.108 1108.65 163.052 1109.89 162.939C1111.13 162.827 1112.31 162.658 1113.44 162.433V181C1111.41 181.338 1109.16 181.563 1106.68 181.675C1104.21 181.788 1101.79 181.844 1099.43 181.844C1095.71 181.844 1092.17 181.563 1088.79 181C1085.53 180.55 1082.6 179.593 1080.02 178.131C1077.54 176.668 1075.57 174.586 1074.11 171.885C1072.64 169.185 1071.91 165.64 1071.91 161.251V109.77H1057.4V93.7349H1071.91V67.5722H1095.88V93.7349ZM1149.48 80.2315H1125.52V60.4829H1149.48V80.2315ZM1125.52 93.7349H1149.48V181H1125.52V93.7349ZM1216.63 181H1189.96L1160.09 93.7349H1185.24L1203.63 153.318H1203.97L1222.37 93.7349H1246.17L1216.63 181ZM1314.79 128C1313.66 121.923 1311.64 117.309 1308.71 114.159C1305.9 111.008 1301.57 109.432 1295.72 109.432C1291.89 109.432 1288.68 110.108 1286.09 111.458C1283.62 112.696 1281.59 114.271 1280.02 116.184C1278.55 118.097 1277.49 120.123 1276.81 122.261C1276.25 124.399 1275.91 126.312 1275.8 128H1314.79ZM1275.8 143.191C1276.14 150.955 1278.1 156.582 1281.71 160.07C1285.31 163.558 1290.48 165.302 1297.23 165.302C1302.07 165.302 1306.24 164.121 1309.72 161.758C1313.21 159.282 1315.35 156.694 1316.14 153.993H1337.24C1333.86 164.458 1328.69 171.942 1321.71 176.443C1314.73 180.944 1306.29 183.194 1296.39 183.194C1289.53 183.194 1283.34 182.125 1277.82 179.987C1272.31 177.737 1267.64 174.586 1263.81 170.535C1259.99 166.484 1257.01 161.645 1254.87 156.019C1252.84 150.392 1251.83 144.203 1251.83 137.452C1251.83 130.925 1252.9 124.849 1255.04 119.222C1257.17 113.596 1260.21 108.757 1264.15 104.706C1268.09 100.543 1272.76 97.2795 1278.16 94.9164C1283.67 92.5533 1289.75 91.3718 1296.39 91.3718C1303.82 91.3718 1310.29 92.8346 1315.8 95.7604C1321.32 98.5735 1325.82 102.399 1329.3 107.238C1332.91 112.077 1335.49 117.591 1337.07 123.78C1338.64 129.969 1339.21 136.439 1338.76 143.191H1275.8Z" fill="currentColor"/>
+            <path d="M1370.6 72.752C1368.04 72.752 1365.65 72.2827 1363.43 71.344C1361.21 70.4053 1359.25 69.1253 1357.54 67.504C1355.92 65.7973 1354.64 63.8347 1353.7 61.616C1352.77 59.3973 1352.3 57.008 1352.3 54.448C1352.3 51.888 1352.77 49.4987 1353.7 47.28C1354.64 45.0613 1355.92 43.1413 1357.54 41.52C1359.25 39.8133 1361.21 38.4907 1363.43 37.552C1365.65 36.6133 1368.04 36.144 1370.6 36.144C1373.16 36.144 1375.55 36.6133 1377.77 37.552C1379.99 38.4907 1381.91 39.8133 1383.53 41.52C1385.23 43.1413 1386.56 45.0613 1387.5 47.28C1388.43 49.4987 1388.9 51.888 1388.9 54.448C1388.9 57.008 1388.43 59.3973 1387.5 61.616C1386.56 63.8347 1385.23 65.7973 1383.53 67.504C1381.91 69.1253 1379.99 70.4053 1377.77 71.344C1375.55 72.2827 1373.16 72.752 1370.6 72.752ZM1370.6 40.368C1368.64 40.368 1366.85 40.752 1365.22 41.52C1363.6 42.288 1362.19 43.312 1361 44.592C1359.81 45.872 1358.87 47.3653 1358.18 49.072C1357.5 50.7787 1357.16 52.5707 1357.16 54.448C1357.16 56.4107 1357.5 58.2453 1358.18 59.952C1358.87 61.6587 1359.81 63.152 1361 64.432C1362.19 65.712 1363.6 66.736 1365.22 67.504C1366.85 68.1867 1368.64 68.528 1370.6 68.528C1372.48 68.528 1374.23 68.1867 1375.85 67.504C1377.55 66.736 1379.01 65.712 1380.2 64.432C1381.39 63.152 1382.33 61.6587 1383.02 59.952C1383.7 58.2453 1384.04 56.4107 1384.04 54.448C1384.04 52.5707 1383.7 50.7787 1383.02 49.072C1382.33 47.3653 1381.39 45.872 1380.2 44.592C1379.01 43.312 1377.55 42.288 1375.85 41.52C1374.23 40.752 1372.48 40.368 1370.6 40.368Z" fill="#F8B712"/>
+          </svg>
+        </a>
+        <nav class="nav__links" aria-label="Primary">
+          <div class="nav__item nav__item--dropdown nav__item--mega" data-dropdown>
+            <a href="/products" class="nav__link-with-caret" aria-haspopup="true">Products<span class="nav__caret" aria-hidden="true">▾</span></a>
+            <div class="nav__dropdown nav__dropdown--mega" role="menu">
+              <div class="nav__mega-grid">
+                <div class="nav__dropdown-section">
+                  <p class="nav__dropdown-label"><span class="nav__label-name">2–4 Person Sauna</span></p>
+                  <a href="/nook">Nook Essential</a>
+                </div>
+                <div class="nav__dropdown-section">
+                  <p class="nav__dropdown-label"><span class="nav__label-name">4–6 Person Sauna</span></p>
+                  <a href="/212">212 Essential</a>
+                  <a href="/212-designer">212 Designer</a>
+                </div>
+                <div class="nav__dropdown-section">
+                  <p class="nav__dropdown-label"><span class="nav__label-name">Flagship Suites</span></p>
+                  <a href="/thermal-suite">Thermal Suite Essential</a>
+                  <a href="/thermal-suite-designer">Thermal Suite Designer</a>
+                  <a href="/primitive-retreat">The Primitive Retreat</a>
+                </div>
+                <div class="nav__dropdown-section nav__dropdown-section--accessories">
+                  <p class="nav__dropdown-label"><span class="nav__label-name">Add-ons</span></p>
+                  <a href="/add-ons#cold-plunge">Cold Plunge</a>
+                  <a href="/add-ons#red-light">Red Light Therapy</a>
+                  <a href="/add-ons#sonos">Sonos Sound</a>
+                  <a href="/add-ons#shower">Shower System</a>
+                  <a href="/add-ons">All add-ons →</a>
+                </div>
+              </div>
+              <a href="/products" class="nav__dropdown-all">View all products →</a>
+            </div>
+          </div>
+          <div class="nav__item nav__item--dropdown" data-dropdown>
+            <a href="/resources" class="nav__link-with-caret" aria-haspopup="true">Resources<span class="nav__caret" aria-hidden="true">▾</span></a>
+            <div class="nav__dropdown" role="menu">
+              <div class="nav__dropdown-section">
+                <p class="nav__dropdown-label">The build</p>
+                <a href="/materials">Build Quality</a>
+                <a href="/materials#add-ons">Add-ons Discovery</a>
+              </div>
+              <div class="nav__dropdown-section">
+                <p class="nav__dropdown-label">The practice</p>
+                <a href="/contrast-therapy">Contrast Therapy</a>
+              </div>
+              <div class="nav__dropdown-section">
+                <p class="nav__dropdown-label">Read &amp; watch</p>
+                <a href="/blog">Blog</a>
+                <a href="/faqs">FAQs</a>
+              </div>
+              <a href="/resources" class="nav__dropdown-all">All resources →</a>
+            </div>
+          </div>
+          <div class="nav__item nav__item--dropdown" data-dropdown>
+            <a href="/process" class="nav__link-with-caret" aria-haspopup="true">Process<span class="nav__caret" aria-hidden="true">▾</span></a>
+            <div class="nav__dropdown" role="menu">
+              <div class="nav__dropdown-section">
+                <p class="nav__dropdown-label">How we work</p>
+                <a href="/process">The seven-step path</a>
+                <a href="/process#payment">Payment schedule</a>
+              </div>
+              <a href="/about" class="nav__dropdown-all">The studio →</a>
+            </div>
+          </div>
+          <a href="/spaces">Spaces</a>
+          <a href="/for-pros">For Pros</a>
+        </nav>
+                <a class="nav__mobile-quiz" href="/contact">Book a Consultation</a>
+        <button class="nav__menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-drawer" data-nav-toggle>
+          <span></span><span></span><span></span>
+        </button>
+        <div class="nav__cta">
+          <a href="/products" class="btn btn--ghost">Explore Products</a>
+          <a href="/contact" class="btn btn--solid">Book a Consultation</a>
+        </div>
+      <!-- Mobile drawer (visible at ≤900px) -->
+      <div class="nav__drawer" id="nav-drawer" data-nav-drawer aria-hidden="true" aria-label="Mobile navigation">
+        <button class="nav__drawer-close" type="button" data-nav-close aria-label="Close menu">&times;</button>
+        <nav class="nav__drawer-nav" aria-label="Mobile primary">
+          <a href="/products">Products</a>
+          <a href="/spaces">Spaces</a>
+          <a href="/process">Process</a>
+          <a href="/for-pros">For Pros</a>
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+          <p class="nav__drawer-label">Shop by model</p>
+          <div class="nav__drawer-list">
+            <a href="/nook">Nook Essential · 2–4</a>
+            <a href="/212">212 Essential · 4–6</a>
+            <a href="/212-designer">212 Designer · 4–6</a>
+            <a href="/add-ons#cold-plunge">Cold Plunge · standalone</a>
+            <a href="/thermal-suite">Thermal Suite Essential</a>
+            <a href="/thermal-suite-designer">Thermal Suite Designer</a>
+            <a href="/primitive-retreat">The Primitive Retreat</a>
+            <a href="/add-ons">Add-ons</a>
+            <!-- Supplements + Service hidden until launch — restore here and as
+                 mega-menu sections in nav.html when ready. -->
+          </div>
+          <p class="nav__drawer-label">Resources</p>
+          <div class="nav__drawer-list nav__drawer-list--2col">
+            <a href="/materials">Build Quality</a>
+            <a href="/contrast-therapy">Contrast Therapy</a>
+            <a href="/blog">Blog</a>
+            <a href="/faqs">FAQs</a>
+            <a href="/app">The App</a>
+          </div>
+          <a href="/quiz" class="nav__drawer-quiz">Take the Quiz →</a>
+        </nav>
+      </div>
+      <div class="nav__drawer-backdrop" data-nav-backdrop aria-hidden="true"></div>
+      </div>
+    </header>
+
+
+    <main id="main" class="quiz-flow" data-quiz>
+      <!-- PROGRESS BAR + STEP INDICATOR -->
+      <div class="quiz-flow__progress">
+        <div class="container">
+          <div class="quiz-flow__progress-track">
+            <div class="quiz-flow__progress-fill" data-progress-fill></div>
+          </div>
+          <ol class="quiz-flow__steps" data-quiz-steps>
+            <li class="quiz-flow__step is-active" data-step-num="1"><span class="quiz-flow__step-num">1</span><span class="quiz-flow__step-label">Where</span></li>
+            <li class="quiz-flow__step" data-step-num="2"><span class="quiz-flow__step-num">2</span><span class="quiz-flow__step-label">Who</span></li>
+            <li class="quiz-flow__step" data-step-num="3"><span class="quiz-flow__step-num">3</span><span class="quiz-flow__step-label">Cold</span></li>
+            <li class="quiz-flow__step" data-step-num="4"><span class="quiz-flow__step-num">4</span><span class="quiz-flow__step-label">Budget</span></li>
+          </ol>
+          <p class="quiz-flow__progress-label visually-hidden"><span data-step-current>1</span> of <span data-step-total>4</span></p>
+          <button type="button" class="quiz-back btn" data-quiz-back hidden>← Back</button>
+        </div>
+      </div>
+
+      <!-- STEP 1: WHERE -->
+      <section class="quiz-step is-active" data-step="1">
+        <div class="container quiz-step__inner">
+          <h1 class="quiz-step__question">Where will it live?</h1>
+          <p class="quiz-step__sub">The location shapes everything that follows.</p>
+          <div class="quiz-options">
+            <button type="button" class="quiz-option" data-answer="location:backyard">
+              <span class="quiz-option__title">Backyard</span>
+              <span class="quiz-option__desc">Outdoor install at home, delivered and assembled on site.</span>
+            </button>
+            <button type="button" class="quiz-option" data-answer="location:vacation">
+              <span class="quiz-option__title">Vacation home</span>
+              <span class="quiz-option__desc">Second property, weekend retreat. Delivered to a place you visit, not where you live.</span>
+            </button>
+            <button type="button" class="quiz-option" data-answer="location:commercial">
+              <span class="quiz-option__title">Commercial application</span>
+              <span class="quiz-option__desc">Hotel, gym, member club, retreat. High daily use, often multiple installs.</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 2: PEOPLE -->
+      <section class="quiz-step" data-step="2">
+        <div class="container quiz-step__inner">
+          <h1 class="quiz-step__question">Who’s it for?</h1>
+          <p class="quiz-step__sub">Day-to-day capacity, not the biggest party.</p>
+          <div class="quiz-options quiz-options--photo">
+            <button type="button" class="quiz-option quiz-option--photo" data-answer="people:solo">
+              <span class="quiz-option__media">
+                <img width="1785" height="1800" src="/img/product-photos/Nook Sauna.jpg" alt="A NOOK sauna interior, single bench, tight footprint" loading="lazy" />
+              </span>
+              <span class="quiz-option__body">
+                <span class="quiz-option__title">Compact</span>
+                <span class="quiz-option__desc">1–2 people. Lay down. Tight footprint, daily ritual for one or two.</span>
+              </span>
+            </button>
+            <button type="button" class="quiz-option quiz-option--photo" data-answer="people:small">
+              <span class="quiz-option__media">
+                <img width="1785" height="1800" src="/img/product-photos/212 Sauna.jpg" alt="A 212 sauna interior, communal bench layout" loading="lazy" />
+              </span>
+              <span class="quiz-option__body">
+                <span class="quiz-option__title">Shared</span>
+                <span class="quiz-option__desc">3–4 people. Friends and family. Communal bench, occasional gathering.</span>
+              </span>
+            </button>
+            <button type="button" class="quiz-option quiz-option--photo" data-answer="people:large">
+              <span class="quiz-option__media">
+                <img width="1785" height="1800" src="/img/product-photos/Thermal Suite.jpg" alt="A Thermal Suite interior, full envelope, room to host" loading="lazy" />
+              </span>
+              <span class="quiz-option__body">
+                <span class="quiz-option__title">Suite</span>
+                <span class="quiz-option__desc">5+ people. The full envelope. Communal, regular shared ritual.</span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 3: COLD PLUNGE -->
+      <section class="quiz-step" data-step="3">
+        <div class="container quiz-step__inner">
+          <h1 class="quiz-step__question">Cold plunge?</h1>
+          <p class="quiz-step__sub">Cold completes the contrast loop. But it’s not required.</p>
+          <div class="quiz-options">
+            <button type="button" class="quiz-option" data-answer="cold:yes">
+              <span class="quiz-option__title">Yes, same envelope</span>
+              <span class="quiz-option__desc">Sauna and cold plunge in one structure. The full ritual loop.</span>
+            </button>
+            <button type="button" class="quiz-option" data-answer="cold:add">
+              <span class="quiz-option__title">Maybe later</span>
+              <span class="quiz-option__desc">Start with sauna, add a standalone cold plunge down the line.</span>
+            </button>
+            <button type="button" class="quiz-option" data-answer="cold:no">
+              <span class="quiz-option__title">Sauna only</span>
+              <span class="quiz-option__desc">No cold plunge. Sauna-only build.</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 4: BUDGET -->
+      <section class="quiz-step" data-step="4">
+        <div class="container quiz-step__inner">
+          <h1 class="quiz-step__question">Where are you on budget?</h1>
+          <p class="quiz-step__sub">Honest tier, before turnkey and site work.</p>
+          <div class="quiz-options">
+            <button type="button" class="quiz-option" data-answer="budget:entry">
+              <span class="quiz-option__title">Under $30k</span>
+              <span class="quiz-option__desc">Sauna-only entry point.</span>
+            </button>
+            <button type="button" class="quiz-option" data-answer="budget:mid">
+              <span class="quiz-option__title">$30k – $45k</span>
+              <span class="quiz-option__desc">Sauna + add-ons, or a larger sauna alone.</span>
+            </button>
+            <button type="button" class="quiz-option" data-answer="budget:high">
+              <span class="quiz-option__title">$45k – $60k</span>
+              <span class="quiz-option__desc">Sauna + cold plunge in one envelope.</span>
+            </button>
+            <button type="button" class="quiz-option" data-answer="budget:flagship">
+              <span class="quiz-option__title">Flexible / open</span>
+              <span class="quiz-option__desc">Best of the lineup, or fully custom.</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 5: RESULT + EMAIL GATE -->
+      <section class="quiz-step quiz-step--result" data-step="5">
+        <div class="container quiz-step__inner">
+          <h1 class="quiz-step__question" data-result-name></h1>
+          <p class="quiz-step__sub" data-result-desc></p>
+
+          <div class="quiz-result">
+            <figure class="quiz-result__media">
+              <img data-result-img src="" alt="" />
+            </figure>
+            <div class="quiz-result__why">
+              <p class="quiz-result__why-title">Why this match</p>
+              <ul data-result-why></ul>
+              <p class="quiz-result__price" data-result-price></p>
+            </div>
+          </div>
+
+          <div class="quiz-gate">
+            <h2 class="quiz-gate__title">Get your spec sheet</h2>
+            <p class="quiz-gate__sub">Tell us where to send your spec sheet, we’ll save your recommendation and set up a time to talk.</p>
+            <form class="quiz-gate__form" data-lead-form>
+              <div class="quiz-gate__field">
+                <label class="form__label" for="lead-name">Name</label>
+                <input class="form__input" id="lead-name" name="name" type="text" required placeholder="Your name" autocomplete="name" />
+              </div>
+              <div class="quiz-gate__field">
+                <label class="form__label" for="lead-email">Email</label>
+                <input class="form__input" id="lead-email" name="email" type="email" required placeholder="you@example.com" autocomplete="email" />
+              </div>
+              <div class="quiz-gate__field">
+                <label class="form__label" for="lead-phone">Phone</label>
+                <input class="form__input" id="lead-phone" name="phone" type="tel" required placeholder="(555) 555-5555" autocomplete="tel" />
+              </div>
+              <p class="quiz-gate__error" data-quiz-error role="alert" aria-live="assertive" hidden></p>
+              <button class="btn btn--solid quiz-gate__submit" type="submit">Continue →</button>
+              <p class="quiz-gate__note">We send your spec, not spam. One follow-up, then quiet.</p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </main>
+        <footer class="footer footer--statement">
+      <div class="container">
+        <p class="footer__statement">Hand-built in Utah. <span class="accent-fire">Delivered nationwide.</span> Built for the way humans were meant to live.</p>
+        <div class="footer__utility">
+          <a href="/" class="footer__mark wordmark" aria-label="New Primitive, home">new primitive<span class="wordmark__deg">°</span></a>
+          <nav class="footer__utility-links" aria-label="Footer">
+            <a href="/quiz">Quiz</a>
+            <a href="/app">App</a>
+            <a href="/products">Products</a>
+            <a href="/residential">Residential</a>
+            <a href="/for-pros">For Pros</a>
+            <a href="/about">About</a>
+            <a href="/faqs">FAQs</a>
+            <a href="/guides">Guides</a>
+            <a href="/contact">Contact</a>
+          </nav>
+          <span class="footer__copy">© 2026 New Primitive</span>
+        </div>
+        <div class="footer__chrome">
+          <span>EST. 2022</span>
+          <span>SLC, UT</span>
+          <span>NEWPRIMITIVE.CO</span>
+          <span>@newprimitive1</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Floating contact button — sitewide, hidden on /contact (main.js) -->
+    <a class="contact-fab" href="/contact" aria-label="Contact New Primitive" data-contact-fab>
+      <svg width="30" height="30" viewBox="0 30 240 175" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M239.888 78.1611L209.705 84.6221L209.616 84.6406V94.8662L209.62 94.8643V183.143H179.572V152.934H179.567V91.0732L179.432 91.1025L138.3 99.8926L108.028 106.372L60.5215 116.52L60.4326 116.538V183.146H30.3838V122.946L30.248 122.976L0.112305 129.402V101.379L30.2949 94.9424L60.5684 88.4873L179.479 63.0693L209.752 56.5898L239.888 50.1387V78.1611Z" fill="currentColor"/>
+        <path d="M138.214 183.141H108.167V131.24L138.214 124.809V183.141Z" fill="currentColor"/>
+      </svg>
+    </a>
+
+
+  </body>
+</html>

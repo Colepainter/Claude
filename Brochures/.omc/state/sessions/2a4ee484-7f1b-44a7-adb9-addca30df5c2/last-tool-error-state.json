@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"cd /Users/colepainter/AI/Brochures/_deploy\\npkill -f \\\"http.server 8792\\\" 2>/dev/null; sleep 0.3\\npython3 -m http.server 8792 --bind 127.0.0.1 >/tmp/np_dep.log 2>&1 &\\nsleep 1\\ncurl -s -o ...",
+  "error": "Exit code 1\nindex: 404\nnp hero: 404\nbb hero: 404\n--- confirm no ../ refs remain ---\nremaining ../ refs: 0",
+  "timestamp": "2026-07-23T22:40:25.490Z",
+  "retry_count": 1
+}

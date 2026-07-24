@@ -1,0 +1,7 @@
+{
+  "tool_name": "mcp__claude-in-chrome__navigate",
+  "tool_input_preview": "{\"url\":\"http://127.0.0.1:8777/index.html#cat-saunasuite\"}",
+  "error": "Selected Chrome extension disconnected.",
+  "timestamp": "2026-07-24T14:46:40.315Z",
+  "retry_count": 1
+}

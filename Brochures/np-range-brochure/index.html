@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Primitive — The Range</title>
+<style>
+  :root{
+    --ink:#111110; --cream:#F0EDE6; --cream-2:#E4DFD3;
+    --orange:#E8621E; --blue:#4A90D9;
+    --mut-d:rgba(240,237,230,.55); --mut-l:rgba(17,17,16,.55);
+    --line-d:rgba(240,237,230,.16); --line-l:rgba(17,17,16,.14);
+    --grotesk:"Helvetica Neue",Helvetica,Arial,"Segoe UI",system-ui,sans-serif;
+    --mono:"SFMono-Regular",ui-monospace,Menlo,Consolas,monospace;
+    --serif:Georgia,"Times New Roman",serif;
+    --max:1240px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--grotesk);background:var(--ink);color:var(--cream);-webkit-font-smoothing:antialiased;line-height:1.5}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+  section{padding:82px 0;position:relative}
+  section[id]{scroll-margin-top:64px}
+  .dark{background:var(--ink);color:var(--cream)}
+  .light{background:var(--cream);color:var(--ink)}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center;margin-bottom:38px}
+  .kick .dot{color:var(--orange)}
+  .light .kick{color:var(--mut-l)} .dark .kick{color:var(--mut-d)}
+  h2.big{font-size:clamp(38px,6.4vw,84px);font-weight:800;letter-spacing:-.03em;line-height:.96}
+  .serif{font-family:var(--serif);font-style:italic;font-weight:400}
+  .accent{color:var(--orange)}
+  .mono{font-family:var(--mono)}
+  .lede{max-width:560px;font-size:18px;margin-top:22px}
+  .light .lede{color:var(--mut-l)} .dark .lede{color:var(--mut-d)}
+
+  /* COVER */
+  .cover{min-height:96vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;position:relative}
+  .cover-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  .cover-scrim{position:absolute;inset:0;z-index:1;background:
+    linear-gradient(90deg, rgba(17,17,16,.94) 0%, rgba(17,17,16,.82) 40%, rgba(17,17,16,.34) 78%, rgba(17,17,16,.18) 100%),
+    linear-gradient(0deg, rgba(17,17,16,.80) 0%, rgba(17,17,16,.10) 46%, rgba(17,17,16,.30) 100%)}
+  .cover>.top,.cover>.wrap,.cover>.ring{position:relative;z-index:2}
+  .cover .top{position:absolute;top:30px;left:0;right:0}
+  .cover .top .wrap{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut-d)}
+  .brand{font-weight:800;letter-spacing:-.02em;font-family:var(--grotesk);font-size:15px;text-transform:none}
+  .brand .accent{color:var(--orange)}
+  .cover h1{font-size:clamp(52px,10vw,130px);font-weight:800;letter-spacing:-.045em;line-height:.9}
+  .cover .ring{position:absolute;right:-120px;top:8%;width:520px;height:520px;border:2px solid rgba(232,98,30,.18);border-radius:50%}
+  .temps{display:flex;gap:34px;margin-top:40px;font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut-d)}
+  .temps b{font-family:var(--grotesk);font-size:30px;font-weight:800;letter-spacing:-.02em}
+  .temps .hot b{color:var(--orange)} .temps .cold b{color:var(--blue)}
+
+  /* CONTRAST */
+  .cards2{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:46px}
+  .tcard{border-radius:8px;padding:34px;min-height:300px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+  .tcard.hot{background:linear-gradient(150deg,#3a1c0c,#150a04)}
+  .tcard.cold{background:linear-gradient(150deg,#0e2233,#05101a)}
+  .tcard .num{font-size:96px;font-weight:800;letter-spacing:-.04em;line-height:1}
+  .tcard.hot .num{color:var(--orange)} .tcard.cold .num{color:var(--blue)}
+  .tcard .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut-d)}
+  .benefits{display:flex;flex-wrap:wrap;gap:6px 18px;font-family:var(--mono);font-size:12px;color:var(--mut-d);margin-top:18px}
+  .benefits span::before{content:"↗ ";color:inherit}
+
+  /* PRICE LADDER */
+  .ladder{margin-top:40px;border-top:1px solid var(--line-d)}
+  .row{display:grid;grid-template-columns:34px 1.4fr 1fr auto;gap:16px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--line-d);cursor:pointer;transition:padding-left .2s}
+  .row:hover{padding-left:8px}
+  .row .rn{font-family:var(--mono);font-size:12px;color:var(--mut-d)}
+  .row .rname{font-size:20px;font-weight:700;letter-spacing:-.01em}
+  .row .rtag{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut-d)}
+  .row .rprice{font-size:20px;font-weight:800;letter-spacing:-.01em;text-align:right;white-space:nowrap}
+  .row .rprice small{font-family:var(--mono);font-size:10px;font-weight:400;letter-spacing:.08em;color:var(--mut-d);display:block;text-transform:uppercase}
+  .row.np .rprice{color:var(--orange)} .row.bb .rprice{color:var(--blue)}
+  .row .rprice.poa{color:var(--cream);font-size:15px}
+  /* CATEGORY OVERVIEW CARDS */
+  .catgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+  .catcard{position:relative;border-radius:11px;overflow:hidden;min-height:236px;display:flex;align-items:flex-end;color:var(--cream);isolation:isolate;text-decoration:none}
+  .catcard.wide{grid-column:span 2}
+  .catcard-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transition:transform .6s ease}
+  .catcard.kit .catcard-img{object-fit:cover}
+  .catcard:hover .catcard-img{transform:scale(1.055)}
+  .catcard-scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(15,15,14,.94) 4%,rgba(15,15,14,.55) 44%,rgba(15,15,14,.12) 100%)}
+  .catcard-body{position:relative;z-index:2;padding:22px;width:100%;display:block}
+  .catcard-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .catcard-name{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+  .catcard-n{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);white-space:nowrap}
+  .catcard-desc{display:block;font-size:17px;font-weight:600;line-height:1.22;margin-top:10px;max-width:30ch}
+  .catcard-foot{display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:13px;border-top:1px solid rgba(240,237,230,.22)}
+  .catcard-price{font-size:19px;font-weight:800;letter-spacing:-.01em}
+  .catcard.kit .catcard-price{color:var(--blue)}
+  .catcard-arrow{font-size:19px;color:var(--orange);transition:transform .2s}
+  .catcard:hover .catcard-arrow{transform:translateX(5px)}
+
+  /* STICKY SCROLL-SPY NAV */
+  .stickynav{position:fixed;top:0;left:0;right:0;z-index:80;background:rgba(15,15,14,.9);border-bottom:1px solid var(--line-d);transform:translateY(-102%);transition:transform .32s ease}
+  @supports (backdrop-filter:blur(8px)){.stickynav{background:rgba(15,15,14,.72);backdrop-filter:blur(12px)}}
+  .stickynav.show{transform:none}
+  .stickynav .wrap{display:flex;align-items:center;justify-content:space-between;gap:18px;padding-top:12px;padding-bottom:12px}
+  .sn-brand{font-family:var(--grotesk);font-weight:800;font-size:14px;letter-spacing:-.02em;color:var(--cream);text-decoration:none;white-space:nowrap}
+  .sn-cats{display:flex;gap:5px;overflow-x:auto;scrollbar-width:none}
+  .sn-cats::-webkit-scrollbar{display:none}
+  .sn-cats a{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:7px 12px;border-radius:16px;color:var(--mut-d);white-space:nowrap;transition:.15s;text-decoration:none}
+  .sn-cats a:hover{color:var(--cream)}
+  .sn-cats a.active{background:var(--orange);color:#fff}
+
+  /* PRODUCTS */
+  .plist{display:flex;flex-direction:column;gap:70px;margin-top:52px}
+  .prod{display:grid;grid-template-columns:1.05fr 1fr;gap:44px;align-items:center}
+  .prod:nth-child(even){grid-template-columns:1fr 1.05fr}
+  .prod:nth-child(even) .pmedia{order:2}
+  .pmedia{border-radius:8px;overflow:hidden;aspect-ratio:16/11;background:#0002}
+  .pmedia img{width:100%;height:100%;object-fit:cover}
+  /* kits are product shots — show the whole unit, no crop */
+  .prod.bb .pmedia{background:#f4f1ea}
+  .prod.bb .pmedia img{object-fit:contain;padding:12px}
+  .peyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut-l);margin-bottom:14px;display:flex;gap:12px;align-items:center}
+  .dark .peyebrow{color:var(--mut-d)}
+  .badge{background:var(--orange);color:#fff;padding:2px 8px;border-radius:3px;font-size:10px;letter-spacing:.1em}
+  .badge.blue{background:var(--blue)}
+  .pname{font-size:clamp(30px,4vw,50px);font-weight:800;letter-spacing:-.03em;line-height:.98}
+  .pblurb{margin-top:16px;max-width:460px}
+  .light .pblurb{color:var(--mut-l)} .dark .pblurb{color:var(--mut-d)}
+  .specs{display:grid;grid-template-columns:1fr 1fr;gap:0 30px;margin-top:26px}
+  .specs div{padding:12px 0;border-top:1px solid var(--line-l)}
+  .dark .specs div{border-top:1px solid var(--line-d)}
+  .specs .sl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut-l);display:block;margin-bottom:3px}
+  .dark .specs .sl{color:var(--mut-d)}
+  .specs .sv{font-size:16px;font-weight:600}
+  .pprice{margin-top:26px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .pprice .pv{font-size:38px;font-weight:800;letter-spacing:-.02em;color:var(--orange)}
+  .prod.bb .pprice .pv{color:var(--blue)}
+  .pprice .pl{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut-l)}
+  .dark .pprice .pl{color:var(--mut-d)}
+  .heaternote{width:100%;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--blue);margin-top:2px}
+  .planbtn{margin-top:20px;display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:inherit;background:transparent;border:1px solid var(--line-l);padding:10px 16px;border-radius:7px;cursor:pointer;transition:.15s}
+  .dark .planbtn{border-color:var(--line-d)}
+  .planbtn:hover{border-color:var(--orange);color:var(--orange)}
+  .planbtn-ic{font-size:13px;color:var(--orange);line-height:1}
+  .layoutbox .modal-card{background:#fff;color:var(--ink);max-width:1040px;width:100%;padding:18px 18px 20px}
+  .layout-cap{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut-l);display:flex;justify-content:space-between;align-items:center;gap:12px;margin:2px 0 12px;padding-right:26px}
+  .layoutbox img{width:100%;height:auto;border-radius:6px;background:#fff}
+
+  /* ADD-ONS */
+  .addons{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:44px}
+  .addon{border:1px solid var(--line-d);border-radius:8px;overflow:hidden}
+  .addon .ai{aspect-ratio:4/3;background:#0003;overflow:hidden}
+  .addon .ai img{width:100%;height:100%;object-fit:cover}
+  .addon .ab{padding:18px}
+  .addon h4{font-size:18px;font-weight:700}
+  .addon p{font-size:13px;color:var(--mut-d);margin:6px 0 12px;min-height:52px}
+  .addon .apr{font-family:var(--mono);color:var(--orange);font-weight:700}
+
+  /* QUIZ */
+  .quiz{max-width:760px;margin:44px auto 0;background:#fff;border-radius:12px;padding:38px;box-shadow:0 30px 70px -40px rgba(17,17,16,.4);color:var(--ink)}
+  .qbar{height:4px;background:var(--cream-2);border-radius:3px;overflow:hidden;margin-bottom:8px}
+  .qbar i{display:block;height:100%;background:var(--orange);width:25%;transition:width .35s}
+  .qmeta{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut-l);display:flex;justify-content:space-between;margin-bottom:26px}
+  .qstep h3{font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1.02}
+  .qstep p.sub{color:var(--mut-l);margin:8px 0 24px}
+  .opts{display:grid;gap:12px}
+  .opt{text-align:left;border:1.5px solid var(--line-l);background:#fff;border-radius:9px;padding:16px 18px;cursor:pointer;transition:.15s;font-family:inherit}
+  .opt:hover{border-color:var(--ink)}
+  .opt.sel{border-color:var(--orange);background:#fdf3ec}
+  .opt b{font-size:17px;font-weight:700;display:block}
+  .opt span{font-size:13px;color:var(--mut-l)}
+  .qnav{display:flex;justify-content:space-between;margin-top:26px}
+  .btn{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:13px 22px;border-radius:7px;border:none;cursor:pointer;font-weight:600}
+  .btn.ghost{background:transparent;color:var(--mut-l)}
+  .btn.solid{background:var(--ink);color:var(--cream)}
+  .btn.solid:disabled{opacity:.32;cursor:not-allowed}
+  .btn.cta{background:var(--orange);color:#fff}
+  .btn.wide{display:block;width:100%;text-align:center;margin-top:16px}
+  /* LEAD MODAL */
+  .modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(17,17,16,.62)}
+  .modal.show{display:flex}
+  .modal-card{background:#fff;color:var(--ink);border-radius:14px;padding:34px;max-width:460px;width:100%;position:relative;box-shadow:0 40px 90px -40px rgba(17,17,16,.6);animation:fade .3s}
+  .modal-x{position:absolute;top:12px;right:16px;background:none;border:none;font-size:26px;line-height:1;color:var(--mut-l);cursor:pointer}
+  .modal-h{font-size:26px;font-weight:800;letter-spacing:-.02em;margin:6px 0}
+  .modal-sub{color:var(--mut-l);font-size:14px;margin-bottom:20px}
+  .modal-card label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut-l);margin-bottom:14px}
+  .modal-card label span{opacity:.6;text-transform:none;letter-spacing:0}
+  .modal-card input,.modal-card textarea{display:block;width:100%;margin-top:6px;padding:11px 13px;border:1.5px solid var(--line-l);border-radius:8px;font-family:var(--grotesk);font-size:15px;color:var(--ink);background:#fff}
+  .modal-card input:focus,.modal-card textarea:focus{outline:none;border-color:var(--orange)}
+  .modal-fine{font-family:var(--mono);font-size:10px;color:var(--mut-l);text-align:center;margin-top:12px;letter-spacing:.04em}
+  .modal-card.book{max-width:560px;max-height:92vh;overflow-y:auto;padding:26px 26px 12px}
+  .modal-card.book .modal-sub{background:var(--cream);border-radius:8px;padding:12px 14px;font-size:13px;line-height:1.5}
+  .modal-card.book .modal-sub b{color:var(--ink)}
+  .lead-ans{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--orange);text-transform:uppercase}
+  /* cold plunge add-on option */
+  .addplunge{display:flex;align-items:center;gap:14px;margin-top:16px;padding:12px 14px;border:1.5px solid var(--line-l);border-radius:10px;cursor:pointer;transition:.15s;background:#fff}
+  .addplunge:hover{border-color:var(--blue)}
+  .addplunge.on{border-color:var(--blue);background:#eef5fc}
+  .addplunge img{width:54px;height:54px;object-fit:cover;border-radius:7px;flex:none;background:#f4f1ea}
+  .ap-txt{flex:1;min-width:0}
+  .ap-k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+  .ap-txt b{display:block;font-size:15px;font-weight:700;margin:2px 0}
+  .ap-txt span{font-size:12px;color:var(--mut-l)}
+  .ap-right{text-align:right;flex:none}
+  .ap-price{display:block;font-weight:800;color:var(--blue)}
+  .ap-btn{display:inline-block;margin-top:6px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:14px;background:var(--ink);color:var(--cream)}
+  .addplunge.on .ap-btn{background:var(--blue)}
+  .result{display:none}
+  .result.show{display:block;animation:fade .4s}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
+  .rmatch{display:grid;grid-template-columns:1fr 1.3fr;gap:26px;align-items:center;border:1.5px solid var(--orange);border-radius:10px;padding:22px;background:#fdf3ec}
+  .rmatch .rimg{border-radius:7px;overflow:hidden;aspect-ratio:4/3}
+  .rmatch .rimg img{width:100%;height:100%;object-fit:cover}
+  .rmatch .rk{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange)}
+  .rmatch h4{font-size:28px;font-weight:800;letter-spacing:-.02em;margin:4px 0 8px}
+  .rmatch .rp{font-size:24px;font-weight:800;color:var(--orange)}
+  .rmatch .rwhy{font-size:14px;color:var(--mut-l);margin-top:10px}
+  .alts{margin-top:18px}
+  .alts .al{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut-l);margin-bottom:8px}
+  .alts .arow{display:flex;justify-content:space-between;padding:9px 0;border-top:1px solid var(--line-l);font-size:15px}
+  .alts .arow b{font-weight:700}
+
+  /* MATERIALS/PROCESS */
+  .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:44px}
+  .step .sn{font-family:var(--mono);color:var(--orange);font-size:12px}
+  .step h4{font-size:19px;font-weight:700;margin:16px 0 8px;line-height:1.05}
+  .step p{font-size:13px;color:var(--mut-d)}
+  .payf{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+  .payf div{border-top:2px solid var(--ink)}
+  .light .payf .pk{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut-l);padding-top:12px}
+  .payf .pval{font-size:30px;font-weight:800;letter-spacing:-.02em;margin-top:4px}
+  .payf .pd{font-size:12px;color:var(--mut-l);margin-top:6px}
+
+  /* FOOTER */
+  .foot{background:var(--ink);color:var(--cream)}
+  .foot h2{font-size:clamp(44px,8vw,104px);font-weight:800;letter-spacing:-.04em;line-height:.9}
+  .fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:50px;padding-top:26px;border-top:1px solid var(--line-d)}
+  .fgrid .fk{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut-d);margin-bottom:6px}
+  .fgrid .fv{font-size:17px}
+  .fgrid .fv.accent{color:var(--orange)}
+  .fine{font-family:var(--mono);font-size:11px;color:var(--mut-d);margin-top:40px;display:flex;justify-content:space-between;letter-spacing:.08em}
+
+  @media(max-width:860px){
+    .cards2,.prod,.prod:nth-child(even),.rmatch{grid-template-columns:1fr}
+    .prod:nth-child(even) .pmedia{order:0}
+    .addons{grid-template-columns:1fr 1fr}
+    .steps{grid-template-columns:1fr 1fr}
+    .payf{grid-template-columns:1fr}
+    .row{grid-template-columns:24px 1fr auto}
+    .row .rtag{display:none}
+    .cover .ring{display:none}
+    .catgrid{grid-template-columns:1fr}
+  }
+  @media(max-width:520px){
+    .sn-brand{display:none}
+  }
+  @media print{ .quiz,.qnav{box-shadow:none} section{padding:40px 0} }
+</style>
+</head>
+<body>
+
+<!-- STICKY CATEGORY NAV -->
+<nav class="stickynav" id="stickynav">
+  <div class="wrap">
+    <a class="sn-brand" href="#top">new primitive<span class="accent">.</span></a>
+    <div class="sn-cats" id="sn-cats"></div>
+  </div>
+</nav>
+
+<!-- COVER -->
+<section class="dark cover" id="top">
+  <img class="cover-bg" src="new-primitive/cover-hero.jpg" alt="New Primitive cedar sauna in a backyard, framed by trees">
+  <div class="cover-scrim"></div>
+  <div class="top"><div class="wrap"><span class="brand">new primitive<span class="accent">.</span></span><span>The Range · 2026 · Ed. 01</span></div></div>
+  <div class="ring"></div>
+  <div class="wrap">
+    <div class="mono" style="color:var(--orange);letter-spacing:.2em;font-size:12px;margin-bottom:22px">RECLAIM YOUR NATURAL RHYTHM</div>
+    <h1>Craft your<br>bathing <span class="serif" style="font-size:.86em">experience.</span></h1>
+    <p class="lede">Hand-built saunas and cold-plunge suites, delivered ready to run. Fourteen ways into the same practice — backyard kit, custom indoor build, commercial ADA suite. From a $15k kit to a bespoke build. A practice, not an exercise.</p>
+    <div class="temps">
+      <span class="hot">HEAT · SAUNA <b>212°</b></span>
+      <span class="cold">COLD · PLUNGE <b>39°</b></span>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CONTRAST -->
+<section class="dark">
+  <div class="wrap">
+    <div class="kick"><span><span class="dot">●</span> Why contrast therapy</span><span>$ 01</span></div>
+    <h2 class="big">Why heat<br>and <span class="serif accent">cold.</span></h2>
+    <div class="cards2">
+      <div class="tcard hot">
+        <div><div class="lbl">Heat · Sauna</div><div class="num">212°</div></div>
+        <div class="benefits"><span>Cardiovascular</span><span>Recovery</span><span>Sleep</span><span>Mood</span><span>↘ Stress</span><span>HSP</span></div>
+      </div>
+      <div class="tcard cold">
+        <div><div class="lbl">Cold · Plunge</div><div class="num">39°</div></div>
+        <div class="benefits"><span>Dopamine</span><span>Brown fat</span><span>Resilience</span><span>Focus</span><span>↘ Inflammation</span><span>Vagal tone</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section class="light" id="quiz">
+  <div class="wrap">
+    <div class="kick"><span><span class="dot" style="color:var(--orange)">●</span> Find your match</span><span>$ 02</span></div>
+    <h2 class="big">Find the right one<br>for <span class="serif accent">you.</span></h2>
+    <p class="lede">Four questions. We match your budget and space to the right sauna and cold plunge.</p>
+    <div class="quiz">
+      <div class="qbar"><i id="qfill"></i></div>
+      <div class="qmeta"><span id="qcount">Step 1 of 4</span><span id="qname">WHERE</span></div>
+      <div id="qbody"></div>
+      <div class="result" id="qresult"></div>
+      <div class="qnav" id="qnav">
+        <button class="btn ghost" id="qback">← Back</button>
+        <button class="btn solid" id="qnext" disabled>Next →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE LADDER -->
+<section class="dark">
+  <div class="wrap">
+    <div class="kick"><span><span class="dot">●</span> The full range · by category</span><span>$ 03</span></div>
+    <h2 class="big">Explore by <span class="serif accent">category.</span></h2>
+    <p class="lede">Three ways in — a recovery suite with cold plunge, a hand-built sauna suite, or an affordable kit. Every space, one practice.</p>
+    <div class="catgrid" id="catgrid"></div>
+    <p class="mono" style="color:var(--mut-d);font-size:11px;margin-top:18px;letter-spacing:.06em">Prices before tax &amp; delivery · kits show unit price, heater sold separately · custom builds quoted per project</p>
+  </div>
+</section>
+
+<!-- RECOVERY SUITES -->
+<section class="light" id="cat-recovery">
+  <div class="wrap">
+    <div class="kick"><span><span class="dot" style="color:var(--orange)">●</span> Recovery Suites · sauna + plunge</span><span>$ 04</span></div>
+    <h2 class="big">Sauna and cold plunge,<br>in <span class="serif accent">one.</span></h2>
+    <p class="lede">All-in-one recovery suites — sauna and cold plunge in a single build. The complete contrast ritual, delivered ready to run.</p>
+    <div class="plist" id="np-recovery"></div>
+  </div>
+</section>
+
+<!-- SAUNA SUITES -->
+<section class="dark" id="cat-saunasuite">
+  <div class="wrap">
+    <div class="kick"><span><span class="dot">●</span> Sauna Suites · hand-built</span><span>$ 05</span></div>
+    <h2 class="big">Our hand-built <span class="serif accent">saunas.</span></h2>
+    <p class="lede">Our built sauna line — from the compact Nook to the communal 212, plus fully custom indoor builds and ADA-accessible commercial saunas.</p>
+    <div class="plist" id="np-saunasuite"></div>
+  </div>
+</section>
+
+<!-- SAUNA KITS -->
+<section class="light" id="cat-kits">
+  <div class="wrap">
+    <div class="kick"><span><span class="dot" style="color:var(--blue)">●</span> Sauna Kits · Bathing Brands</span><span>$ 06</span></div>
+    <h2 class="big">Sauna kits, ready to <span class="serif" style="color:var(--blue)">build.</span></h2>
+    <p class="lede">Curated SaunaLife saunas we resell, delivered and installed. <b style="color:var(--blue)">$15–20k covers the kit, heater, and setup</b> — the most affordable way into the practice.</p>
+    <div class="plist" id="bb-list"></div>
+  </div>
+</section>
+
+<!-- ADD-ONS -->
+<section class="dark">
+  <div class="wrap">
+    <div class="kick"><span><span class="dot">●</span> Add-ons &amp; upgrades</span><span>$ 07</span></div>
+    <h2 class="big">Add-ons and <span class="serif accent">upgrades.</span></h2>
+    <div class="addons">
+      <div class="addon"><div class="ai"><img src="new-primitive/accessories/cold-plunge.png" alt="Cold Plunge"></div><div class="ab"><h4>Cold Plunge</h4><p>Stand-alone Cold Life vertical plunge, chiller + UV/ozone. Complete the loop.</p><div class="apr">+ $7,900</div></div></div>
+      <div class="addon"><div class="ai"><img src="new-primitive/accessories/porch-shower.jpg" alt="Porch Shower"></div><div class="ab"><h4>Porch Shower</h4><p>Brushed stainless rain head, hot &amp; cold, 84" head. The rinse between rounds.</p><div class="apr">+ $1,800–2,800</div></div></div>
+      <div class="addon"><div class="ai"><img src="new-primitive/accessories/red-light.jpg" alt="Red Light Therapy"></div><div class="ab"><h4>Red Light Therapy</h4><p>Medical-grade wall-mounted panel. Recovery, circadian, skin. Suite integration.</p><div class="apr">+ $2,200</div></div></div>
+      <div class="addon"><div class="ai"><img src="new-primitive/accessories/sonos.png" alt="Sonos Sound"></div><div class="ab"><h4>Sonos Sound</h4><p>Amp + paintable in-ceiling pair, tuned for the room and for stillness.</p><div class="apr">+ $2,500</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="light">
+  <div class="wrap">
+    <div class="kick"><span><span class="dot" style="color:var(--orange)">●</span> From order to ritual</span><span>$ 08</span></div>
+    <h2 class="big">Hand-built in Utah.<br>About <span class="serif accent">12 weeks.</span></h2>
+    <div class="steps">
+      <div class="step"><div class="sn">01</div><h4>Design &amp; site survey</h4><p>Scope model, footprint, electrical and access on one call.</p></div>
+      <div class="step"><div class="sn">02</div><h4>Configure &amp; contract</h4><p>Lock model, finishes, add-ons. $450 refundable reservation.</p></div>
+      <div class="step"><div class="sn">03</div><h4>Hand-build in SLC</h4><p>8–10 weeks in our factory. 7-layer build, fully tested.</p></div>
+      <div class="step"><div class="sn">04</div><h4>Crane-set delivery</h4><p>Local crane sets the completed unit. Installs in a day.</p></div>
+      <div class="step"><div class="sn">05</div><h4>First session</h4><p>Walkthrough, heat-up, plunge fill — the ritual begins.</p></div>
+    </div>
+    <div class="payf">
+      <div><div class="pk">To reserve</div><div class="pval">$450</div><div class="pd">Reservation deposit. Refundable 14 days.</div></div>
+      <div><div class="pk">After design approval</div><div class="pval">80%</div><div class="pd">Production deposit. Triggers the 8–10 week build.</div></div>
+      <div><div class="pk">10 days before shipping</div><div class="pval">20% <span style="font-size:16px">+ install</span></div><div class="pd">Balance plus installation fee.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<section class="foot">
+  <div class="wrap">
+    <div class="kick"><span><span class="dot">●</span> Get started</span><span>$ 09</span></div>
+    <h2>Ready to <span class="serif accent">start?</span></h2>
+    <div class="fgrid">
+      <div><div class="fk">Web</div><div class="fv accent">newprimitive.co</div></div>
+      <div><div class="fk">Email</div><div class="fv">hello@newprimitive.life</div></div>
+      <div><div class="fk">Factory</div><div class="fv">Salt Lake City, UT</div></div>
+      <div><div class="fk">Social</div><div class="fv">@newprimitive1</div></div>
+      <div><div class="fk">Phone</div><div class="fv">+1 (435) 830-1747</div></div>
+      <div><div class="fk">Shipping</div><div class="fv">North America</div></div>
+    </div>
+    <div class="fine"><span>© 2026 NEW PRIMITIVE LLC · EST. 2022</span><span>HAND-BUILT IN UTAH · DELIVERED NATIONWIDE</span></div>
+  </div>
+</section>
+
+<script>
+const NP_BASE="new-primitive/", BB_BASE="bathing-brands/";
+const fmt=n=>"$"+n.toLocaleString("en-US");
+const priceStr=p=>p.price==null?(p.priceLabel||'By project'):(p.priceMax&&p.priceMax!==p.price?`Starting at ${fmt(p.price)}`:fmt(p.price));
+
+const PRODUCTS=[
+  // NEW PRIMITIVE — sauna + plunge
+  {id:"suiteD",src:"np",group:"recovery",name:"Thermal Suite Designer",eyebrow:"Sauna + Plunge · Designer",badge:"Flagship",price:60000,priceMax:65000,
+   img:NP_BASE+"thermal-suite-designer/thermal-suite-designer-hero.jpg",
+   blurb:"The flagship. Sauna, vertical cold plunge, red light and sound in one charred-Accoya envelope — upgraded finishes throughout.",
+   specs:{Footprint:'16\'6" × 8\'3"',Capacity:"4–6 person",Plunge:"Vertical · integrated",Electrical:"240V · 60A",Heater:"IKI 9kW Pillar",Delivery:"Crane-set, 1 day"}},
+  {id:"suiteE",src:"np",group:"recovery",name:"Thermal Suite Essential",eyebrow:"Sauna + Plunge · Essential",price:55000,priceMax:60000,
+   img:NP_BASE+"thermal-suite-essential/thermal-suite-essential-hero.jpg",
+   layout:NP_BASE+"thermal-suite-essential/layout.png",
+   blurb:"Sauna and a horizontal cold plunge under one roof — one envelope, two zones, integrated chiller and filtration. The contrast loop, a few steps apart.",
+   specs:{Footprint:'16\'3" × 8\'3"',Capacity:"4–6 person",Plunge:"Horizontal · 1hp chiller",Electrical:"240V · 50A",Heater:"IKI 9kW Pillar",Delivery:"Crane-set, 1 day"}},
+  {id:"retreat",src:"np",group:"recovery",name:"The Primitive Retreat",eyebrow:"Sauna + Plunge · Outdoor deck",price:50000,priceMax:55000,
+   img:NP_BASE+"primitive-retreat/primitive-retreat-hero.jpg",
+   blurb:"The outdoor ritual. Sauna, open-air porch shower, and an open-air cold plunge on a cedar deck. Three stations, one linear loop — heat, rinse, cold, under the sky.",
+   specs:{Footprint:'16\'6" × 8\'3"',Capacity:"4–6 person",Plunge:"Open-air porch",Electrical:"240V · 50A",Heater:"IKI 9kW Pillar",Layout:"3-station linear"}},
+  // NEW PRIMITIVE — sauna only
+  {id:"212d",src:"np",group:"saunasuite",name:"212 Designer",eyebrow:"Sauna only · Designer",badge:"Architectural",price:40000,priceMax:45000,
+   img:NP_BASE+"212-designer/212-designer-hero.jpg",
+   layout:NP_BASE+"212-designer/layout.png",
+   blurb:"The architectural sauna. Upgraded materials, full-height insulated glazing, thermal-ash decking and a clean modern face — the communal 212 elevated.",
+   specs:{Footprint:'12\'3" × 8\'3"',Capacity:"4–6 person",Heater:"IKI 9kW Pillar",Electrical:"240V · 50A",Interior:"Clear cedar",Delivery:"Crane-set, 1 day"}},
+  {id:"212",src:"np",group:"saunasuite",name:"212 Essential",eyebrow:"Sauna only · Essential",price:35000,priceMax:40000,
+   img:NP_BASE+"212-essential/212-essential-hero.jpg",
+   layout:NP_BASE+"212-essential/layout.png",
+   blurb:"The communal sauna. Two-tier benches for four to six, IKI 9kW heater, cement-fibre board & batten envelope. Saturday morning, six friends, the room full.",
+   specs:{Footprint:'10\'3" × 8\'3"',Capacity:"4–6 person",Heater:"IKI 9kW Pillar",Electrical:"240V · 50A",Interior:"Knotty cedar",Lifetime:"25+ years"}},
+  {id:"nook",src:"np",group:"saunasuite",name:"Nook Essential",eyebrow:"Sauna only · Premium finishes",price:30000,priceMax:35000,
+   img:NP_BASE+"nook-essential/nook-designer-hero.jpg",
+   layout:NP_BASE+"nook-essential/layout.png",
+   blurb:"The private sauna. A 5'3\" cabin that fits where nothing else would — side yards, urban patios. Premium finishes included as standard. Built for the daily session.",
+   specs:{Footprint:'5\'3" × 8\'3"',Capacity:"2–4 person",Heater:"IKI 9kW Pillar",Electrical:"240V · 40A",Interior:"Knotty cedar",Delivery:"Crane-set, 1 day"}},
+  // NEW PRIMITIVE — indoor (custom)
+  {id:"indoor",src:"np",group:"saunasuite",name:"Custom Indoor Build",eyebrow:"Indoor · built to your room",price:null,priceLabel:"Custom",
+   img:NP_BASE+"custom-indoor/indoor-redlight-hero.jpg",
+   blurb:"A sauna fitted into your home — basement, spare room, bath suite. We design to your exact footprint, finishes and heater, with red-light and dim-to-warm lighting integration. Fully bespoke, built on site.",
+   specs:{Placement:"Indoor · your space",Footprint:"To your room",Heater:"IKI / Harvia · spec'd",Lighting:"Red-light + dim-to-warm",Interior:"Cedar / hemlock / ash",Build:"Custom · on site"}},
+  // NEW PRIMITIVE — commercial (ADA)
+  {id:"commercial",src:"np",group:"saunasuite",name:"Commercial ADA Sauna",eyebrow:"Commercial · the WonderBlock",badge:"ADA",price:null,priceLabel:"By project",
+   img:NP_BASE+"commercial-ada/edison-commercial-hero.jpg",
+   layout:NP_BASE+"commercial-ada/layout.png",
+   blurb:"The WonderBlock — an ADA-accessible sauna for hotels, gyms, clubs and multi-family. Wheelchair entry and turning clearance, wrap-around upper and lower benches with a dedicated ADA lower bench, charred exterior and full-glass front. Built for high daily use.",
+   specs:{Exterior:'12\'2" × 11\'6"',Interior:'10\'11" × 9\'5"',"Clear height":'7\'0"',Access:"ADA · wheelchair",Benches:"Wrap + ADA lower",Use:"Commercial · high-traffic"}},
+  // BATHING BRANDS — kits (heater NOT included)
+  {id:"gl6",src:"bb",group:"kit",name:"SaunaLife GL6",eyebrow:"Garden Luxury · cabin kit",price:15000,priceMax:20000,plabel:"Installed · kit + heater + delivery",
+   img:BB_BASE+"saunalife-gl6/SaunaLife-GL6-Sauna-Kit-1.jpg",
+   blurb:"A roomy modular Scandinavian cabin kit for up to six — professional-quality, contemporary linear design, built in your own backyard.",
+   specs:{Capacity:"Up to 6",Type:"Garden Luxury cabin",Material:"Thermo-Spruce",Install:"Delivered + set",Heater:"Included",Assembly:"1–2 day"}},
+  {id:"cl12",src:"bb",group:"kit",name:"SaunaLife CL12GCP",eyebrow:"Cube Luxury · suite kit",price:15000,priceMax:20000,plabel:"Installed · kit + heater + delivery",
+   img:BB_BASE+"saunalife-cl12gcp/SaunaLife-CL12GCP-Cube-Sauna-1.jpg",
+   blurb:"A true sauna suite kit — sauna with picture window plus a separate dressing room, comfortable for up to eight. Thermo-Spruce, 12.5 ft.",
+   specs:{Capacity:"Up to 8",Type:"Cube suite + dressing rm",Material:"Thermo-Spruce",Install:"Delivered + set",Heater:"Included",Feature:"Picture window"}},
+  {id:"gl4",src:"bb",group:"kit",name:"SaunaLife GL4",eyebrow:"Garden Luxury · cabin kit",price:15000,priceMax:20000,plabel:"Installed · kit + heater + delivery",
+   img:BB_BASE+"saunalife-gl4/saunalife-gl4-saune-kit-1.jpg",
+   blurb:"A professional-quality authentic Scandinavian sauna kit for up to four — contemporary linear design, impeccable detail, backyard-buildable.",
+   specs:{Capacity:"Up to 4",Type:"Garden Luxury cabin",Material:"Thermo-Spruce",Install:"Delivered + set",Heater:"Included",Assembly:"1–2 day"}},
+  {id:"cl7g",src:"bb",group:"kit",name:"SaunaLife CL7G",eyebrow:"Cube Luxury · cube kit",price:15000,priceMax:20000,plabel:"Installed · kit + heater + delivery",
+   img:BB_BASE+"saunalife-cl7g/SaunaLife-CL7G-Sauna-Cube-10.2025-1.jpg",
+   blurb:"Modern Scandinavian cube kit with a full-glass front and room for six. Wi-Fi LED lighting, shingle roof, 8mm bronze tempered door.",
+   specs:{Capacity:"Up to 6",Type:"Cube, full-glass front",Material:"Thermo-Spruce",Install:"Delivered + set",Heater:"Included",Lighting:"Wi-Fi LED"}},
+  {id:"ee8g",src:"bb",group:"kit",name:"SaunaLife EE8G",eyebrow:"Ergo Elegance · barrel kit",price:15000,priceMax:20000,plabel:"Installed · kit + heater + delivery",
+   img:BB_BASE+"saunalife-ee8g/SaunaLife-EE8G-Sauna-Barrel-1-.jpg",
+   blurb:"A spacious glass-front barrel kit for up to six. 7'7\" interior diameter, industry-leading wall thickness, DIY 1-day / 2-person install.",
+   specs:{Capacity:"Up to 6",Type:"Barrel, glass front",Material:"Thermo-Spruce",Diameter:'7\'7" interior',Heater:"Included",Assembly:"1-day / 2-person"}}
+];
+
+const HEATER_NOTE="+ heater (Harvia / IKI 9kW) sold separately";
+const PLUNGE={name:"Stand-alone Cold Plunge", price:7900};
+
+function prodCard(p){
+  const specs=Object.entries(p.specs).map(([k,v])=>`<div><span class="sl">${k}</span><span class="sv">${v}</span></div>`).join("");
+  const badge=p.badge?`<span class="badge ${p.src==='bb'?'blue':''}">${p.badge}</span>`:"";
+  const heater=p.heater?`<div class="heaternote">${HEATER_NOTE}</div>`:"";
+  const plabel=p.plabel||(p.src==='bb'?"Kit price · MSRP":"Estimated · turn-key ready");
+  const priceBlock = p.price==null
+    ? `<span class="pv">${p.priceLabel||'By project'}</span><span class="pl">Custom quote · POA</span>`
+    : `<span class="pv">${priceStr(p)}</span><span class="pl">${(p.priceMax&&p.src!=='bb')?'+ $5k premium finishes':plabel}</span>`;
+  return `<div class="prod ${p.src}" id="p-${p.id}">
+    <div class="pmedia"><img loading="lazy" src="${p.img}" alt="${p.name}"></div>
+    <div class="pbody">
+      <div class="peyebrow">${p.eyebrow} ${badge}</div>
+      <div class="pname">${p.name}</div>
+      <p class="pblurb">${p.blurb}</p>
+      <div class="specs">${specs}</div>
+      <div class="pprice">${priceBlock}${heater}</div>
+      ${p.layout?`<button class="planbtn" onclick="openLayout('${p.layout}','${p.name.replace(/'/g,"\\'")}')"><span class="planbtn-ic">▤</span> View floor plan</button>`:""}
+    </div>
+  </div>`;
+}
+const byId=id=>PRODUCTS.find(p=>p.id===id);
+// CATEGORIES — order + labels drive both the section render and the chip nav
+const CATS=[
+  {key:"recovery",anchor:"cat-recovery",label:"Recovery Suites",tag:"New Primitive · sauna + plunge",el:"np-recovery"},
+  {key:"saunasuite",anchor:"cat-saunasuite",label:"Sauna Suites",tag:"New Primitive · hand-built sauna",el:"np-saunasuite"},
+  {key:"kit",anchor:"cat-kits",label:"Sauna Kits",tag:"Bathing Brands · kit",el:"bb-list"}
+];
+CATS.forEach(c=>{document.getElementById(c.el).innerHTML=PRODUCTS.filter(p=>p.group===c.key).map(prodCard).join("");});
+
+// CATEGORY OVERVIEW CARDS
+const CATMETA={
+  recovery:{img:NP_BASE+"thermal-suite-designer/thermal-suite-designer-hero.jpg", desc:"All-in-one sauna + cold plunge. The full recovery loop."},
+  saunasuite:{img:NP_BASE+"212-designer/212-designer-hero.jpg", desc:"Hand-built saunas — compact to communal, indoor and commercial."},
+  kit:{img:BB_BASE+"thermasol-spectra/ThermaSol-Spectra-1.jpg", desc:"DIY-friendly kits — the affordable on-ramp.", priceOverride:"$15–20k"}
+};
+function priceRange(key){
+  const g=PRODUCTS.filter(p=>p.group===key);
+  const lows=g.filter(p=>p.price!=null).map(p=>p.price);
+  if(!lows.length) return g[0].priceLabel||"Custom";
+  const short=n=>(+(n/1000).toFixed(1)).toString().replace(/\.0$/,'');
+  return `Starting at $${short(Math.min(...lows))}k`;
+}
+document.getElementById("catgrid").innerHTML=CATS.map(c=>{
+  const meta=CATMETA[c.key], n=PRODUCTS.filter(p=>p.group===c.key).length;
+  const cls=(c.key==="kit"?" kit":"");
+  return `<a class="catcard${cls}" href="#${c.anchor}">
+    <img class="catcard-img" loading="lazy" src="${meta.img}" alt="${c.label}">
+    <span class="catcard-scrim"></span>
+    <span class="catcard-body">
+      <span class="catcard-top"><span class="catcard-name">${c.label}</span><span class="catcard-n">${n} ${n>1?'models':'model'}</span></span>
+      <span class="catcard-desc">${meta.desc}</span>
+      <span class="catcard-foot"><span class="catcard-price">${priceRange(c.key)}</span><span class="catcard-arrow">→</span></span>
+    </span>
+  </a>`;
+}).join("");
+
+// STICKY SCROLL-SPY NAV
+const snCats=document.getElementById("sn-cats");
+snCats.innerHTML=CATS.map(c=>`<a href="#${c.anchor}" data-key="${c.key}">${c.label}</a>`).join("");
+const stickynav=document.getElementById("stickynav"), coverEl=document.querySelector(".cover");
+addEventListener("scroll",()=>{
+  stickynav.classList.toggle("show", scrollY > (coverEl?coverEl.offsetHeight-70:600));
+},{passive:true});
+const spy=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){
+    const key=(CATS.find(c=>c.anchor===e.target.id)||{}).key;
+    snCats.querySelectorAll("a").forEach(a=>a.classList.toggle("active", a.dataset.key===key));
+  }
+}),{rootMargin:"-45% 0px -50% 0px",threshold:0});
+CATS.map(c=>document.getElementById(c.anchor)).filter(Boolean).forEach(s=>spy.observe(s));
+
+// QUIZ
+const STEPS=[
+  {key:"where",name:"WHERE",q:"Where will it live?",sub:"The location shapes everything that follows.",
+   opts:[{v:"backyard",b:"Backyard",s:"Outdoor install at home."},{v:"indoors",b:"Indoors",s:"Inside your home — basement, room, bath suite."},{v:"vacation",b:"Vacation home",s:"A second property, weekend retreat."},{v:"commercial",b:"Commercial",s:"Hotel, gym, club, multi-family. High daily use."}]},
+  {key:"who",name:"WHO",q:"Who's it for?",sub:"How many people, most sessions?",
+   opts:[{v:"solo",b:"Solo or a pair",s:"1–2, daily practice."},{v:"group",b:"A small group",s:"4–6, friends and family."},{v:"big",b:"A crowd",s:"6–8, or high-traffic use."}]},
+  {key:"cold",name:"COLD",q:"Do you want cold plunge?",sub:"Contrast is the full loop — but sauna alone is a start.",
+   opts:[{v:"indoor",b:"Yes — under one roof",s:"Sauna + plunge in one build."},{v:"outdoor",b:"Yes — outdoors",s:"The open-air ritual, on a deck."},{v:"no",b:"Just the sauna",s:"Heat now, add cold later."}]},
+  {key:"budget",name:"BUDGET",q:"What's your budget?",sub:"Your total — including heater and install.",
+   opts:[{v:"entry",b:"$15k – $20k",s:"An installed sauna kit."},{v:"mid",b:"$30k – $45k",s:"A hand-built sauna suite."},{v:"premium",b:"$50k – $65k",s:"Sauna + cold plunge, fully loaded."}]}
+];
+let step=0; const answers={};
+const fill=document.getElementById("qfill"),qcount=document.getElementById("qcount"),qname=document.getElementById("qname"),
+  qbody=document.getElementById("qbody"),qback=document.getElementById("qback"),qnext=document.getElementById("qnext"),
+  qresult=document.getElementById("qresult"),qnav=document.getElementById("qnav");
+
+function render(){
+  const s=STEPS[step];
+  fill.style.width=((step+1)/STEPS.length*100)+"%";
+  qcount.textContent=`Step ${step+1} of ${STEPS.length}`; qname.textContent=s.name;
+  qbody.innerHTML=`<div class="qstep"><h3>${s.q}</h3><p class="sub">${s.sub}</p><div class="opts">${
+    s.opts.map(o=>`<button class="opt ${answers[s.key]===o.v?'sel':''}" data-v="${o.v}"><b>${o.b}</b><span>${o.s}</span></button>`).join("")
+  }</div></div>`;
+  qbody.querySelectorAll(".opt").forEach(el=>el.onclick=()=>{
+    answers[s.key]=el.dataset.v; render(); qnext.disabled=false;
+  });
+  qback.style.visibility=step===0?"hidden":"visible";
+  qnext.disabled=!answers[s.key];
+  qnext.textContent=step===STEPS.length-1?"See my match →":"Next →";
+}
+qback.onclick=()=>{if(step>0){step--;render();}};
+qnext.onclick=()=>{ if(!answers[STEPS[step].key])return; if(step<STEPS.length-1){step++;render();} else showResult(); };
+
+function recommend(a){
+  // returns {ids:[primary, alt, alt], why} — budget gates every path
+  const who=a.who, budget=a.budget, cold=a.cold, where=a.where;
+  // entry-budget kit, sized to the group
+  const kitFor = () =>
+    who==="big"  ? ["cl12","gl6","cl7g"] :   // 6–8 → up-to-8 suite kit first
+    who==="solo" ? ["gl4","ee8g","cl7g"]  :  // 1–2 → smallest/cheapest cabins
+                   ["cl7g","gl6","ee8g"];    // 4–6 → up-to-6 cabins
+  // pre-built NP sauna-only, sized to the group + budget
+  const saunaFor = () =>
+    who==="solo" ? ["nook","212","212d"] :
+    (budget==="premium"||who==="big") ? ["212d","212","nook"] :
+                   ["212","212d","nook"];
+
+  // COMMERCIAL — tier by budget
+  if(where==="commercial"){
+    if(budget==="premium")
+      return {ids:["commercial","suiteD","212d"], why:"Commercial and multi-family spaces at this budget get the ADA-accessible WonderBlock — wheelchair access and a build made for constant daily use."};
+    if(budget==="mid")
+      return {ids:["212d","212","commercial"], why:"For a commercial space on a mid budget, a pre-built 212 is a durable, communal sauna — with the custom ADA build as the step up when you need accessibility."};
+    return {ids:kitFor(), why:"On an entry budget for a commercial space, an installed sauna kit sized to your group is the fastest way in — kit, heater, and setup included."};
+  }
+
+  // INDOOR — custom build; sub-budget nudges to pre-built starting points
+  if(where==="indoors"){
+    if(budget==="entry")
+      return {ids:["indoor","nook","212"], why:"Indoor builds are custom, so they start above kit pricing — a pre-built Nook or 212 is the closest budget starting point. Let's talk through your room."};
+    return {ids:["indoor","nook","212"], why:"An indoor space calls for a custom build — designed to your room, your finishes, your heater."};
+  }
+
+  // BACKYARD / VACATION — budget gates first
+  // ENTRY ($15–20k) — installed kit
+  if(budget==="entry")
+    return {ids:kitFor(), why:"On this budget, an installed sauna kit is the way in — kit, heater, and setup for $15–20k, sized to your group."};
+
+  // MID ($30–45k) — hand-built sauna suite; cold comes via the stand-alone plunge add-on
+  if(budget==="mid"){
+    if(cold==="no")
+      return {ids:saunaFor(), why:"A hand-built sauna suite fits this budget. Add a stand-alone cold plunge whenever you're ready."};
+    return {ids:saunaFor(), why:"A suite with a built-in plunge starts around $50k. On this budget, pair a hand-built sauna with the stand-alone cold plunge below — the full loop, for less."};
+  }
+
+  // PREMIUM ($50–65k)
+  if(cold==="no")
+    return {ids:["212d","212","nook"], why:"At this budget you have room for our top hand-built sauna, fully finished — add a stand-alone plunge anytime."};
+  if(cold==="outdoor")
+    return {ids:["retreat","suiteE","suiteD"], why:"You want the open-air ritual — the Primitive Retreat is built around the outdoor contrast loop."};
+  return {ids:["suiteD","suiteE","retreat"], why:"Sauna and cold plunge under one roof, fully loaded — the flagship Thermal Suite Designer."};
+}
+
+function showResult(){
+  const {ids,why}=recommend(answers);
+  const p=byId(ids[0]);
+  const money=x=>priceStr(x);
+  const heater=p.heater?`<div class="heaternote">${HEATER_NOTE}</div>`:"";
+  const alts=ids.slice(1).map(id=>{const x=byId(id);return `<div class="arow"><b>${x.name}</b><span>${money(x)}${x.heater?" + heater":""}</span></div>`;}).join("");
+  window.lastMatch={product:p, ids, why, answers:{...answers}};   // for the lead request
+  window.addPlunge=false;
+  const plungeOpt = p.group!=='recovery' ? `
+    <div class="addplunge" id="addPlunge" role="button" tabindex="0" onclick="togglePlunge()">
+      <img src="${NP_BASE}accessories/cold-plunge.png" alt="Stand-alone Cold Plunge">
+      <div class="ap-txt">
+        <div class="ap-k">Complete the loop · optional</div>
+        <b>Add a stand-alone cold plunge</b>
+        <span>Cold Life vertical plunge — chiller + filtration. Pairs with any sauna.</span>
+      </div>
+      <div class="ap-right"><span class="ap-price">+ ${fmt(PLUNGE.price)}</span><span class="ap-btn">Add</span></div>
+    </div>` : '';
+  qbody.style.display="none"; qnav.style.display="none"; fill.style.width="100%";
+  qcount.textContent="Your match"; qname.textContent="RESULT";
+  qresult.className="result show";
+  qresult.innerHTML=`
+    <div class="rmatch">
+      <div class="rimg"><img src="${p.img}" alt="${p.name}"></div>
+      <div>
+        <div class="rk">Recommended for you</div>
+        <h4>${p.name}</h4>
+        <div class="rp">${money(p)}${p.heater?' <span style="font-size:13px;color:var(--blue)">+ heater</span>':''}</div>
+        <p class="rwhy">${why}</p>
+        ${heater}
+      </div>
+    </div>
+    <div class="alts"><div class="al">Also worth a look</div>${alts}</div>
+    ${plungeOpt}
+    <button class="btn cta wide" onclick="openLead()">Request more information →</button>
+    <div class="qnav" style="margin-top:14px">
+      <button class="btn ghost" onclick="resetQuiz()">← Start over</button>
+      <button class="btn ghost" onclick="document.getElementById('p-${p.id}').scrollIntoView({behavior:'smooth',block:'center'})">See ${p.name} →</button>
+    </div>`;
+}
+
+// COLD PLUNGE — optional stand-alone add-on for any sauna-only match
+function togglePlunge(){
+  window.addPlunge=!window.addPlunge;
+  const el=document.getElementById('addPlunge'); if(!el) return;
+  el.classList.toggle('on', window.addPlunge);
+  el.querySelector('.ap-btn').textContent = window.addPlunge ? 'Added ✓' : 'Add';
+}
+window.togglePlunge=togglePlunge;
+
+// LEAD REQUEST — opens the New Primitive booking widget with their match as context
+function openLead(){
+  const m=window.lastMatch, el=document.getElementById('lead-match');
+  if(m && el){
+    const money=x=>priceStr(x);
+    const lbl=(k,v)=>{const s=STEPS.find(s=>s.key===k),o=s&&s.opts.find(o=>o.v===v);return o?o.b:(v||'—');};
+    const A=m.answers;
+    const plungeTxt = window.addPlunge ? ` <b style="color:var(--blue)">+ ${PLUNGE.name} (${fmt(PLUNGE.price)})</b>` : '';
+    el.innerHTML=`Your match: <b>${m.product.name}</b> — ${money(m.product)}${m.product.heater?' + heater':''}${plungeTxt}. `+
+      `<span class="lead-ans">${lbl('where',A.where)} · ${lbl('who',A.who)} · ${lbl('cold',A.cold)} · ${lbl('budget',A.budget)}</span>. Mention it when you book.`;
+  }
+  document.getElementById('leadModal').classList.add('show');
+}
+function closeLead(){ document.getElementById('leadModal').classList.remove('show'); }
+window.openLead=openLead; window.closeLead=closeLead;
+function resetQuiz(){
+  step=0; window.addPlunge=false; for(const k in answers)delete answers[k];
+  qbody.style.display=""; qnav.style.display="flex"; qresult.className="result"; qresult.innerHTML="";
+  render();
+}
+window.resetQuiz=resetQuiz;
+if('scrollRestoration' in history) history.scrollRestoration='manual';
+addEventListener('load',()=>{ if(!location.hash){ const q=document.getElementById('quiz'); if(q) q.scrollIntoView({behavior:'instant',block:'start'}); }});
+render();
+</script>
+
+<!-- LEAD MODAL — New Primitive booking widget -->
+<div class="modal" id="leadModal">
+  <div class="modal-card book">
+    <button class="modal-x" onclick="closeLead()" aria-label="Close">×</button>
+    <div class="rk" style="color:var(--orange)">Request more information</div>
+    <h3 class="modal-h">Book a call.</h3>
+    <p class="modal-sub" id="lead-match">Pick a time and we'll reach out.</p>
+    <iframe src="https://api.leadconnectorhq.com/widget/booking/sXZge9tH0dGDo3k024hr" style="width:100%;border:none;overflow:hidden;min-height:660px" scrolling="no" id="sXZge9tH0dGDo3k024hr_1784848523997"></iframe>
+  </div>
+</div>
+<!-- FLOOR-PLAN LIGHTBOX -->
+<div class="modal layoutbox" id="layoutModal" onclick="if(event.target===this)closeLayout()">
+  <div class="modal-card">
+    <button class="modal-x" onclick="closeLayout()" aria-label="Close">×</button>
+    <div class="layout-cap"><span id="layout-title">Floor plan</span><span>Ground level · 1/2&quot; = 1&#39;-0&quot;</span></div>
+    <img id="layout-img" src="" alt="Floor plan">
+  </div>
+</div>
+<script>
+function openLayout(src,name){var m=document.getElementById('layoutModal');document.getElementById('layout-img').src=src;document.getElementById('layout-img').alt=name+' floor plan';document.getElementById('layout-title').textContent=name+' · floor plan';m.classList.add('show');}
+function closeLayout(){document.getElementById('layoutModal').classList.remove('show');}
+window.openLayout=openLayout;window.closeLayout=closeLayout;
+addEventListener('keydown',function(e){if(e.key==='Escape')closeLayout();});
+</script>
+<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
+</body>
+</html>

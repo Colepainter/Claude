@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"cd /Users/colepainter/AI/Brochures/new-primitive\\npython3 - <<'PY'\\nimport os, urllib.request, concurrent.futures as cf\\nrows=[l.split('\\\\t') for l in open('/private/tmp/claude-501/-Users-...",
+  "error": "Exit code 143\nCommand timed out after 2m 0s",
+  "timestamp": "2026-07-23T19:33:58.861Z",
+  "retry_count": 1
+}

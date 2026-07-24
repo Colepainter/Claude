@@ -1,0 +1,7 @@
+{
+  "tool_name": "mcp__claude-in-chrome__tabs_context_mcp",
+  "tool_input_preview": "{\"createIfEmpty\":true}",
+  "error": "Selected Chrome extension disconnected.",
+  "timestamp": "2026-07-24T14:48:42.952Z",
+  "retry_count": 1
+}

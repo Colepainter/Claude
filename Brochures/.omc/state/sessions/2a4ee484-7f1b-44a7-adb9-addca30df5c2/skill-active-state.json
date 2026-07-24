@@ -1,0 +1,15 @@
+{
+  "active": true,
+  "skill_name": "ask",
+  "session_id": "2a4ee484-7f1b-44a7-adb9-addca30df5c2",
+  "started_at": "2026-07-23T19:54:47.701Z",
+  "last_checked_at": "2026-07-23T19:54:47.701Z",
+  "reinforcement_count": 0,
+  "max_reinforcements": 3,
+  "stale_ttl_ms": 300000,
+  "_meta": {
+    "written_at": "2026-07-23T19:54:47.701Z",
+    "mode": "skill-active",
+    "sessionId": "2a4ee484-7f1b-44a7-adb9-addca30df5c2"
+  }
+}
