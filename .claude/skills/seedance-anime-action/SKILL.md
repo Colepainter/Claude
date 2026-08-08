@@ -775,9 +775,9 @@ SPECIAL EFFECTS:
 [SCENE 2 - 0:06-0:09]
 SETTING: Quick montage cuts. 3-4 rapid cuts of action moments.
 
-CUT 1 (0:06-0:067): Speed line burst. Character executes punch. Speed lines fill screen. Impact frame with cross-shaped highlight. Lasts 0.4 seconds.
+CUT 1 (0:06-0:06.7): Speed line burst. Character executes punch. Speed lines fill screen. Impact frame with cross-shaped highlight. Lasts 0.7 seconds.
 
-CUT 2 (0:067-0:07.3): Transformation flash. White light obscures screen, pulls back to reveal character in powered-up form. Red aura instead of blue. Dramatic pose. 0.6 second duration.
+CUT 2 (0:06.7-0:07.3): Transformation flash. White light obscures screen, pulls back to reveal character in powered-up form. Red aura instead of blue. Dramatic pose. 0.6 second duration.
 
 CUT 3 (0:07.3-0:08.0): Bladeunsheath moment. Slow-motion unsheath of massive sword. Bright metal gleam flash across blade. Speed lines follow blade path. 0.7 seconds.
 
